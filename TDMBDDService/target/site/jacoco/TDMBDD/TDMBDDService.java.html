@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TDMBDDService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TDMBDDService</a> &gt; <a href="index.source.html" class="el_package">TDMBDD</a> &gt; <span class="el_source">TDMBDDService.java</span></div><h1>TDMBDDService.java</h1><pre class="source lang-java linenums">package TDMBDD;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.ait.DataFileImport.FileData;
+import com.ait.callData.CallDataDAO;
+
+
+
+@Path(&quot;/TelcoDataMgt&quot;)
+<span class="nc" id="L23">public class TDMBDDService {</span>
+	
+		@EJB
+		private CallDataDAO callDataDao;
+
+
+	    @GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    @Path(&quot;/HelloWorldTest&quot;)
+	    public String getTDMHelloWorld() {
+<span class="nc" id="L33">	    	String hello = &quot;Hello TDMBDD World&quot;;</span>
+<span class="nc" id="L34">	        return hello;</span>
+	    }
+
+
+		@POST	
+		@Produces(MediaType.APPLICATION_JSON) //http return codes
+		public Response importFile() {
+			
+			final FileData fileData;
+			final InputStream inputStream;
+			
+			try {
+//				inputStream = new FileInputStream(&quot;import/Sample Dataset.xls&quot;);
+<span class="nc" id="L47">				inputStream = new FileInputStream(&quot;C:\\Users\\eeiddoy\\eclipse-workspace\\TDMBDDService\\src\\test\\resources\\testData\\TestDataset.xls&quot;);</span>
+<span class="nc" id="L48">			} catch (Exception e) {</span>
+<span class="nc" id="L49">					return Response.status(406).entity(&quot;File Not Foundn2&quot;).build();</span>
+
+			}
+<span class="nc" id="L52">			fileData = new FileData(inputStream);</span>
+<span class="nc" id="L53">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L54">			FileData.rowNumber = 1;</span>
+		    try {
+<span class="nc" id="L56">				fileData.importWorkbook();</span>
+<span class="nc" id="L57">			} catch (IOException e) {</span>
+<span class="nc" id="L58">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
+			}
+<span class="nc" id="L60">			callDataDao.addBaseData(fileData.getBaseDataList());</span>
+<span class="nc" id="L61">		    return Response.status(200).entity(&quot;FileLoaded&quot;).build();</span>
+		
+		}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

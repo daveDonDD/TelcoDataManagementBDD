@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TDMBDDService</a> &gt; <a href="index.source.html" class="el_package">com.ait.callData</a> &gt; <span class="el_source">BaseData.java</span></div><h1>BaseData.java</h1><pre class="source lang-java linenums">package com.ait.callData;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Entity;
+import javax.persistence.IdClass;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@Entity
+@XmlRootElement
+@IdClass(BaseData.class)
+public class BaseData implements Serializable{
+  	private static final long serialVersionUID = 1L;
+	/*@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name=&quot;basedata_ID&quot;)
+	private Long row_id;*/
+	
+	@Id
+	private int event_id;
+	@Id
+	private LocalDateTime date_time;
+	@Id
+	private String failure_class;
+	@Id
+	private int ue_type;
+	@Id
+	private int market;
+	@Id
+	private int operator;
+	@Id
+	private int cell_id;
+	@Id
+	private int duration;
+	@Id
+	private int cause_code;
+	@Id
+	private String ne_version;
+	@Id
+	private long imsi;
+	@Id
+	private long hier3_id;
+	@Id
+	private long hier32_id;
+	@Id
+	private long hier321_id;
+
+<span class="fc" id="L56">	public BaseData() {</span>
+<span class="fc" id="L57">	}</span>
+
+<span class="fc" id="L59">	public BaseData(final LocalDateTime date_time, final int event_id, final String failure_class, final int ue_type,</span>
+			final int market, final int operator, final int cell_id, final int duration, final int cause_code,
+			final String ne_version, final long imsi, final long hier3_id, final long hier32_id,
+			final long hier321_id) {
+<span class="fc" id="L63">		this.date_time = date_time;</span>
+<span class="fc" id="L64">		this.event_id = event_id;</span>
+<span class="fc" id="L65">		this.failure_class = failure_class;</span>
+<span class="fc" id="L66">		this.ue_type = ue_type;</span>
+<span class="fc" id="L67">		this.market = market;</span>
+<span class="fc" id="L68">		this.operator = operator;</span>
+<span class="fc" id="L69">		this.cell_id = cell_id;</span>
+<span class="fc" id="L70">		this.duration = duration;</span>
+<span class="fc" id="L71">		this.cause_code = cause_code;</span>
+<span class="fc" id="L72">		this.ne_version = ne_version;</span>
+<span class="fc" id="L73">		this.imsi = imsi;</span>
+<span class="fc" id="L74">		this.hier3_id = hier3_id;</span>
+<span class="fc" id="L75">		this.hier32_id = hier32_id;</span>
+<span class="fc" id="L76">		this.hier321_id = hier321_id;</span>
+<span class="fc" id="L77">	}</span>
+
+	public LocalDateTime getDate_time() {
+<span class="fc" id="L80">		return date_time;</span>
+	}
+
+	public void setDate_time(final LocalDateTime date_time) {
+<span class="nc" id="L84">		this.date_time = date_time;</span>
+<span class="nc" id="L85">	}</span>
+
+	public int getEvent_id() {
+<span class="fc" id="L88">		return event_id;</span>
+	}
+
+	public void setEvent_id(final int event_id) {
+<span class="nc" id="L92">		this.event_id = event_id;</span>
+<span class="nc" id="L93">	}</span>
+
+	public String getFailure_class() {
+<span class="fc" id="L96">		return failure_class;</span>
+	}
+
+	public void setFailure_class(final String failure_class) {
+<span class="nc" id="L100">		this.failure_class = failure_class;</span>
+<span class="nc" id="L101">	}</span>
+
+	public int getUe_type() {
+<span class="fc" id="L104">		return ue_type;</span>
+	}
+
+	public void setUe_type(final int ue_type) {
+<span class="nc" id="L108">		this.ue_type = ue_type;</span>
+<span class="nc" id="L109">	}</span>
+
+	public int getMarket() {
+<span class="fc" id="L112">		return market;</span>
+	}
+
+	public void setMarket(final int market) {
+<span class="nc" id="L116">		this.market = market;</span>
+<span class="nc" id="L117">	}</span>
+
+	public int getOperator() {
+<span class="fc" id="L120">		return operator;</span>
+	}
+
+	public void setOperator(final int operator) {
+<span class="nc" id="L124">		this.operator = operator;</span>
+<span class="nc" id="L125">	}</span>
+
+	public int getCell_id() {
+<span class="fc" id="L128">		return cell_id;</span>
+	}
+
+	public void setCell_id(final int cell_id) {
+<span class="nc" id="L132">		this.cell_id = cell_id;</span>
+<span class="nc" id="L133">	}</span>
+
+	public int getDuration() {
+<span class="fc" id="L136">		return duration;</span>
+	}
+
+	public void setDuration(final int duration) {
+<span class="nc" id="L140">		this.duration = duration;</span>
+<span class="nc" id="L141">	}</span>
+
+	public int getCause_code() {
+<span class="fc" id="L144">		return cause_code;</span>
+	}
+
+	public void setCause_code(final int cause_code) {
+<span class="nc" id="L148">		this.cause_code = cause_code;</span>
+<span class="nc" id="L149">	}</span>
+
+	public String getNe_version() {
+<span class="fc" id="L152">		return ne_version;</span>
+	}
+
+	public void setNe_version(final String ne_version) {
+<span class="nc" id="L156">		this.ne_version = ne_version;</span>
+<span class="nc" id="L157">	}</span>
+
+	public long getImsi() {
+<span class="fc" id="L160">		return imsi;</span>
+	}
+
+	public void setImsi(final long imsi) {
+<span class="nc" id="L164">		this.imsi = imsi;</span>
+<span class="nc" id="L165">	}</span>
+
+	public long getHier3_id() {
+<span class="fc" id="L168">		return hier3_id;</span>
+	}
+
+	public void setHier3_id(final long hier3_id) {
+<span class="nc" id="L172">		this.hier3_id = hier3_id;</span>
+<span class="nc" id="L173">	}</span>
+
+	public long getHier32_id() {
+<span class="fc" id="L176">		return hier32_id;</span>
+	}
+
+	public void setHier32_id(final long hier32_id) {
+<span class="nc" id="L180">		this.hier32_id = hier32_id;</span>
+<span class="nc" id="L181">	}</span>
+
+	public long getHier321_id() {
+<span class="fc" id="L184">		return hier321_id;</span>
+	}
+
+	public void setHier321_id(final long hier321_id) {
+<span class="nc" id="L188">		this.hier321_id = hier321_id;</span>
+<span class="nc" id="L189">	}</span>
+
+<span class="fc" id="L191">	public static class Builder {</span>
+		private int event_id;
+		private LocalDateTime date_time;
+		private String failure_class;
+		private int ue_type;
+		private int market;
+		private int operator;
+		private int cell_id;
+		private int duration;
+		private int cause_code;
+		private String ne_version;
+		private long imsi;
+		private long hier3_id;
+		private long hier32_id;
+		private long hier321_id;
+
+		public Builder event_id(final int event_id) {
+<span class="fc" id="L208">			this.event_id = event_id;</span>
+<span class="fc" id="L209">			return this;</span>
+		}
+
+		public Builder date_time(final LocalDateTime date_time) {
+<span class="fc" id="L213">			this.date_time = date_time;</span>
+<span class="fc" id="L214">			return this;</span>
+		}
+
+		public Builder failure_class(final String failure_class) {
+<span class="fc" id="L218">			this.failure_class = failure_class;</span>
+<span class="fc" id="L219">			return this;</span>
+		}
+
+		public Builder ue_type(final int ue_type) {
+<span class="fc" id="L223">			this.ue_type = ue_type;</span>
+<span class="fc" id="L224">			return this;</span>
+		}
+
+		public Builder market(final int market) {
+<span class="fc" id="L228">			this.market = market;</span>
+<span class="fc" id="L229">			return this;</span>
+		}
+
+		public Builder operator(final int operator) {
+<span class="fc" id="L233">			this.operator = operator;</span>
+<span class="fc" id="L234">			return this;</span>
+		}
+
+		public Builder cell_id(final int cell_id) {
+<span class="fc" id="L238">			this.cell_id = cell_id;</span>
+<span class="fc" id="L239">			return this;</span>
+		}
+
+		public Builder duration(final int duration) {
+<span class="fc" id="L243">			this.duration = duration;</span>
+<span class="fc" id="L244">			return this;</span>
+		}
+
+		public Builder cause_code(final int cause_code) {
+<span class="fc" id="L248">			this.cause_code = cause_code;</span>
+<span class="fc" id="L249">			return this;</span>
+		}
+
+		public Builder ne_version(final String ne_version) {
+<span class="fc" id="L253">			this.ne_version = ne_version;</span>
+<span class="fc" id="L254">			return this;</span>
+		}
+
+		public Builder imsi(final long imsi) {
+<span class="fc" id="L258">			this.imsi = imsi;</span>
+<span class="fc" id="L259">			return this;</span>
+		}
+
+		public Builder hier3_id(final long hier3_id) {
+<span class="fc" id="L263">			this.hier3_id = hier3_id;</span>
+<span class="fc" id="L264">			return this;</span>
+		}
+
+		public Builder hier32_id(final long hier32_id) {
+<span class="fc" id="L268">			this.hier32_id = hier32_id;</span>
+<span class="fc" id="L269">			return this;</span>
+		}
+
+		public Builder hier321_id(final long hier321_id) {
+<span class="fc" id="L273">			this.hier321_id = hier321_id;</span>
+<span class="fc" id="L274">			return this;</span>
+		}
+
+		public BaseData build() {
+<span class="fc" id="L278">			return new BaseData(date_time, event_id, failure_class, ue_type, market, operator, cell_id, duration,</span>
+<span class="fc" id="L279">					cause_code, ne_version, imsi, hier3_id, hier32_id, hier321_id);</span>
+		}
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L285">		final int prime = 31;</span>
+<span class="nc" id="L286">		int result = 1;</span>
+<span class="nc" id="L287">		result = prime * result + cause_code;</span>
+<span class="nc" id="L288">		result = prime * result + cell_id;</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">		result = prime * result + ((date_time == null) ? 0 : date_time.hashCode());</span>
+<span class="nc" id="L290">		result = prime * result + duration;</span>
+<span class="nc" id="L291">		result = prime * result + event_id;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">		result = prime * result + ((failure_class == null) ? 0 : failure_class.hashCode());</span>
+<span class="nc" id="L293">		result = prime * result + (int) (hier321_id ^ (hier321_id &gt;&gt;&gt; 32));</span>
+<span class="nc" id="L294">		result = prime * result + (int) (hier32_id ^ (hier32_id &gt;&gt;&gt; 32));</span>
+<span class="nc" id="L295">		result = prime * result + (int) (hier3_id ^ (hier3_id &gt;&gt;&gt; 32));</span>
+<span class="nc" id="L296">		result = prime * result + (int) (imsi ^ (imsi &gt;&gt;&gt; 32));</span>
+<span class="nc" id="L297">		result = prime * result + market;</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">		result = prime * result + ((ne_version == null) ? 0 : ne_version.hashCode());</span>
+<span class="nc" id="L299">		result = prime * result + operator;</span>
+<span class="nc" id="L300">		result = prime * result + ue_type;</span>
+<span class="nc" id="L301">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="nc bnc" id="L306" title="All 2 branches missed.">		if (this == obj) {</span>
+<span class="nc" id="L307">			return true;</span>
+		}
+<span class="nc bnc" id="L309" title="All 2 branches missed.">		if (obj == null) {</span>
+<span class="nc" id="L310">			return false;</span>
+		}
+<span class="nc bnc" id="L312" title="All 2 branches missed.">		if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L313">			return false;</span>
+		}
+<span class="nc" id="L315">		final BaseData other = (BaseData) obj;</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">		if (cause_code != other.cause_code) {</span>
+<span class="nc" id="L317">			return false;</span>
+		}
+<span class="nc bnc" id="L319" title="All 2 branches missed.">		if (cell_id != other.cell_id) {</span>
+<span class="nc" id="L320">			return false;</span>
+		}
+<span class="nc bnc" id="L322" title="All 2 branches missed.">		if (date_time == null) {</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">			if (other.date_time != null) {</span>
+<span class="nc" id="L324">				return false;</span>
+			}
+<span class="nc bnc" id="L326" title="All 2 branches missed.">		} else if (!date_time.equals(other.date_time)) {</span>
+<span class="nc" id="L327">			return false;</span>
+		}
+<span class="nc bnc" id="L329" title="All 2 branches missed.">		if (duration != other.duration) {</span>
+<span class="nc" id="L330">			return false;</span>
+		}
+<span class="nc bnc" id="L332" title="All 2 branches missed.">		if (event_id != other.event_id) {</span>
+<span class="nc" id="L333">			return false;</span>
+		}
+<span class="nc bnc" id="L335" title="All 2 branches missed.">		if (failure_class == null) {</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">			if (other.failure_class != null) {</span>
+<span class="nc" id="L337">				return false;</span>
+			}
+<span class="nc bnc" id="L339" title="All 2 branches missed.">		} else if (!failure_class.equals(other.failure_class)) {</span>
+<span class="nc" id="L340">			return false;</span>
+		}
+<span class="nc bnc" id="L342" title="All 2 branches missed.">		if (hier321_id != other.hier321_id) {</span>
+<span class="nc" id="L343">			return false;</span>
+		}
+<span class="nc bnc" id="L345" title="All 2 branches missed.">		if (hier32_id != other.hier32_id) {</span>
+<span class="nc" id="L346">			return false;</span>
+		}
+<span class="nc bnc" id="L348" title="All 2 branches missed.">		if (hier3_id != other.hier3_id) {</span>
+<span class="nc" id="L349">			return false;</span>
+		}
+<span class="nc bnc" id="L351" title="All 2 branches missed.">		if (imsi != other.imsi) {</span>
+<span class="nc" id="L352">			return false;</span>
+		}
+<span class="nc bnc" id="L354" title="All 2 branches missed.">		if (market != other.market) {</span>
+<span class="nc" id="L355">			return false;</span>
+		}
+<span class="nc bnc" id="L357" title="All 2 branches missed.">		if (ne_version == null) {</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">			if (other.ne_version != null) {</span>
+<span class="nc" id="L359">				return false;</span>
+			}
+<span class="nc bnc" id="L361" title="All 2 branches missed.">		} else if (!ne_version.equals(other.ne_version)) {</span>
+<span class="nc" id="L362">			return false;</span>
+		}
+<span class="nc bnc" id="L364" title="All 2 branches missed.">		if (operator != other.operator) {</span>
+<span class="nc" id="L365">			return false;</span>
+		}
+<span class="nc bnc" id="L367" title="All 2 branches missed.">		if (ue_type != other.ue_type) {</span>
+<span class="nc" id="L368">			return false;</span>
+		}
+<span class="nc" id="L370">		return true;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
