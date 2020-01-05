@@ -61,7 +61,7 @@ public class CallDataDaoIntegrationTest {
 		
 		
 		CallDataDAO callData = new CallDataDAO();
-		BaseData baseData = new BaseData(LocalDateTime.now(), 4098,	"1", 21060800, 344, 930, 4, 1000, 0, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
+		BaseData baseData = new BaseData(LocalDateTime.now(), 4098,	1, 21060800, 344, 930, 4, 1000, 0, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
 	
 		baseDataList.add(baseData);
 	

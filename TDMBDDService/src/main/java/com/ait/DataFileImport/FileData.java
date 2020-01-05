@@ -18,15 +18,24 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import com.ait.callData.BaseData;
+import com.ait.callData.EventCause;
+import com.ait.callData.FailureClass;
+import com.ait.callData.MccMnc;
+import com.ait.callData.UE;
 
 
 public class FileData {
 	private Workbook workbook;
 	public static List<String> excelDataList;
 	private List<BaseData> baseDataList;
+	private List<EventCause> eventCauseList;
+	private List<FailureClass> failureClassList;
+	private List<UE> ueList;
+	private List<MccMnc> mcc_mncList;
 	private DateTimeFormatter formatter;
 	public static String worksheetName;
 	public static long rowNumber;
+	private ConsistencyCheck consistencyCheck;
 
 	public FileData() {
 	}
@@ -39,7 +48,13 @@ public class FileData {
 		}
 		excelDataList = new ArrayList<String>();
 		baseDataList = new ArrayList<BaseData>();
+		eventCauseList = new ArrayList<EventCause>();
+		failureClassList = new ArrayList<FailureClass>();
+		consistencyCheck = new ConsistencyCheck();
 
+		ueList = new ArrayList<UE>();
+		mcc_mncList = new ArrayList<MccMnc>();
+		
 		formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 		rowNumber = 0;
 		worksheetName = "";
@@ -95,11 +110,12 @@ public class FileData {
 		case 0:
 			//if (!tableFilter.isBaseDataValid(excelDataList)) {
 			//	break;
-			//}
+			//}     note used as re implemented the consistence withing this class
 			final LocalDateTime dateTime = LocalDateTime.parse(excelDataList.get(0), formatter);
 
 			final BaseData baseData = new BaseData.Builder().date_time(dateTime)
-					.event_id((int) Double.parseDouble(excelDataList.get(1))).failure_class(excelDataList.get(2))
+					.event_id((int) Double.parseDouble(excelDataList.get(1)))
+					.failure_class((int) Double.parseDouble(excelDataList.get(2)))
 					.ue_type((int) Double.parseDouble(excelDataList.get(3)))
 					.market((int) Double.parseDouble(excelDataList.get(4)))
 					.operator((int) Double.parseDouble(excelDataList.get(5)))
@@ -110,47 +126,47 @@ public class FileData {
 					.hier3_id((long) Double.parseDouble(excelDataList.get(11)))
 					.hier32_id((long) Double.parseDouble(excelDataList.get(12)))
 					.hier321_id((long) Double.parseDouble(excelDataList.get(13))).build();
-
-			baseDataList.add(baseData);
+			
+			// consistency checking - first eventCause, need to do them all
+			if (consistencyCheck.eventCauseConsistencyCheck(this.eventCauseList,baseData))
+					baseDataList.add(baseData);
 			break;
-	/*
-	 * only testing one sheet for now 
-	 * 	case 1:
+	
+	 	case 1:
 	 
-			if (!tableFilter.isEventCauseValid(excelDataList)) {
-				break;
-			}
+	//		if (!tableFilter.isEventCauseValid(excelDataList)) {
+	//			break;
+	//		}
 			final EventCause eventCause = new EventCause((int) Double.parseDouble(excelDataList.get(0)),
-					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2));
+	  						(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2));
 			eventCauseList.add(eventCause);
 			break;
 		case 2:
-			if (!tableFilter.isFailureClassValid(excelDataList)) {
-				break;
-			}
+	//		if (!tableFilter.isFailureClassValid(excelDataList)) {
+	//			break;
+	//		}
 			final FailureClass failureClass = new FailureClass((int) Double.parseDouble(excelDataList.get(0)),
 					excelDataList.get(1));
 			failureClassList.add(failureClass);
 			break;
 		case 3:
-			if (!tableFilter.isUEValid(excelDataList)) {
-				break;
-			}
+	//		if (!tableFilter.isUEValid(excelDataList)) {
+	//			break;
+	//		}
 			final UE ue = new UE((int) Double.parseDouble(excelDataList.get(0)), excelDataList.get(1),
 					excelDataList.get(2), excelDataList.get(3), excelDataList.get(4), excelDataList.get(5),
 					excelDataList.get(6), excelDataList.get(7), excelDataList.get(8));
 			ueList.add(ue);
 			break;
 		case 4:
-			if (!tableFilter.isMCC_MNCValid(excelDataList)) {
-				break;
-			}
+	//		if (!tableFilter.isMCC_MNCValid(excelDataList)) {
+	//			break;
+	//		}
 
 			final MccMnc mcc_mnc = new MccMnc((int) Double.parseDouble(excelDataList.get(0)),
 					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2), excelDataList.get(3));
 			mcc_mncList.add(mcc_mnc);
 			break;
-			****************/
 		}    
 		excelDataList.clear();
 	}
@@ -162,7 +178,7 @@ public class FileData {
 	public List<BaseData> getBaseDataList() {
 		return baseDataList;
 	}
-/*
+
 	public List<EventCause> getEventCauseList() {
 		return eventCauseList;
 	}
@@ -178,7 +194,9 @@ public class FileData {
 	public List<MccMnc> getMcc_mncList() {
 		return mcc_mncList;
 	}
-
+	
+	
+/*
 	public TableFilter getTableFilter() {
 		return tableFilter;
 	}

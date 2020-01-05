@@ -42,8 +42,9 @@
         </configuration>
    </container>
 
+<!-- this line was in an example arquillian but xml does nto recognise 'engine' so I removed it 1/1/20
  <engine>
   <property name="deploymentExportPath">target/deployments</property>
  </engine>
- 
+  -->
 </arquillian>

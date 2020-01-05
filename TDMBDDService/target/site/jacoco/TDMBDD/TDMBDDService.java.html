@@ -11,13 +11,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.ait.DataFileImport.FileData;
 import com.ait.callData.CallDataDAO;
-
-
+import java.lang.String;
 
 @Path(&quot;/TelcoDataMgt&quot;)
 <span class="nc" id="L23">public class TDMBDDService {</span>
@@ -30,35 +30,34 @@ import com.ait.callData.CallDataDAO;
 	    @Produces(MediaType.APPLICATION_JSON)
 	    @Path(&quot;/HelloWorldTest&quot;)
 	    public String getTDMHelloWorld() {
-<span class="nc" id="L33">	    	String hello = &quot;Hello TDMBDD World&quot;;</span>
+<span class="nc" id="L33">	    	String hello = &quot;Hello TDMBDD World DDOY&quot;;</span>
 <span class="nc" id="L34">	        return hello;</span>
 	    }
 
 
 		@POST	
+		@Consumes(MediaType.TEXT_PLAIN)
 		@Produces(MediaType.APPLICATION_JSON) //http return codes
-		public Response importFile() {
-			
+		public Response importFile(String fileName){		
 			final FileData fileData;
 			final InputStream inputStream;
 			
 			try {
-//				inputStream = new FileInputStream(&quot;import/Sample Dataset.xls&quot;);
-<span class="nc" id="L47">				inputStream = new FileInputStream(&quot;C:\\Users\\eeiddoy\\eclipse-workspace\\TDMBDDService\\src\\test\\resources\\testData\\TestDataset.xls&quot;);</span>
-<span class="nc" id="L48">			} catch (Exception e) {</span>
-<span class="nc" id="L49">					return Response.status(406).entity(&quot;File Not Foundn2&quot;).build();</span>
+<span class="nc" id="L46">				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);</span>
+<span class="nc" id="L47">			} catch (Exception e) {</span>
+<span class="nc" id="L48">					return Response.status(406).entity(&quot;File Not Found&quot; + fileName).build();</span>
 
 			}
-<span class="nc" id="L52">			fileData = new FileData(inputStream);</span>
-<span class="nc" id="L53">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L54">			FileData.rowNumber = 1;</span>
+<span class="nc" id="L51">			fileData = new FileData(inputStream);</span>
+<span class="nc" id="L52">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L53">			FileData.rowNumber = 1;</span>
 		    try {
-<span class="nc" id="L56">				fileData.importWorkbook();</span>
-<span class="nc" id="L57">			} catch (IOException e) {</span>
-<span class="nc" id="L58">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
+<span class="nc" id="L55">				fileData.importWorkbook();</span>
+<span class="nc" id="L56">			} catch (IOException e) {</span>
+<span class="nc" id="L57">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
 			}
-<span class="nc" id="L60">			callDataDao.addBaseData(fileData.getBaseDataList());</span>
-<span class="nc" id="L61">		    return Response.status(200).entity(&quot;FileLoaded&quot;).build();</span>
+<span class="nc" id="L59">			callDataDao.addBaseData(fileData.getBaseDataList());</span>
+<span class="nc" id="L60">		    return Response.status(200).entity(&quot;FileLoaded&quot; + fileName).build();</span>
 		
 		}
 

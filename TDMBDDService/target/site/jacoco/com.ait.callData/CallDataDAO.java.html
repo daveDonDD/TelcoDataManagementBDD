@@ -33,7 +33,7 @@ public class CallDataDAO {
 <span class="fc" id="L33">			final String formatDateTime = baseData.getDate_time().format(formatter);</span>
 			// resultList.add(entityManager.merge(baseData));
 <span class="fc" id="L35">			final Query query = entityManager.createNativeQuery(</span>
-<span class="fc" id="L36">					&quot;INSERT INTO BaseData(date_time,event_id,failure_class,ue_type,market,operator,cell_id,duration,cause_code,ne_version,imsi,hier3_id,hier32_id,hier321_id) VALUES(:date_time,:eventid,:failure_class,:ue_type,:market,:operator,:cell_id,:duration,:cause_code,:ne_version,:imsi,:hier3_id,:hier32_id,:hier321_id) ON DUPLICATE KEY UPDATE date_time=:date_time, event_id=:eventid, failure_class=:failure_class, ue_type=:ue_type, market=:market, operator=:operator, cell_id=:cell_id, duration=:duration, cause_code=:cause_code, ne_version=:ne_version, imsi=:imsi, hier3_id=:hier3_id, hier32_id=:hier32_id, hier321_id=:hier321_id&quot;);</span>
+					&quot;INSERT INTO BaseData(date_time,event_id,failure_class,ue_type,market,operator,cell_id,duration,cause_code,ne_version,imsi,hier3_id,hier32_id,hier321_id) VALUES(:date_time,:eventid,:failure_class,:ue_type,:market,:operator,:cell_id,:duration,:cause_code,:ne_version,:imsi,:hier3_id,:hier32_id,:hier321_id) ON DUPLICATE KEY UPDATE date_time=:date_time, event_id=:eventid, failure_class=:failure_class, ue_type=:ue_type, market=:market, operator=:operator, cell_id=:cell_id, duration=:duration, cause_code=:cause_code, ne_version=:ne_version, imsi=:imsi, hier3_id=:hier3_id, hier32_id=:hier32_id, hier321_id=:hier321_id&quot;);
 <span class="fc" id="L37">			query.setParameter(&quot;date_time&quot;, formatDateTime);</span>
 <span class="fc" id="L38">			query.setParameter(&quot;eventid&quot;, baseData.getEvent_id());</span>
 <span class="fc" id="L39">			query.setParameter(&quot;failure_class&quot;, baseData.getFailure_class());</span>
@@ -49,7 +49,7 @@ public class CallDataDAO {
 <span class="fc" id="L49">			query.setParameter(&quot;hier32_id&quot;, baseData.getHier32_id());</span>
 <span class="fc" id="L50">			query.setParameter(&quot;hier321_id&quot;, baseData.getHier321_id());</span>
 <span class="fc" id="L51">			query.executeUpdate();</span>
-		}
+<span class="fc" id="L52">		}</span>
 <span class="fc" id="L53">	}</span>
 
 	

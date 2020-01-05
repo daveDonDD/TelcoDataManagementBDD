@@ -207,10 +207,10 @@
             </plugin>
 			
 		</plugins>
-  </build>
+  	</build>
   
   
-<profiles>
+	<profiles>
 		
 
 		<profile>

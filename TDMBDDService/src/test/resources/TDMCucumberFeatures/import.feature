@@ -1,11 +1,15 @@
 Feature: TDM Import
 	Import excelfile into application
 	
-Scenario: Import Valid file 
-	Given A testdata file for import
+Scenario: Import BaseData worksheet from Valid file 
+	Given A testdata file BaseData Table for import
 	When I initiate the import
 	Then All data is loaded into the system
 	
+Scenario: Import reference Tables from a Valid file
+	Given A testdata file with valid reference tables
+	When I initiate the import
+	Then All reference tables are loaded into the system
 
 # first steps def just calls filedata class
 # how would we integration cover the rest POST call to import 
@@ -22,13 +26,5 @@ Scenario: Import Valid file
 # but ultimately need to look at better example tests
 # error cases should be easy to write - can could implement the error handling via TDD is do it bottom up.
 
-# ___________________________
-
-# Hello world test - as below - need a mechanism to test REST - intergration type test	
-# Scenario: TDMBDD REST Hello world  
-# 	Given A jboss up and running with TDMBDD service
-# 	When I do a GET on the service
-# 	Then Hello TDMBDD World is printed
-		
  
 	

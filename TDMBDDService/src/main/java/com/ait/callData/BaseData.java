@@ -29,7 +29,7 @@ public class BaseData implements Serializable{
 	@Id
 	private LocalDateTime date_time;
 	@Id
-	private String failure_class;
+	private int failure_class;
 	@Id
 	private int ue_type;
 	@Id
@@ -56,7 +56,7 @@ public class BaseData implements Serializable{
 	public BaseData() {
 	}
 
-	public BaseData(final LocalDateTime date_time, final int event_id, final String failure_class, final int ue_type,
+	public BaseData(final LocalDateTime date_time, final int event_id, final int failure_class, final int ue_type,
 			final int market, final int operator, final int cell_id, final int duration, final int cause_code,
 			final String ne_version, final long imsi, final long hier3_id, final long hier32_id,
 			final long hier321_id) {
@@ -92,11 +92,11 @@ public class BaseData implements Serializable{
 		this.event_id = event_id;
 	}
 
-	public String getFailure_class() {
+	public int getFailure_class() {
 		return failure_class;
 	}
 
-	public void setFailure_class(final String failure_class) {
+	public void setFailure_class(final int failure_class) {
 		this.failure_class = failure_class;
 	}
 
@@ -191,7 +191,7 @@ public class BaseData implements Serializable{
 	public static class Builder {
 		private int event_id;
 		private LocalDateTime date_time;
-		private String failure_class;
+		private int failure_class;
 		private int ue_type;
 		private int market;
 		private int operator;
@@ -214,7 +214,7 @@ public class BaseData implements Serializable{
 			return this;
 		}
 
-		public Builder failure_class(final String failure_class) {
+		public Builder failure_class(final int failure_class) {
 			this.failure_class = failure_class;
 			return this;
 		}
@@ -289,7 +289,7 @@ public class BaseData implements Serializable{
 		result = prime * result + ((date_time == null) ? 0 : date_time.hashCode());
 		result = prime * result + duration;
 		result = prime * result + event_id;
-		result = prime * result + ((failure_class == null) ? 0 : failure_class.hashCode());
+		result = prime * result + failure_class;
 		result = prime * result + (int) (hier321_id ^ (hier321_id >>> 32));
 		result = prime * result + (int) (hier32_id ^ (hier32_id >>> 32));
 		result = prime * result + (int) (hier3_id ^ (hier3_id >>> 32));
@@ -332,13 +332,10 @@ public class BaseData implements Serializable{
 		if (event_id != other.event_id) {
 			return false;
 		}
-		if (failure_class == null) {
-			if (other.failure_class != null) {
-				return false;
-			}
-		} else if (!failure_class.equals(other.failure_class)) {
+		if (failure_class != other.failure_class) {
 			return false;
 		}
+	
 		if (hier321_id != other.hier321_id) {
 			return false;
 		}
