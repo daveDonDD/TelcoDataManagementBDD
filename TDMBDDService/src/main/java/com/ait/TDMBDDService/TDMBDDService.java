@@ -1,4 +1,4 @@
-package TDMBDD;
+package com.ait.TDMBDDService;
 
 import java.io.FileInputStream;
 import java.io.IOException;
