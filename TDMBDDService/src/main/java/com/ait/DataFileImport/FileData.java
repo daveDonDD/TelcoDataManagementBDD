@@ -31,7 +31,7 @@ public class FileData {
 	private List<EventCause> eventCauseList;
 	private List<FailureClass> failureClassList;
 	private List<UE> ueList;
-	private List<MccMnc> mcc_mncList;
+	private List<MccMnc> mccMncList;
 	private DateTimeFormatter formatter;
 	public static String worksheetName;
 	public static long rowNumber;
@@ -45,15 +45,16 @@ public class FileData {
 			workbook = WorkbookFactory.create(fileInputStream);
 		} catch ( EncryptedDocumentException | InvalidFormatException |IOException e) {
 			throw new IllegalStateException(e);
-		}
+		} 
 		excelDataList = new ArrayList<String>();
 		baseDataList = new ArrayList<BaseData>();
 		eventCauseList = new ArrayList<EventCause>();
 		failureClassList = new ArrayList<FailureClass>();
+		ueList = new ArrayList<UE>();
+		mccMncList = new ArrayList<MccMnc>();
+		
 		consistencyCheck = new ConsistencyCheck();
 
-		ueList = new ArrayList<UE>();
-		mcc_mncList = new ArrayList<MccMnc>();
 		
 		formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 		rowNumber = 0;
@@ -108,9 +109,6 @@ public class FileData {
 	public void addObjectToList(final int sheetNumber) {
 		switch (sheetNumber) {
 		case 0:
-			//if (!tableFilter.isBaseDataValid(excelDataList)) {
-			//	break;
-			//}     note used as re implemented the consistence withing this class
 			final LocalDateTime dateTime = LocalDateTime.parse(excelDataList.get(0), formatter);
 
 			final BaseData baseData = new BaseData.Builder().date_time(dateTime)
@@ -127,8 +125,11 @@ public class FileData {
 					.hier32_id((long) Double.parseDouble(excelDataList.get(12)))
 					.hier321_id((long) Double.parseDouble(excelDataList.get(13))).build();
 			
-			// consistency checking - first eventCause, need to do them all
-			if (consistencyCheck.eventCauseConsistencyCheck(this.eventCauseList,baseData))
+			// consistency checking - only add this object if all consistency checks pass.
+			if (consistencyCheck.eventCauseConsistencyCheck(this.eventCauseList,baseData)
+					&& consistencyCheck.failureClassConsistencyCheck(this.failureClassList, baseData)
+					&& consistencyCheck.MccMncConsistencyCheck(this.mccMncList, baseData)
+					&& consistencyCheck.UeTypeConsistencyCheck(this.ueList, baseData))
 					baseDataList.add(baseData);
 			break;
 	
@@ -165,7 +166,7 @@ public class FileData {
 
 			final MccMnc mcc_mnc = new MccMnc((int) Double.parseDouble(excelDataList.get(0)),
 					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2), excelDataList.get(3));
-			mcc_mncList.add(mcc_mnc);
+			mccMncList.add(mcc_mnc);
 			break;
 		}    
 		excelDataList.clear();
@@ -192,7 +193,7 @@ public class FileData {
 	}
 
 	public List<MccMnc> getMcc_mncList() {
-		return mcc_mncList;
+		return mccMncList;
 	}
 	
 	

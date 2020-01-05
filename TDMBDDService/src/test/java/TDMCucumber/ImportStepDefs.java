@@ -52,7 +52,7 @@ public class ImportStepDefs {
 		assertEquals(fileData.getEventCauseList().size(),9);
 		assertEquals(fileData.getFailureClassList().size(),5);
 		assertEquals(fileData.getUeList().size(),9);
-		assertEquals(fileData.getMcc_mncList().size(),11);	    
+		assertEquals(fileData.getMcc_mncList().size(),41);	    
 	}
 }
 	
