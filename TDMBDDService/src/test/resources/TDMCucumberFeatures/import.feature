@@ -5,6 +5,7 @@ Scenario: Import BaseData worksheet from Valid file
 	Given A testdata file BaseData Table for import
 	When I initiate the import
 	Then All data is loaded into the system
+	And All errors are logged
 	
 Scenario: Import reference Tables from a Valid file
 	Given A testdata file with valid reference tables

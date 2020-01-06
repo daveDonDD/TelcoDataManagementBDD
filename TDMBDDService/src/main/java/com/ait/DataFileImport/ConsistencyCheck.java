@@ -1,5 +1,6 @@
 package com.ait.DataFileImport;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,30 @@ import com.ait.callData.UE;
 
 public class ConsistencyCheck {
 	
+	public ErrorLog BaseDataConsistencyCheck(BaseData baseData,String workSheetName,long row,
+			List<EventCause> eventCauseList,
+			List<FailureClass> failureClassList,
+			List<UE> UeClassList,
+			List<MccMnc> mccMncList) {
+		
+		
+		final ErrorLog errorLog;
+		String errorMessage = null;
+		
+		if (!eventCauseConsistencyCheck(eventCauseList,baseData))
+			errorMessage = "Event ID or Cause Code does not exist in the Event Cause Table";
+		if (!failureClassConsistencyCheck(failureClassList,baseData))
+			errorMessage = "Failure Class does not exist in the FailureClass Table";
+		if (!UeTypeConsistencyCheck(UeClassList,baseData))
+			errorMessage = "UE Type does not exist in UE Type Table";
+		if (!MccMncConsistencyCheck(mccMncList,baseData))
+			errorMessage = "UE Type does not exist in UE Type Table";
+		
+		if (errorMessage == null)
+			return null;
+		else errorLog = new ErrorLog(LocalDateTime.now(), workSheetName,row,errorMessage);
+			return errorLog;
+	}
 	
 	public boolean eventCauseConsistencyCheck(List<EventCause> eventCauseList,BaseData baseData) {
 		// loop through every EventCause object in eventCauseList matching baseData.EventId 

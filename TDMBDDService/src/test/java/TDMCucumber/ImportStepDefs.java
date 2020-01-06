@@ -39,6 +39,12 @@ public class ImportStepDefs {
 	}
 
 
+	@Then("All errors are logged")
+	public void all_errors_are_logged() {
+		assertEquals(fileData.getErrorLogList().size(),4);
+	}
+
+
 	@Given("A testdata file with valid reference tables")
 	public void a_testdata_file_with_valid_reference_tables() throws FileNotFoundException {
 		InputStream inputStream = new FileInputStream("src/test/resources/testData/TestDataset.xls");
@@ -54,6 +60,9 @@ public class ImportStepDefs {
 		assertEquals(fileData.getUeList().size(),9);
 		assertEquals(fileData.getMcc_mncList().size(),41);	    
 	}
+	
+
+
 }
 	
 

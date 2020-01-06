@@ -32,6 +32,7 @@ public class FileData {
 	private List<FailureClass> failureClassList;
 	private List<UE> ueList;
 	private List<MccMnc> mccMncList;
+	private List<ErrorLog> errorLogList;
 	private DateTimeFormatter formatter;
 	public static String worksheetName;
 	public static long rowNumber;
@@ -39,7 +40,7 @@ public class FileData {
 
 	public FileData() {
 	}
-
+ 
 	public FileData(final InputStream fileInputStream) {
 		try {
 			workbook = WorkbookFactory.create(fileInputStream);
@@ -52,6 +53,7 @@ public class FileData {
 		failureClassList = new ArrayList<FailureClass>();
 		ueList = new ArrayList<UE>();
 		mccMncList = new ArrayList<MccMnc>();
+		errorLogList = new ArrayList<ErrorLog>();
 		
 		consistencyCheck = new ConsistencyCheck();
 
@@ -107,6 +109,9 @@ public class FileData {
 	 * @param number of the excel sheet of the object
 	 */
 	public void addObjectToList(final int sheetNumber) {
+		
+		final ErrorLog errorLog;
+		
 		switch (sheetNumber) {
 		case 0:
 			final LocalDateTime dateTime = LocalDateTime.parse(excelDataList.get(0), formatter);
@@ -125,12 +130,13 @@ public class FileData {
 					.hier32_id((long) Double.parseDouble(excelDataList.get(12)))
 					.hier321_id((long) Double.parseDouble(excelDataList.get(13))).build();
 			
-			// consistency checking - only add this object if all consistency checks pass.
-			if (consistencyCheck.eventCauseConsistencyCheck(this.eventCauseList,baseData)
-					&& consistencyCheck.failureClassConsistencyCheck(this.failureClassList, baseData)
-					&& consistencyCheck.MccMncConsistencyCheck(this.mccMncList, baseData)
-					&& consistencyCheck.UeTypeConsistencyCheck(this.ueList, baseData))
-					baseDataList.add(baseData);
+			errorLog = consistencyCheck.BaseDataConsistencyCheck(baseData, worksheetName, rowNumber, eventCauseList, failureClassList, ueList, mccMncList);
+			if (errorLog == null)
+				baseDataList.add(baseData);
+			else 
+				errorLogList.add(errorLog);
+			 
+					
 			break;
 	
 	 	case 1:
@@ -194,6 +200,10 @@ public class FileData {
 
 	public List<MccMnc> getMcc_mncList() {
 		return mccMncList;
+	}
+	
+	public List<ErrorLog> getErrorLogList() {
+		return errorLogList;
 	}
 	
 	
