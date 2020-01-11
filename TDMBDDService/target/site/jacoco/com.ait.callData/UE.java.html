@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UE.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TDMBDDService</a> &gt; <a href="index.source.html" class="el_package">com.ait.callData</a> &gt; <span class="el_source">UE.java</span></div><h1>UE.java</h1><pre class="source lang-java linenums">package com.ait.callData;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@Entity
+@XmlRootElement
+public class UE {
+	@Id
+	private int tac;
+	private String marketing_name;
+	private String manufacturer;
+	private String access_capability;
+	private String model;
+	private String vendor_name;
+	private String ue_type;
+	private String os;
+	private String input_mode;
+
+<span class="nc" id="L21">	public UE() {</span>
+
+<span class="nc" id="L23">	}</span>
+
+<span class="fc" id="L25">	public UE(final int tac, final String marketing_name, final String manufacturer, final String access_capability,</span>
+			final String model, final String vendor_name, final String ue_type, final String os,
+			final String input_mode) {
+<span class="fc" id="L28">		this.tac = tac;</span>
+<span class="fc" id="L29">		this.marketing_name = marketing_name;</span>
+<span class="fc" id="L30">		this.manufacturer = manufacturer;</span>
+<span class="fc" id="L31">		this.access_capability = access_capability;</span>
+<span class="fc" id="L32">		this.model = model;</span>
+<span class="fc" id="L33">		this.vendor_name = vendor_name;</span>
+<span class="fc" id="L34">		this.ue_type = ue_type;</span>
+<span class="fc" id="L35">		this.os = os;</span>
+<span class="fc" id="L36">		this.input_mode = input_mode;</span>
+<span class="fc" id="L37">	}</span>
+
+	public int getTac() {
+<span class="fc" id="L40">		return tac;</span>
+	}
+
+	public void setTac(final int tac) {
+<span class="nc" id="L44">		this.tac = tac;</span>
+<span class="nc" id="L45">	}</span>
+
+	public String getMarketing_name() {
+<span class="nc" id="L48">		return marketing_name;</span>
+	}
+
+	public void setMarketing_name(final String marketing_name) {
+<span class="nc" id="L52">		this.marketing_name = marketing_name;</span>
+<span class="nc" id="L53">	}</span>
+
+	public String getManufacturer() {
+<span class="nc" id="L56">		return manufacturer;</span>
+	}
+
+	public void setManufacturer(final String manufacturer) {
+<span class="nc" id="L60">		this.manufacturer = manufacturer;</span>
+<span class="nc" id="L61">	}</span>
+
+	public String getAccess_capability() {
+<span class="nc" id="L64">		return access_capability;</span>
+	}
+
+	public void setAccess_capability(final String access_capability) {
+<span class="nc" id="L68">		this.access_capability = access_capability;</span>
+<span class="nc" id="L69">	}</span>
+
+	public String getModel() {
+<span class="nc" id="L72">		return model;</span>
+	}
+
+	public void setModel(final String model) {
+<span class="nc" id="L76">		this.model = model;</span>
+<span class="nc" id="L77">	}</span>
+
+	public String getVendor_name() {
+<span class="nc" id="L80">		return vendor_name;</span>
+	}
+
+	public void setVendor_name(final String vendor_name) {
+<span class="nc" id="L84">		this.vendor_name = vendor_name;</span>
+<span class="nc" id="L85">	}</span>
+
+	public String getUe_type() {
+<span class="nc" id="L88">		return ue_type;</span>
+	}
+
+	public void setUe_type(final String ue_type) {
+<span class="nc" id="L92">		this.ue_type = ue_type;</span>
+<span class="nc" id="L93">	}</span>
+
+	public String getOs() {
+<span class="nc" id="L96">		return os;</span>
+	}
+
+	public void setOs(final String os) {
+<span class="nc" id="L100">		this.os = os;</span>
+<span class="nc" id="L101">	}</span>
+
+	public String getInput_mode() {
+<span class="nc" id="L104">		return input_mode;</span>
+	}
+
+	public void setInput_mode(final String input_mode) {
+<span class="nc" id="L108">		this.input_mode = input_mode;</span>
+<span class="nc" id="L109">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

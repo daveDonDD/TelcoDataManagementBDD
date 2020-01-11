@@ -18,42 +18,60 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import com.ait.callData.BaseData;
+import com.ait.callData.EventCause;
+import com.ait.callData.FailureClass;
+import com.ait.callData.MccMnc;
+import com.ait.callData.UE;
 
 
 public class FileData {
 	private Workbook workbook;
 	public static List&lt;String&gt; excelDataList;
 	private List&lt;BaseData&gt; baseDataList;
+	private List&lt;EventCause&gt; eventCauseList;
+	private List&lt;FailureClass&gt; failureClassList;
+	private List&lt;UE&gt; ueList;
+	private List&lt;MccMnc&gt; mccMncList;
+	private List&lt;ErrorLog&gt; errorLogList;
 	private DateTimeFormatter formatter;
 	public static String worksheetName;
 	public static long rowNumber;
+	private ConsistencyCheck consistencyCheck;
 
-<span class="nc" id="L31">	public FileData() {</span>
-<span class="nc" id="L32">	}</span>
-
-<span class="fc" id="L34">	public FileData(final InputStream fileInputStream) {</span>
+<span class="nc" id="L41">	public FileData() {</span>
+<span class="nc" id="L42">	}</span>
+ 
+<span class="fc" id="L44">	public FileData(final InputStream fileInputStream) {</span>
 		try {
-<span class="fc" id="L36">			workbook = WorkbookFactory.create(fileInputStream);</span>
-<span class="nc" id="L37">		} catch ( EncryptedDocumentException | InvalidFormatException |IOException e) {</span>
-<span class="nc" id="L38">			throw new IllegalStateException(e);</span>
-<span class="fc" id="L39">		}</span>
-<span class="fc" id="L40">		excelDataList = new ArrayList&lt;String&gt;();</span>
-<span class="fc" id="L41">		baseDataList = new ArrayList&lt;BaseData&gt;();</span>
+<span class="fc" id="L46">			workbook = WorkbookFactory.create(fileInputStream);</span>
+<span class="pc" id="L47">		} catch ( EncryptedDocumentException | InvalidFormatException |IOException e) {</span>
+<span class="nc" id="L48">			throw new IllegalStateException(e);</span>
+		} 
+<span class="fc" id="L50">		excelDataList = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L51">		baseDataList = new ArrayList&lt;BaseData&gt;();</span>
+<span class="fc" id="L52">		eventCauseList = new ArrayList&lt;EventCause&gt;();</span>
+<span class="fc" id="L53">		failureClassList = new ArrayList&lt;FailureClass&gt;();</span>
+<span class="fc" id="L54">		ueList = new ArrayList&lt;UE&gt;();</span>
+<span class="fc" id="L55">		mccMncList = new ArrayList&lt;MccMnc&gt;();</span>
+<span class="fc" id="L56">		errorLogList = new ArrayList&lt;ErrorLog&gt;();</span>
+		
+<span class="fc" id="L58">		consistencyCheck = new ConsistencyCheck();</span>
 
-<span class="fc" id="L43">		formatter = DateTimeFormatter.ofPattern(&quot;MM/dd/yyyy HH:mm:ss&quot;);</span>
-<span class="fc" id="L44">		rowNumber = 0;</span>
-<span class="fc" id="L45">		worksheetName = &quot;&quot;;</span>
-<span class="fc" id="L46">	}</span>
+		
+<span class="fc" id="L61">		formatter = DateTimeFormatter.ofPattern(&quot;MM/dd/yyyy HH:mm:ss&quot;);</span>
+<span class="fc" id="L62">		rowNumber = 0;</span>
+<span class="fc" id="L63">		worksheetName = &quot;&quot;;</span>
+<span class="fc" id="L64">	}</span>
 
 	public boolean importWorkbook() throws IOException {
-<span class="pc bpc" id="L49" title="2 of 4 branches missed.">		if (workbook.getNumberOfSheets() != 5 || workbook.getSheetAt(0).getRow(0).getLastCellNum() != 14) {</span>
-<span class="nc" id="L50">			return false;</span>
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">		if (workbook.getNumberOfSheets() != 5 || workbook.getSheetAt(0).getRow(0).getLastCellNum() != 14) {</span>
+<span class="nc" id="L68">			return false;</span>
 		}
-<span class="fc bfc" id="L52" title="All 2 branches covered.">		for (int i = 1; i &lt; workbook.getNumberOfSheets(); i++) {</span>
-<span class="fc" id="L53">			importSheets(i);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (int i = 1; i &lt; workbook.getNumberOfSheets(); i++) {</span>
+<span class="fc" id="L71">			importSheets(i);</span>
 		}
-<span class="fc" id="L55">		importSheets(0);// base data</span>
-<span class="fc" id="L56">		return true;</span>
+<span class="fc" id="L73">		importSheets(0);// base data</span>
+<span class="fc" id="L74">		return true;</span>
 	}
 
 	/*
@@ -62,123 +80,134 @@ public class FileData {
 	 * cleared
 	 */
 	public void importSheets(final int sheetNumber) throws IOException {
-<span class="fc" id="L65">		worksheetName = workbook.getSheetName(sheetNumber);</span>
-<span class="fc" id="L66">		final Sheet spreadsheet = workbook.getSheetAt(sheetNumber);</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">		for (int i = 1; i &lt;= spreadsheet.getLastRowNum(); i++) {</span>
-<span class="fc" id="L68">			final Row row = spreadsheet.getRow(i);</span>
-<span class="fc bfc" id="L69" title="All 2 branches covered.">			for (final Cell cell : row) {</span>
-<span class="fc bfc" id="L70" title="All 4 branches covered.">				if (cell.getCellTypeEnum() == CellType.NUMERIC &amp;&amp; HSSFDateUtil.isCellDateFormatted(cell)) {</span>
-<span class="fc" id="L71">					final DateFormat dateFormat = new SimpleDateFormat(&quot;MM/dd/yyyy HH:mm:ss&quot;);</span>
-<span class="fc" id="L72">					excelDataList.add(dateFormat.format(cell.getDateCellValue()));</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">				} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {</span>
-<span class="fc" id="L74">					excelDataList.add(Double.toString(cell.getNumericCellValue()));</span>
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">				} else if (cell.getCellTypeEnum() == CellType.STRING) {</span>
-<span class="fc bfc" id="L76" title="All 2 branches covered.">					if (cell.toString().equals(&quot;(null)&quot;)) {</span>
-<span class="fc" id="L77">						excelDataList.add(null);</span>
-					} else {
-<span class="fc" id="L79">						excelDataList.add(cell.toString());</span>
+<span class="fc" id="L83">		worksheetName = workbook.getSheetName(sheetNumber);</span>
+<span class="fc" id="L84">		final Sheet spreadsheet = workbook.getSheetAt(sheetNumber);</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		for (int i = 1; i &lt;= spreadsheet.getLastRowNum(); i++) {</span>
+<span class="fc" id="L86">			final Row row = spreadsheet.getRow(i);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">			for (final Cell cell : row) {</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">				if (cell.getCellTypeEnum() == CellType.NUMERIC &amp;&amp; HSSFDateUtil.isCellDateFormatted(cell)) {</span>
+<span class="fc" id="L89">					final DateFormat dateFormat = new SimpleDateFormat(&quot;MM/dd/yyyy HH:mm:ss&quot;);</span>
+<span class="fc" id="L90">					excelDataList.add(dateFormat.format(cell.getDateCellValue()));</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">				} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {</span>
+<span class="fc" id="L92">					excelDataList.add(Double.toString(cell.getNumericCellValue()));</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">				} else if (cell.getCellTypeEnum() == CellType.STRING) {</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">					if (cell.toString().equals(&quot;(null)&quot;)) {</span>
+<span class="fc" id="L95">						excelDataList.add(null);</span>
+<span class="fc" id="L96">					} else {</span>
+<span class="fc" id="L97">						excelDataList.add(cell.toString());</span>
 					}
 				}
-<span class="fc" id="L82">			}</span>
-<span class="fc" id="L83">			rowNumber = i;</span>
-<span class="fc" id="L84">			this.addObjectToList(sheetNumber);</span>
+			}
+<span class="fc" id="L101">			rowNumber = i;</span>
+<span class="fc" id="L102">			this.addObjectToList(sheetNumber);</span>
 		}
-<span class="fc" id="L86">		workbook.close();</span>
-<span class="fc" id="L87">	}</span>
+<span class="fc" id="L104">		workbook.close();</span>
+<span class="fc" id="L105">	}</span>
 
 	/*
 	 * Adds an object to the relevant object list depending on the sheet number
 	 * @param number of the excel sheet of the object
 	 */
 	public void addObjectToList(final int sheetNumber) {
-<span class="fc bfc" id="L94" title="All 2 branches covered.">		switch (sheetNumber) {</span>
+		
+		final ErrorLog errorLog;
+		
+<span class="pc bpc" id="L115" title="1 of 6 branches missed.">		switch (sheetNumber) {</span>
 		case 0:
-			//if (!tableFilter.isBaseDataValid(excelDataList)) {
-			//	break;
-			//}
-<span class="fc" id="L99">			final LocalDateTime dateTime = LocalDateTime.parse(excelDataList.get(0), formatter);</span>
+<span class="fc" id="L117">			final LocalDateTime dateTime = LocalDateTime.parse(excelDataList.get(0), formatter);</span>
 
-<span class="fc" id="L101">			final BaseData baseData = new BaseData.Builder().date_time(dateTime)</span>
-<span class="fc" id="L102">					.event_id((int) Double.parseDouble(excelDataList.get(1))).failure_class(excelDataList.get(2))</span>
-<span class="fc" id="L103">					.ue_type((int) Double.parseDouble(excelDataList.get(3)))</span>
-<span class="fc" id="L104">					.market((int) Double.parseDouble(excelDataList.get(4)))</span>
-<span class="fc" id="L105">					.operator((int) Double.parseDouble(excelDataList.get(5)))</span>
-<span class="fc" id="L106">					.cell_id((int) Double.parseDouble(excelDataList.get(6)))</span>
-<span class="fc" id="L107">					.duration((int) Double.parseDouble(excelDataList.get(7)))</span>
-<span class="fc" id="L108">					.cause_code((int) Double.parseDouble(excelDataList.get(8))).ne_version(excelDataList.get(9))</span>
-<span class="fc" id="L109">					.imsi((long) Double.parseDouble(excelDataList.get(10)))</span>
-<span class="fc" id="L110">					.hier3_id((long) Double.parseDouble(excelDataList.get(11)))</span>
-<span class="fc" id="L111">					.hier32_id((long) Double.parseDouble(excelDataList.get(12)))</span>
-<span class="fc" id="L112">					.hier321_id((long) Double.parseDouble(excelDataList.get(13))).build();</span>
-
-<span class="fc" id="L114">			baseDataList.add(baseData);</span>
-			break;
-	/*
-	 * only testing one sheet for now 
-	 * 	case 1:
+<span class="fc" id="L119">			final BaseData baseData = new BaseData.Builder().date_time(dateTime)</span>
+<span class="fc" id="L120">					.event_id((int) Double.parseDouble(excelDataList.get(1)))</span>
+<span class="fc" id="L121">					.failure_class((int) Double.parseDouble(excelDataList.get(2)))</span>
+<span class="fc" id="L122">					.ue_type((int) Double.parseDouble(excelDataList.get(3)))</span>
+<span class="fc" id="L123">					.market((int) Double.parseDouble(excelDataList.get(4)))</span>
+<span class="fc" id="L124">					.operator((int) Double.parseDouble(excelDataList.get(5)))</span>
+<span class="fc" id="L125">					.cell_id((int) Double.parseDouble(excelDataList.get(6)))</span>
+<span class="fc" id="L126">					.duration((int) Double.parseDouble(excelDataList.get(7)))</span>
+<span class="fc" id="L127">					.cause_code((int) Double.parseDouble(excelDataList.get(8))).ne_version(excelDataList.get(9))</span>
+<span class="fc" id="L128">					.imsi((long) Double.parseDouble(excelDataList.get(10)))</span>
+<span class="fc" id="L129">					.hier3_id((long) Double.parseDouble(excelDataList.get(11)))</span>
+<span class="fc" id="L130">					.hier32_id((long) Double.parseDouble(excelDataList.get(12)))</span>
+<span class="fc" id="L131">					.hier321_id((long) Double.parseDouble(excelDataList.get(13))).build();</span>
+			
+<span class="fc" id="L133">			errorLog = consistencyCheck.BaseDataConsistencyCheck(baseData, worksheetName, rowNumber, eventCauseList, failureClassList, ueList, mccMncList);</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">			if (errorLog == null)</span>
+<span class="fc" id="L135">				baseDataList.add(baseData);</span>
+			else 
+<span class="fc" id="L137">				errorLogList.add(errorLog);</span>
+			 
+					
+<span class="fc" id="L140">			break;</span>
+	
+	 	case 1:
 	 
-			if (!tableFilter.isEventCauseValid(excelDataList)) {
-				break;
-			}
-			final EventCause eventCause = new EventCause((int) Double.parseDouble(excelDataList.get(0)),
-					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2));
-			eventCauseList.add(eventCause);
-			break;
+	//		if (!tableFilter.isEventCauseValid(excelDataList)) {
+	//			break;
+	//		}
+<span class="fc" id="L147">			final EventCause eventCause = new EventCause((int) Double.parseDouble(excelDataList.get(0)),</span>
+<span class="fc" id="L148">	  						(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2));</span>
+<span class="fc" id="L149">			eventCauseList.add(eventCause);</span>
+<span class="fc" id="L150">			break;</span>
 		case 2:
-			if (!tableFilter.isFailureClassValid(excelDataList)) {
-				break;
-			}
-			final FailureClass failureClass = new FailureClass((int) Double.parseDouble(excelDataList.get(0)),
-					excelDataList.get(1));
-			failureClassList.add(failureClass);
-			break;
+	//		if (!tableFilter.isFailureClassValid(excelDataList)) {
+	//			break;
+	//		}
+<span class="fc" id="L155">			final FailureClass failureClass = new FailureClass((int) Double.parseDouble(excelDataList.get(0)),</span>
+<span class="fc" id="L156">					excelDataList.get(1));</span>
+<span class="fc" id="L157">			failureClassList.add(failureClass);</span>
+<span class="fc" id="L158">			break;</span>
 		case 3:
-			if (!tableFilter.isUEValid(excelDataList)) {
-				break;
-			}
-			final UE ue = new UE((int) Double.parseDouble(excelDataList.get(0)), excelDataList.get(1),
-					excelDataList.get(2), excelDataList.get(3), excelDataList.get(4), excelDataList.get(5),
-					excelDataList.get(6), excelDataList.get(7), excelDataList.get(8));
-			ueList.add(ue);
-			break;
+	//		if (!tableFilter.isUEValid(excelDataList)) {
+	//			break;
+	//		}
+<span class="fc" id="L163">			final UE ue = new UE((int) Double.parseDouble(excelDataList.get(0)), excelDataList.get(1),</span>
+<span class="fc" id="L164">					excelDataList.get(2), excelDataList.get(3), excelDataList.get(4), excelDataList.get(5),</span>
+<span class="fc" id="L165">					excelDataList.get(6), excelDataList.get(7), excelDataList.get(8));</span>
+<span class="fc" id="L166">			ueList.add(ue);</span>
+<span class="fc" id="L167">			break;</span>
 		case 4:
-			if (!tableFilter.isMCC_MNCValid(excelDataList)) {
-				break;
-			}
+	//		if (!tableFilter.isMCC_MNCValid(excelDataList)) {
+	//			break;
+	//		}
 
-			final MccMnc mcc_mnc = new MccMnc((int) Double.parseDouble(excelDataList.get(0)),
-					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2), excelDataList.get(3));
-			mcc_mncList.add(mcc_mnc);
+<span class="fc" id="L173">			final MccMnc mcc_mnc = new MccMnc((int) Double.parseDouble(excelDataList.get(0)),</span>
+<span class="fc" id="L174">					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2), excelDataList.get(3));</span>
+<span class="fc" id="L175">			mccMncList.add(mcc_mnc);</span>
 			break;
-			****************/
 		}    
-<span class="fc" id="L155">		excelDataList.clear();</span>
-<span class="fc" id="L156">	}</span>
+<span class="fc" id="L178">		excelDataList.clear();</span>
+<span class="fc" id="L179">	}</span>
 
 	public Workbook getWorkbook() {
-<span class="nc" id="L159">		return workbook;</span>
+<span class="nc" id="L182">		return workbook;</span>
 	}
 
 	public List&lt;BaseData&gt; getBaseDataList() {
-<span class="fc" id="L163">		return baseDataList;</span>
+<span class="fc" id="L186">		return baseDataList;</span>
 	}
-/*
+
 	public List&lt;EventCause&gt; getEventCauseList() {
-		return eventCauseList;
+<span class="fc" id="L190">		return eventCauseList;</span>
 	}
 
 	public List&lt;FailureClass&gt; getFailureClassList() {
-		return failureClassList;
+<span class="fc" id="L194">		return failureClassList;</span>
 	}
 
 	public List&lt;UE&gt; getUeList() {
-		return ueList;
+<span class="fc" id="L198">		return ueList;</span>
 	}
 
 	public List&lt;MccMnc&gt; getMcc_mncList() {
-		return mcc_mncList;
+<span class="fc" id="L202">		return mccMncList;</span>
 	}
-
+	
+	public List&lt;ErrorLog&gt; getErrorLogList() {
+<span class="fc" id="L206">		return errorLogList;</span>
+	}
+	
+	
+/*
 	public TableFilter getTableFilter() {
 		return tableFilter;
 	}

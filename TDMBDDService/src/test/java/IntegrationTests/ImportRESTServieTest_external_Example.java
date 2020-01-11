@@ -37,16 +37,16 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.ait.DAO.CallDataDAO;
 import com.ait.TDMBDDService.TDMBDDService;
 import com.ait.callData.BaseData;
-import com.ait.callData.CallDataDAO;
 
 
 
 
 
 //@RunWith(Arquillian.class)
-public class ImportRESTServieTest {
+public class ImportRESTServieTest_external_Example {
 /*	
 	@ArquillianResource
 	 private URL deploymentURL;

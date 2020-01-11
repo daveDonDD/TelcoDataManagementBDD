@@ -21,12 +21,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.ait.DAO.CallDataDAO;
 import com.ait.callData.BaseData;
-import com.ait.callData.CallDataDAO;
 
 
 
-
+ 
 
 
 @RunWith(Arquillian.class)
@@ -85,5 +85,7 @@ public class CallDataDaoIntegrationTest {
 		int size = query.getResultList().size();
 		assertEquals(0,size);
 	}
-
+	
+	
+	
 }
