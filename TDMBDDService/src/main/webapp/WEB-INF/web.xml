@@ -5,7 +5,8 @@
  
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+ 		<url-pattern>/rest/*</url-pattern>  
+<!-- 		<url-pattern>/rest</url-pattern>   -->
 	</servlet-mapping>
  
 </web-app>

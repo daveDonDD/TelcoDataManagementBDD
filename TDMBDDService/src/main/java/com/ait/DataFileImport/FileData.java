@@ -41,7 +41,7 @@ public class FileData {
 	public FileData() {
 	}
  
-	public FileData(final InputStream fileInputStream) {
+	public FileData(final InputStream fileInputStream) throws Exception{
 		try {
 			workbook = WorkbookFactory.create(fileInputStream);
 		} catch ( EncryptedDocumentException | InvalidFormatException |IOException e) {

@@ -4,71 +4,110 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+
+import org.apache.poi.EncryptedDocumentException;
+
+import java.lang.String;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
 
-import java.lang.String;
+import com.ait.callData.EventCause;
+
 
 @Path(&quot;/TelcoDataMgt&quot;)
-<span class="nc" id="L24">public class TDMBDDService {</span>
+<span class="nc" id="L35">public class TDMBDDService {</span>
 	
-		//@EJB
-		//private CallDataDAO callDataDao;
+		@EJB
+		private CallDataDAO callDataDao;
 
 
 	    @GET
 	    @Produces(MediaType.APPLICATION_JSON)
 	    @Path(&quot;/HelloWorldTest&quot;)
 	    public String getTDMHelloWorld() {
-<span class="nc" id="L34">	    	String hello = &quot;Hello TDMBDD World DDOY&quot;;</span>
-<span class="nc" id="L35">	        return hello;</span>
+<span class="nc" id="L45">	    	String hello = &quot;Hello TDMBDD World DDOY + Queries 7&quot;;</span>
+<span class="nc" id="L46">	        return hello;</span>
 	    }
-	    
-	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
-	    @Path(&quot;/GoodByeWorldTest&quot;)
-	    public String getTDMGoodByeWorld() {
-<span class="nc" id="L42">	    	String hello = &quot;GoodBye TDMBDD World DDOY&quot;;</span>
-<span class="nc" id="L43">	        return hello;</span>
-	    }
+	  
 
-/*
 		@POST	
 		@Consumes(MediaType.TEXT_PLAIN)
 		@Produces(MediaType.APPLICATION_JSON) //http return codes
-		public Response importFile(String fileName){		
+		public Response importFile(String fileName) throws Exception{		
 			final FileData fileData;
 			final InputStream inputStream;
 			
 			try {
-				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);
-			} catch (Exception e) {
-					return Response.status(406).entity(&quot;File Not Found : &quot; + fileName).build();
+<span class="nc" id="L58">				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);</span>
+				//inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\TestDataSet.xls&quot;);
+<span class="nc" id="L60">			} catch (Exception e) {</span>
+	
+				/// Need to set to specific file not found exception1!!!!!!
+<span class="nc" id="L63">					return Response.status(406).entity(&quot;File Not Found : &quot; + fileName).build();</span>
+			}
+			
+			try {
+<span class="nc" id="L67">				fileData = new FileData(inputStream);</span>
+<span class="nc" id="L68">			} catch (Exception e) {</span>
+<span class="nc" id="L69">				return Response.status(407).entity(&quot;BUG &quot;).build();</span>
 
 			}
-			fileData = new FileData(inputStream);
-			FileData.excelDataList = new ArrayList&lt;String&gt;();
-			FileData.rowNumber = 1;
+			
+<span class="nc" id="L73">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L74">			FileData.rowNumber = 1;</span>
 		    try {
-				fileData.importWorkbook();
-			} catch (IOException e) {
-				return Response.status(406).entity(&quot;Invalid File&quot;).build();
+<span class="nc" id="L76">				fileData.importWorkbook();</span>
+				
+<span class="nc" id="L78">			} catch (IOException e) {</span>
+<span class="nc" id="L79">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
 			}
-			callDataDao.addBaseData(fileData.getBaseDataList());
-		    return Response.status(200).entity(&quot;FileLoaded : &quot; + fileName).build();
-		
+<span class="nc" id="L81">		    callDataDao.addBaseData(fileData.getBaseDataList());</span>
+<span class="nc" id="L82">			callDataDao.addEventCause(fileData.getEventCauseList());</span>
+<span class="nc" id="L83">			callDataDao.addFailureClass(fileData.getFailureClassList());</span>
+<span class="nc" id="L84">			callDataDao.addUE(fileData.getUeList());</span>
+<span class="nc" id="L85">			callDataDao.addMccMnc(fileData.getMcc_mncList());</span>
+			
+<span class="nc" id="L87">		    return Response.status(200).entity(&quot;FileLoaded : &quot; + fileName).build();</span>
+
+		    
+			// inputStream.close();    --   need to handle this and its exception
+
 		}
-*/
+
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path(&quot;/{imsi}&quot;) // User Story #4
+		public Response getAllEventAndCauseCodeByImsi(@PathParam(&quot;imsi&quot;) final long imsi) {
+<span class="nc" id="L99">			final List&lt;EventCause&gt; imsiEventList = callDataDao.getEventAndCauseCodeByIMSI(imsi);</span>
+<span class="nc" id="L100">			return Response.status(200).entity(imsiEventList).build();</span>
+		}
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path(&quot;/callFailureCount&quot;) // User Story #9
+		public Response countIMSICallFailuresAndDuration(@QueryParam(&quot;imsi&quot;) final Long imsi,
+				@QueryParam(&quot;startDate&quot;) final String startDate, @QueryParam(&quot;endDate&quot;) final String endDate) {
+<span class="nc" id="L108">			final List&lt;Object[]&gt; callFailuresCount = callDataDao.countImsiFailures(imsi, startDate, endDate);</span>
+<span class="nc" id="L109">			return Response.status(200).entity(callFailuresCount).build();</span>
+		}
+		
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

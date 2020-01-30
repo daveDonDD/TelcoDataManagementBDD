@@ -12,7 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.ait.callData.BaseData;
+import com.ait.callData.*;
+
 
 @Stateless
 @LocalBean
@@ -21,62 +22,107 @@ public class CallDataDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-<span class="fc" id="L24">	public CallDataDAO() {</span>
-<span class="fc" id="L25">	}</span>
+<span class="fc" id="L25">	public CallDataDAO() {</span>
+<span class="fc" id="L26">	}</span>
 
-<span class="nc" id="L27">	public CallDataDAO(final EntityManager entityManager) {</span>
-<span class="nc" id="L28">		this.entityManager = entityManager;</span>
-<span class="nc" id="L29">	}</span>
+<span class="nc" id="L28">	public CallDataDAO(final EntityManager entityManager) {</span>
+<span class="nc" id="L29">		this.entityManager = entityManager;</span>
+<span class="nc" id="L30">	}</span>
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void addBaseData(final List&lt;BaseData&gt; baseDataList) {
-<span class="fc bfc" id="L33" title="All 2 branches covered.">		for (final BaseData baseData : baseDataList) {</span>
-<span class="fc" id="L34">			final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span>
-<span class="fc" id="L35">			final String formatDateTime = baseData.getDate_time().format(formatter);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">		for (final BaseData baseData : baseDataList) {</span>
+<span class="fc" id="L35">			final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span>
+<span class="fc" id="L36">			final String formatDateTime = baseData.getDate_time().format(formatter);</span>
 			// resultList.add(entityManager.merge(baseData));
-<span class="fc" id="L37">			final Query query = entityManager.createNativeQuery(</span>
-<span class="fc" id="L38">					&quot;INSERT INTO BaseData(date_time,event_id,failure_class,ue_type,market,operator,cell_id,duration,cause_code,ne_version,imsi,hier3_id,hier32_id,hier321_id) VALUES(:date_time,:eventid,:failure_class,:ue_type,:market,:operator,:cell_id,:duration,:cause_code,:ne_version,:imsi,:hier3_id,:hier32_id,:hier321_id) ON DUPLICATE KEY UPDATE date_time=:date_time, event_id=:eventid, failure_class=:failure_class, ue_type=:ue_type, market=:market, operator=:operator, cell_id=:cell_id, duration=:duration, cause_code=:cause_code, ne_version=:ne_version, imsi=:imsi, hier3_id=:hier3_id, hier32_id=:hier32_id, hier321_id=:hier321_id&quot;);</span>
-<span class="fc" id="L39">			query.setParameter(&quot;date_time&quot;, formatDateTime);</span>
-<span class="fc" id="L40">			query.setParameter(&quot;eventid&quot;, baseData.getEvent_id());</span>
-<span class="fc" id="L41">			query.setParameter(&quot;failure_class&quot;, baseData.getFailure_class());</span>
-<span class="fc" id="L42">			query.setParameter(&quot;ue_type&quot;, baseData.getUe_type());</span>
-<span class="fc" id="L43">			query.setParameter(&quot;market&quot;, baseData.getMarket());</span>
-<span class="fc" id="L44">			query.setParameter(&quot;operator&quot;, baseData.getOperator());</span>
-<span class="fc" id="L45">			query.setParameter(&quot;cell_id&quot;, baseData.getCell_id());</span>
-<span class="fc" id="L46">			query.setParameter(&quot;duration&quot;, baseData.getDuration());</span>
-<span class="fc" id="L47">			query.setParameter(&quot;cause_code&quot;, baseData.getCause_code());</span>
-<span class="fc" id="L48">			query.setParameter(&quot;ne_version&quot;, baseData.getNe_version());</span>
-<span class="fc" id="L49">			query.setParameter(&quot;imsi&quot;, baseData.getImsi());</span>
-<span class="fc" id="L50">			query.setParameter(&quot;hier3_id&quot;, baseData.getHier3_id());</span>
-<span class="fc" id="L51">			query.setParameter(&quot;hier32_id&quot;, baseData.getHier32_id());</span>
-<span class="fc" id="L52">			query.setParameter(&quot;hier321_id&quot;, baseData.getHier321_id());</span>
-<span class="fc" id="L53">			query.executeUpdate();</span>
+<span class="fc" id="L38">			final Query query = entityManager.createNativeQuery(</span>
+<span class="fc" id="L39">					&quot;INSERT INTO BaseData(date_time,event_id,failure_class,ue_type,market,operator,cell_id,duration,cause_code,ne_version,imsi,hier3_id,hier32_id,hier321_id) VALUES(:date_time,:eventid,:failure_class,:ue_type,:market,:operator,:cell_id,:duration,:cause_code,:ne_version,:imsi,:hier3_id,:hier32_id,:hier321_id) ON DUPLICATE KEY UPDATE date_time=:date_time, event_id=:eventid, failure_class=:failure_class, ue_type=:ue_type, market=:market, operator=:operator, cell_id=:cell_id, duration=:duration, cause_code=:cause_code, ne_version=:ne_version, imsi=:imsi, hier3_id=:hier3_id, hier32_id=:hier32_id, hier321_id=:hier321_id&quot;);</span>
+<span class="fc" id="L40">			query.setParameter(&quot;date_time&quot;, formatDateTime);</span>
+<span class="fc" id="L41">			query.setParameter(&quot;eventid&quot;, baseData.getEvent_id());</span>
+<span class="fc" id="L42">			query.setParameter(&quot;failure_class&quot;, baseData.getFailure_class());</span>
+<span class="fc" id="L43">			query.setParameter(&quot;ue_type&quot;, baseData.getUe_type());</span>
+<span class="fc" id="L44">			query.setParameter(&quot;market&quot;, baseData.getMarket());</span>
+<span class="fc" id="L45">			query.setParameter(&quot;operator&quot;, baseData.getOperator());</span>
+<span class="fc" id="L46">			query.setParameter(&quot;cell_id&quot;, baseData.getCell_id());</span>
+<span class="fc" id="L47">			query.setParameter(&quot;duration&quot;, baseData.getDuration());</span>
+<span class="fc" id="L48">			query.setParameter(&quot;cause_code&quot;, baseData.getCause_code());</span>
+<span class="fc" id="L49">			query.setParameter(&quot;ne_version&quot;, baseData.getNe_version());</span>
+<span class="fc" id="L50">			query.setParameter(&quot;imsi&quot;, baseData.getImsi());</span>
+<span class="fc" id="L51">			query.setParameter(&quot;hier3_id&quot;, baseData.getHier3_id());</span>
+<span class="fc" id="L52">			query.setParameter(&quot;hier32_id&quot;, baseData.getHier32_id());</span>
+<span class="fc" id="L53">			query.setParameter(&quot;hier321_id&quot;, baseData.getHier321_id());</span>
+<span class="fc" id="L54">			query.executeUpdate();</span>
 		}
-<span class="fc" id="L55">	}</span>
+<span class="fc" id="L56">	}</span>
 
-	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addEventCause(final List&lt;EventCause&gt; eventCauseList) {
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		for (final EventCause eventCause : eventCauseList) {</span>
+			// entityManager.merge(eventCause);
+<span class="fc" id="L62">			final Query query = entityManager.createNativeQuery(</span>
+<span class="fc" id="L63">					&quot;INSERT INTO EventCause(cause_code,event_id,description) VALUES(:causecode,:eventid,:description) ON DUPLICATE KEY UPDATE cause_code=:causecode, event_id=:eventid, description=:description&quot;);</span>
+<span class="fc" id="L64">			query.setParameter(&quot;causecode&quot;, eventCause.getCause_code());</span>
+<span class="fc" id="L65">			query.setParameter(&quot;eventid&quot;, eventCause.getEvent_id());</span>
+<span class="fc" id="L66">			query.setParameter(&quot;description&quot;, eventCause.getDescription());</span>
+<span class="fc" id="L67">			query.executeUpdate();</span>
+		}
+<span class="fc" id="L69">	}</span>
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addFailureClass(final List&lt;FailureClass&gt; failureClassList) {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		for (final FailureClass failureClass : failureClassList) {</span>
+<span class="fc" id="L74">			entityManager.merge(failureClass);</span>
+		}
+<span class="fc" id="L76">	}</span>
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addUE(final List&lt;UE&gt; ueList) {
+<span class="fc bfc" id="L80" title="All 2 branches covered.">		for (final UE ue : ueList) {</span>
+<span class="fc" id="L81">			entityManager.merge(ue);</span>
+		}
+<span class="fc" id="L83">	}</span>
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addMccMnc(final List&lt;MccMnc&gt; mcc_mncList) {
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		for (final MccMnc mcc_mnc : mcc_mncList) {</span>
+<span class="fc" id="L88">			entityManager.merge(mcc_mnc);</span>
+		}
+<span class="fc" id="L90">	}</span>
 
 	public void dropTables() {
-<span class="fc" id="L60">		entityManager.createQuery(&quot;DELETE FROM BaseData&quot;).executeUpdate();</span>
-<span class="fc" id="L61">		entityManager.createNativeQuery(&quot;ALTER TABLE BaseData AUTO_INCREMENT = 1&quot;).executeUpdate();</span>
-		
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L93">		entityManager.createQuery(&quot;DELETE FROM BaseData&quot;).executeUpdate();</span>
+<span class="fc" id="L94">		entityManager.createNativeQuery(&quot;ALTER TABLE BaseData AUTO_INCREMENT = 1&quot;).executeUpdate();</span>
+<span class="fc" id="L95">		entityManager.createQuery(&quot;DELETE FROM EventCause&quot;).executeUpdate();</span>
+<span class="fc" id="L96">		entityManager.createQuery(&quot;DELETE FROM FailureClass&quot;).executeUpdate();</span>
+<span class="fc" id="L97">		entityManager.createQuery(&quot;DELETE FROM MccMnc&quot;).executeUpdate();</span>
+<span class="fc" id="L98">		entityManager.createQuery(&quot;DELETE FROM UE&quot;).executeUpdate();	</span>
+<span class="fc" id="L99">	}</span>
 
-/*
- * NOTE:  DAO query tests for all queries here too - 
- * 			as per test analysis - this is duplicate of oterh types of unit and integration tests.
- * 
- * 
+
 	// User Story #4
-	public List&lt;EventCause&gt; getAllByIMSI(final long imsi) {
-		final String select = &quot;select eventcause.cause_code,eventcause.event_id , eventcause.description from basedata\r\n&quot;
+	public List&lt;EventCause&gt; getEventAndCauseCodeByIMSI(final long imsi) {
+<span class="nc" id="L104">		final String select = &quot;select eventcause.cause_code,eventcause.event_id , eventcause.description from basedata\r\n&quot;</span>
 				+ &quot;left join eventcause on eventcause.event_id=basedata.event_id and \r\n&quot;
 				+ &quot;eventcause.cause_code=basedata.cause_code where basedata.imsi=:imsi&quot;;
-		final Query query = entityManager.createNativeQuery(select);
-		query.setParameter(&quot;imsi&quot;, imsi);
-		return query.getResultList();
+<span class="nc" id="L107">		final Query query = entityManager.createNativeQuery(select);</span>
+<span class="nc" id="L108">		query.setParameter(&quot;imsi&quot;, imsi);</span>
+<span class="nc" id="L109">		return query.getResultList();</span>
 	}
-
+	// User Story #9
+	public List&lt;Object[]&gt; countImsiFailures(final Long imsi, final String startDate, final String endDate) {
+<span class="nc" id="L113">		final Query query = entityManager.createQuery(</span>
+<span class="nc" id="L114">				&quot;SELECT imsi, COUNT(*), SUM(duration) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND imsi=?3 GROUP BY imsi&quot;);</span>
+<span class="nc" id="L115">		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);</span>
+<span class="nc" id="L116">		final String startDateReplaceT = startDate.replace('T', ' ');</span>
+<span class="nc" id="L117">		final String endDateReplaceT = endDate.replace('T', ' ');</span>
+<span class="nc" id="L118">		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);</span>
+<span class="nc" id="L119">		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);</span>
+<span class="nc" id="L120">		query.setParameter(1, startDateTime);</span>
+<span class="nc" id="L121">		query.setParameter(2, endDateTime);</span>
+<span class="nc" id="L122">		query.setParameter(3, imsi);</span>
+<span class="nc" id="L123">		return query.getResultList();</span>
+	}
+/******
 	// User Story #7
 	public List&lt;BaseData&gt; getImsisWithFailuresByDates(final String startDate, final String endDate) {
 		final Query query = entityManager.createQuery(&quot;SELECT w.imsi, w.date_time  FROM BaseData w Where w.date_time between ?1 and ?2&quot;);
@@ -91,20 +137,7 @@ public class CallDataDAO {
 		return toDisplay;
 	}
 
-	// User Story #9
-	public List&lt;Object[]&gt; countImsiFailures(final Long imsi, final String startDate, final String endDate) {
-		final Query query = entityManager.createQuery(
-				&quot;SELECT imsi, COUNT(*), SUM(duration) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND imsi=?3 GROUP BY imsi&quot;);
-		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);
-		final String startDateReplaceT = startDate.replace('T', ' ');
-		final String endDateReplaceT = endDate.replace('T', ' ');
-		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);
-		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);
-		query.setParameter(1, startDateTime);
-		query.setParameter(2, endDateTime);
-		query.setParameter(3, imsi);
-		return query.getResultList();
-	}
+
 
 	// User Story #8
 	public List&lt;String&gt; countImsiFailuresForUEType(final Integer ueType, final String startDate, final String endDate) {

@@ -24,12 +24,12 @@ import com.ait.callData.UE;
 		
 <span class="fc bfc" id="L25" title="All 2 branches covered.">		if (!eventCauseConsistencyCheck(eventCauseList,baseData))</span>
 <span class="fc" id="L26">			errorMessage = &quot;Event ID or Cause Code does not exist in the Event Cause Table&quot;;</span>
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">		if (!failureClassConsistencyCheck(failureClassList,baseData))</span>
-<span class="nc" id="L28">			errorMessage = &quot;Failure Class does not exist in the FailureClass Table&quot;;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">		if (!failureClassConsistencyCheck(failureClassList,baseData))</span>
+<span class="fc" id="L28">			errorMessage = &quot;Failure Class does not exist in the FailureClass Table&quot;;</span>
 <span class="fc bfc" id="L29" title="All 2 branches covered.">		if (!UeTypeConsistencyCheck(UeClassList,baseData))</span>
 <span class="fc" id="L30">			errorMessage = &quot;UE Type does not exist in UE Type Table&quot;;</span>
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">		if (!MccMncConsistencyCheck(mccMncList,baseData))</span>
-<span class="nc" id="L32">			errorMessage = &quot;UE Type does not exist in UE Type Table&quot;;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (!MccMncConsistencyCheck(mccMncList,baseData))</span>
+<span class="fc" id="L32">			errorMessage = &quot;UE Type does not exist in UE Type Table&quot;;</span>
 		
 <span class="fc bfc" id="L34" title="All 2 branches covered.">		if (errorMessage == null)</span>
 <span class="fc" id="L35">			return null;</span>

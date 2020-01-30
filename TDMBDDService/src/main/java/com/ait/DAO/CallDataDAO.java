@@ -12,7 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.ait.callData.BaseData;
+import com.ait.callData.*;
+
 
 @Stateless
 @LocalBean
@@ -54,21 +55,52 @@ public class CallDataDAO {
 		}
 	}
 
-	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addEventCause(final List<EventCause> eventCauseList) {
+		for (final EventCause eventCause : eventCauseList) {
+			// entityManager.merge(eventCause);
+			final Query query = entityManager.createNativeQuery(
+					"INSERT INTO EventCause(cause_code,event_id,description) VALUES(:causecode,:eventid,:description) ON DUPLICATE KEY UPDATE cause_code=:causecode, event_id=:eventid, description=:description");
+			query.setParameter("causecode", eventCause.getCause_code());
+			query.setParameter("eventid", eventCause.getEvent_id());
+			query.setParameter("description", eventCause.getDescription());
+			query.executeUpdate();
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addFailureClass(final List<FailureClass> failureClassList) {
+		for (final FailureClass failureClass : failureClassList) {
+			entityManager.merge(failureClass);
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addUE(final List<UE> ueList) {
+		for (final UE ue : ueList) {
+			entityManager.merge(ue);
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void addMccMnc(final List<MccMnc> mcc_mncList) {
+		for (final MccMnc mcc_mnc : mcc_mncList) {
+			entityManager.merge(mcc_mnc);
+		}
+	}
 
 	public void dropTables() {
 		entityManager.createQuery("DELETE FROM BaseData").executeUpdate();
 		entityManager.createNativeQuery("ALTER TABLE BaseData AUTO_INCREMENT = 1").executeUpdate();
-		
+		entityManager.createQuery("DELETE FROM EventCause").executeUpdate();
+		entityManager.createQuery("DELETE FROM FailureClass").executeUpdate();
+		entityManager.createQuery("DELETE FROM MccMnc").executeUpdate();
+		entityManager.createQuery("DELETE FROM UE").executeUpdate();	
 	}
 
-/*
- * NOTE:  DAO query tests for all queries here too - 
- * 			as per test analysis - this is duplicate of oterh types of unit and integration tests.
- * 
- * 
+
 	// User Story #4
-	public List<EventCause> getAllByIMSI(final long imsi) {
+	public List<EventCause> getEventAndCauseCodeByIMSI(final long imsi) {
 		final String select = "select eventcause.cause_code,eventcause.event_id , eventcause.description from basedata\r\n"
 				+ "left join eventcause on eventcause.event_id=basedata.event_id and \r\n"
 				+ "eventcause.cause_code=basedata.cause_code where basedata.imsi=:imsi";
@@ -76,21 +108,6 @@ public class CallDataDAO {
 		query.setParameter("imsi", imsi);
 		return query.getResultList();
 	}
-
-	// User Story #7
-	public List<BaseData> getImsisWithFailuresByDates(final String startDate, final String endDate) {
-		final Query query = entityManager.createQuery("SELECT w.imsi, w.date_time  FROM BaseData w Where w.date_time between ?1 and ?2");
-		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		final String startDateReplaceT = startDate.replace('T', ' ');
-		final String endDateReplaceT = endDate.replace('T', ' ');
-		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);
-		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);
-		query.setParameter(1, startDateTime);
-		query.setParameter(2, endDateTime);
-		final List<BaseData> toDisplay = query.getResultList();
-		return toDisplay;
-	}
-
 	// User Story #9
 	public List<Object[]> countImsiFailures(final Long imsi, final String startDate, final String endDate) {
 		final Query query = entityManager.createQuery(
@@ -105,6 +122,22 @@ public class CallDataDAO {
 		query.setParameter(3, imsi);
 		return query.getResultList();
 	}
+/******
+	// User Story #7
+	public List<BaseData> getImsisWithFailuresByDates(final String startDate, final String endDate) {
+		final Query query = entityManager.createQuery("SELECT w.imsi, w.date_time  FROM BaseData w Where w.date_time between ?1 and ?2");
+		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		final String startDateReplaceT = startDate.replace('T', ' ');
+		final String endDateReplaceT = endDate.replace('T', ' ');
+		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);
+		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);
+		query.setParameter(1, startDateTime);
+		query.setParameter(2, endDateTime);
+		final List<BaseData> toDisplay = query.getResultList();
+		return toDisplay;
+	}
+
+
 
 	// User Story #8
 	public List<String> countImsiFailuresForUEType(final Integer ueType, final String startDate, final String endDate) {

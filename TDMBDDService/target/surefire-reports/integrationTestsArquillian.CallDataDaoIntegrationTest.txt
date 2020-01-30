@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: integrationTestsArquillian.CallDataDaoIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.154 sec - in integrationTestsArquillian.CallDataDaoIntegrationTest

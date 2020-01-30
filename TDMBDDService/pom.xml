@@ -26,7 +26,43 @@
 			<scope>test</scope>
 	</dependency>
 	
-	
+	 <dependency>
+    		<groupId>javax.ws.rs</groupId>
+    		<artifactId>javax.ws.rs-api</artifactId>
+    		<version>2.1.1</version>
+		</dependency>
+ <!-- 
+		<dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>1.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.17</version>
+        </dependency>
+       --> 	
+	<!-- 
+	<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>jaxrs-api</artifactId>
+	 		<scope>provided</scope>  
+		    <version>3.0.12.Final</version>	
+	</dependency>
+		
+		<dependency>
+    		<groupId>com.fasterxml.jackson.jaxrs</groupId>
+    		<artifactId>jackson-jaxrs-json-provider</artifactId>
+    		<version>2.10.1</version>
+		</dependency>
+	  
+	 -->
 	<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-archetype -->
 	<dependency>
 	    <groupId>io.cucumber</groupId>
@@ -130,6 +166,7 @@
 		    <version>0.8.5</version>
 		</dependency>
 <!-- Arquillian restdependencies - currently (31 Dec) breakign the build
+
 		<dependency>
 			<groupId>org.jboss.arquillian.extension</groupId>
  			<artifactId>arquillian-rest-client-impl-3x</artifactId>
@@ -149,7 +186,8 @@
  			<version>1.0.0.Alpha4</version>
  			<scope>test</scope>
 		</dependency>				
-	 -->	
+-->
+	 
 	   	<dependency>
 			<groupId>io.rest-assured</groupId>
     		<artifactId>rest-assured</artifactId>
@@ -157,20 +195,45 @@
     		<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
-<dependency>
-    <groupId>org.hamcrest</groupId>
-    <artifactId>hamcrest-all</artifactId>
-    <version>1.3</version>
-    <scope>test</scope>
-</dependency>
+		<dependency>
+    		<groupId>org.hamcrest</groupId>
+    		<artifactId>hamcrest-all</artifactId>
+    		<version>1.3</version>
+    		<scope>test</scope>
+		</dependency>
 
-	  
+		
+		
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-apache</artifactId>
+			<version>0.9.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.intuit.karate</groupId>
+			<artifactId>karate-junit4</artifactId>
+			<version>0.9.4</version>
+			<scope>test</scope>
+		</dependency>
+	
+	
 </dependencies>
 
   
   <build>
 		<finalName>DDOY-build</finalName>
+		
+<!-- recommended karate change 
+		<testResources>
+        	<testResource>
+            	<directory>src/test/java</directory>
+            	<excludes>
+                	<exclude>**/*.java</exclude>
+            	</excludes>
+        	</testResource>
+    	</testResources> 
+--> 	
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -199,6 +262,11 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.17</version>
+	<!--  Recommended karate change
+				 <configuration>
+            		<argLine>-Dfile.encoding=UTF-8</argLine>
+        		</configuration>
+       -->
 			</plugin>
 			
 			<plugin>
@@ -267,6 +335,13 @@
 				    <artifactId>org.jacoco.core</artifactId>
 				    <version>0.8.5</version>
 				</dependency>
+		<!-- 
+				<dependency>
+    				<groupId>javax.ws.rs</groupId>
+    				<artifactId>javax.ws.rs-api</artifactId>
+    				<version>2.0</version>
+				</dependency>
+		 -->
             </dependencies>
 		</profile>
 		
