@@ -1,59 +1,31 @@
 package integrationTestsArquillian;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ejb.EJB;
-import javax.persistence.Query;
-
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+import org.hamcrest.Matchers;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
-
-
 import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import io.restassured.RestAssured;
-import io.restassured.RestAssured.*;
-import io.restassured.http.ContentType;
-import io.restassured.matcher.RestAssuredMatchers.*;
-import io.restassured.response.*;
-
-import org.hamcrest.Matchers;
-import org.hamcrest.Matchers.*;
-import org.codehaus.groovy.*;
-
 import com.ait.DAO.CallDataDAO;
-import com.ait.TDMBDDService.*;
-import com.ait.callData.*;
+import com.ait.DataFileImport.FileData;
+import com.ait.TDMBDDService.TDMBDDService;
+import com.ait.callData.BaseData;
 
-
-import com.ait.DataFileImport.*;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
  
 
 
@@ -123,7 +95,7 @@ public class RESTImportTest {
     	
     	RestAssured
     	.given()
-    		.contentType(ContentType.TEXT).body(new String("TestDataSet.xls"))
+    		.contentType(ContentType.TEXT).body(new String("QueryTestDataSet.xls"))
         .when()
         	.post(basePath +"rest/TelcoDataMgt")
         .then()
@@ -132,7 +104,7 @@ public class RESTImportTest {
     }
  
     // Using loaded file above for query tests
-    @Ignore
+    
     @Test
     @RunAsClient
     public void Test_US4GetAllEventAndCauseCodeByImsiSuccess2IMSIs(){
@@ -140,7 +112,7 @@ public class RESTImportTest {
     			.given()
     		
     			.when()
-    				.get(basePath +"rest/TelcoDataMgt" + "/310560000000012")
+    				.get(basePath +"rest/TelcoDataMgt" + "/344930000000012")
     			.then()
     				.statusCode(200).body("$", Matchers.hasSize(2));
 			
@@ -169,7 +141,7 @@ public class RESTImportTest {
     				
     }
     
-    @Ignore
+    
     @Test
     @RunAsClient
     public void Test_US5_getIMSIsWithinDates(){
@@ -177,12 +149,13 @@ public class RESTImportTest {
     			.given()
     		
     			.when()
-    				.get(basePath +"rest/TelcoDataMgt" + "/getIMSIsWithinDates?startDate=2020/01/11T17:16:00&endDate=2020/11/01T17:18:00")
+    				.get(basePath +"rest/TelcoDataMgt" + "/getIMSIsWithinDates?startDate=2020/01/11T17:00:00&endDate=2020/01/11T17:20:00")
+    				//														  ?startDate=2020/01/11T14:00:00&endDate=2020/01/11T22:00:00
     			.then()
-	   				.statusCode(200).body("$",Matchers.hasSize(3));    // TestDataSet.xls has 3 in this time window   			   											
+	   				.statusCode(200).body("$",Matchers.hasSize(2));       			   											
     }
     
-   @Ignore
+   
     @Test
     @RunAsClient
     public void Test_US6CallFailureCountByPhoneModel(){
@@ -190,8 +163,12 @@ public class RESTImportTest {
     			.given()
     		
     			.when()
-    				.get(basePath +"rest/TelcoDataMgt" + "/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:16:00")
+    				.get(basePath +"rest/TelcoDataMgt" + "/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:20:00")
+    				//														                            ?startDate=2020/01/11T14:00:00&endDate=2020/01/11T17:19:00
+
     			.then()
-	   				.statusCode(200).body("$",Matchers.hasSize(3));    // TestDataSet.xls has 2 in this time window
+	   				.statusCode(200).body("$",Matchers.hasItem(3));    // TestDataSet.xls has 2 in this time window
     }
+    
+    
 }
