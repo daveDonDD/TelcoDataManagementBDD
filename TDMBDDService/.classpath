@@ -46,5 +46,15 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/eeiddoy/.m2/repository/org/jboss/resteasy/resteasy-jaxb-provider/2.1-beta-1/resteasy-jaxb-provider-2.1-beta-1.jar" sourcepath="C:/Users/eeiddoy/.m2/repository/org/jboss/resteasy/resteasy-jaxb-provider/2.1-beta-1/resteasy-jaxb-provider-2.1-beta-1-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+			<attribute name="maven.groupId" value="org.jboss.resteasy"/>
+			<attribute name="maven.artifactId" value="resteasy-jaxb-provider"/>
+			<attribute name="maven.version" value="2.1-beta-1"/>
+			<attribute name="maven.scope" value="provided"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

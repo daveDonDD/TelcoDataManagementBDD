@@ -132,10 +132,10 @@ public class RESTImportTest {
     }
  
     // Using loaded file above for query tests
-    
+    @Ignore
     @Test
     @RunAsClient
-    public void GetAllEventAndCauseCodeByImsiSuccess2IMSIs(){
+    public void Test_US4GetAllEventAndCauseCodeByImsiSuccess2IMSIs(){
     	RestAssured
     			.given()
     		
@@ -143,12 +143,22 @@ public class RESTImportTest {
     				.get(basePath +"rest/TelcoDataMgt" + "/310560000000012")
     			.then()
     				.statusCode(200).body("$", Matchers.hasSize(2));
-    }
+			
+//    	check correct user story!!!!!!
+//expected '[[344930000000011, 1, 1000]]'
+//Actual: [[344930000000011, 1, 1000]]   need to check this
+// format returned is List of query (SELECT imsi, COUNT(*), SUM(duration)) e.g. [[310560000000012,2,2000]]
+// so assertion is second element equals 2 
+// or just hardcoded
+// else use object serilaisation to convert back to pojo adn use from there
+// but into other problem domain - if we had  json here this would be a no brainer.
+//Karate simpler to manage flat json (or returned data in what ever format) and assert against that
+}
     
     
     @Test
     @RunAsClient
-    public void GetAllEventAndCauseCodeByIMSIEmptyResponse(){
+    public void Test_US4_getAllEventAndCauseCodeByIMSIEmptyResponse(){
     	RestAssured
     			.given()
     		
@@ -162,20 +172,26 @@ public class RESTImportTest {
     @Ignore
     @Test
     @RunAsClient
-    public void countIMSICallFailuresAndDuration2errors(){
+    public void Test_US5_getIMSIsWithinDates(){
     	RestAssured
     			.given()
     		
     			.when()
-    				.get(basePath +"rest/TelcoDataMgt" + "/callFailureCount?imsi=310560000000012&startDate=2020/01/11T17:15:00&endDate=2020/11/01T17:16:59")
+    				.get(basePath +"rest/TelcoDataMgt" + "/getIMSIsWithinDates?startDate=2020/01/11T17:16:00&endDate=2020/11/01T17:18:00")
     			.then()
-    				.statusCode(200).body("$",Matchers.matchesPattern("[[310560000000012,2,2000]]"));     /// not working for some silly reason - but adequate for now
-
-    				// format returned is List of query (SELECT imsi, COUNT(*), SUM(duration)) e.g. [[310560000000012,2,2000]]
-    				// so assertion is second element equals 2 
-    				// or just hardcoded
-    				// else use object serilaisation to convert back to pojo adn use from there
-    				// but into other problem domain - if we had  json here this would be a no brainer.
-    	//Karate simpler to manage flat json (or returned data in what ever format) ans assert against that
+	   				.statusCode(200).body("$",Matchers.hasSize(3));    // TestDataSet.xls has 3 in this time window   			   											
+    }
+    
+   @Ignore
+    @Test
+    @RunAsClient
+    public void Test_US6CallFailureCountByPhoneModel(){
+    	RestAssured
+    			.given()
+    		
+    			.when()
+    				.get(basePath +"rest/TelcoDataMgt" + "/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:16:00")
+    			.then()
+	   				.statusCode(200).body("$",Matchers.hasSize(3));    // TestDataSet.xls has 2 in this time window
     }
 }

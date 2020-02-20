@@ -108,41 +108,41 @@ public class CallDataDAO {
 <span class="nc" id="L108">		query.setParameter(&quot;imsi&quot;, imsi);</span>
 <span class="nc" id="L109">		return query.getResultList();</span>
 	}
-	// User Story #9
-	public List&lt;Object[]&gt; countImsiFailures(final Long imsi, final String startDate, final String endDate) {
-<span class="nc" id="L113">		final Query query = entityManager.createQuery(</span>
-<span class="nc" id="L114">				&quot;SELECT imsi, COUNT(*), SUM(duration) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND imsi=?3 GROUP BY imsi&quot;);</span>
-<span class="nc" id="L115">		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);</span>
-<span class="nc" id="L116">		final String startDateReplaceT = startDate.replace('T', ' ');</span>
-<span class="nc" id="L117">		final String endDateReplaceT = endDate.replace('T', ' ');</span>
-<span class="nc" id="L118">		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);</span>
-<span class="nc" id="L119">		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);</span>
-<span class="nc" id="L120">		query.setParameter(1, startDateTime);</span>
-<span class="nc" id="L121">		query.setParameter(2, endDateTime);</span>
-<span class="nc" id="L122">		query.setParameter(3, imsi);</span>
-<span class="nc" id="L123">		return query.getResultList();</span>
-	}
-/******
-	// User Story #7
+	// User Story #5
 	public List&lt;BaseData&gt; getImsisWithFailuresByDates(final String startDate, final String endDate) {
-		final Query query = entityManager.createQuery(&quot;SELECT w.imsi, w.date_time  FROM BaseData w Where w.date_time between ?1 and ?2&quot;);
-		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);
-		final String startDateReplaceT = startDate.replace('T', ' ');
-		final String endDateReplaceT = endDate.replace('T', ' ');
-		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);
-		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);
-		query.setParameter(1, startDateTime);
-		query.setParameter(2, endDateTime);
-		final List&lt;BaseData&gt; toDisplay = query.getResultList();
-		return toDisplay;
+<span class="nc" id="L113">		final Query query = entityManager.createQuery(&quot;SELECT w.imsi, w.date_time  FROM BaseData w Where w.date_time between ?1 and ?2&quot;);</span>
+<span class="nc" id="L114">		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);</span>
+<span class="nc" id="L115">		final String startDateReplaceT = startDate.replace('T', ' ');</span>
+<span class="nc" id="L116">		final String endDateReplaceT = endDate.replace('T', ' ');</span>
+<span class="nc" id="L117">		final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);</span>
+<span class="nc" id="L118">		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);</span>
+<span class="nc" id="L119">		query.setParameter(1, startDateTime);</span>
+<span class="nc" id="L120">		query.setParameter(2, endDateTime);</span>
+<span class="nc" id="L121">		final List&lt;BaseData&gt; toDisplay = query.getResultList();</span>
+<span class="nc" id="L122">		return toDisplay;</span>
 	}
+	
 
+	// User Story #6
+		public List&lt;String&gt; countImsiFailuresForUEType(final Integer ueType, final String startDate, final String endDate) {
+<span class="nc" id="L128">			final Query query = entityManager</span>
+<span class="nc" id="L129">					.createQuery(&quot;SELECT COUNT(*) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND ue_type = ?3&quot;);</span>
+<span class="nc" id="L130">			final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);</span>
+<span class="nc" id="L131">			final String startDateReplaceT = startDate.replace('T', ' ');</span>
+<span class="nc" id="L132">			final String endDateReplaceT = endDate.replace('T', ' ');</span>
+<span class="nc" id="L133">			final LocalDateTime startDateTime = LocalDateTime.parse(startDateReplaceT, formatter);</span>
+<span class="nc" id="L134">			final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);</span>
+<span class="nc" id="L135">			query.setParameter(1, startDateTime);</span>
+<span class="nc" id="L136">			query.setParameter(2, endDateTime);</span>
+<span class="nc" id="L137">			query.setParameter(3, ueType);</span>
+<span class="nc" id="L138">			return query.getResultList();</span>
+		}
 
-
-	// User Story #8
-	public List&lt;String&gt; countImsiFailuresForUEType(final Integer ueType, final String startDate, final String endDate) {
-		final Query query = entityManager
-				.createQuery(&quot;SELECT COUNT(*) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND ue_type = ?3&quot;);
+	/******
+// User Story #9
+	public List&lt;Object[]&gt; countImsiFailures(final Long imsi, final String startDate, final String endDate) {
+		final Query query = entityManager.createQuery(
+				&quot;SELECT imsi, COUNT(*), SUM(duration) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND imsi=?3 GROUP BY imsi&quot;);
 		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy/MM/dd HH:mm:ss&quot;);
 		final String startDateReplaceT = startDate.replace('T', ' ');
 		final String endDateReplaceT = endDate.replace('T', ' ');
@@ -150,9 +150,10 @@ public class CallDataDAO {
 		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);
 		query.setParameter(1, startDateTime);
 		query.setParameter(2, endDateTime);
-		query.setParameter(3, ueType);
+		query.setParameter(3, imsi);
 		return query.getResultList();
 	}
+	
 
 	public List&lt;String&gt; getModelNameForUEType(final Integer ueType) {
 		final Query query = entityManager

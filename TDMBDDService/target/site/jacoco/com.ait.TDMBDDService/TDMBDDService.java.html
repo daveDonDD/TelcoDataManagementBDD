@@ -7,32 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
-import org.apache.poi.EncryptedDocumentException;
-
-import java.lang.String;
+import org.jboss.resteasy.annotations.providers.jaxb.Formatted;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
-
 import com.ait.callData.EventCause;
+import com.ait.callData.PMData;
 
 
 @Path(&quot;/TelcoDataMgt&quot;)
-<span class="nc" id="L35">public class TDMBDDService {</span>
+<span class="nc" id="L29">public class TDMBDDService {</span>
 	
 		@EJB
 		private CallDataDAO callDataDao;
@@ -42,11 +36,31 @@ import com.ait.callData.EventCause;
 	    @Produces(MediaType.APPLICATION_JSON)
 	    @Path(&quot;/HelloWorldTest&quot;)
 	    public String getTDMHelloWorld() {
-<span class="nc" id="L45">	    	String hello = &quot;Hello TDMBDD World DDOY + Queries 7&quot;;</span>
-<span class="nc" id="L46">	        return hello;</span>
+<span class="nc" id="L39">	    	String hello = &quot;Hello TDMBDD World DDOY + Queries 11&quot;;</span>
+<span class="nc" id="L40">	        return hello;</span>
 	    }
 	  
-
+	    @GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    @Path(&quot;/PMObjectTest1&quot;)
+	    public List&lt;PMData&gt; getPMMessage1() {
+<span class="nc" id="L47">	        List&lt;PMData&gt; data = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L48">	        data.add(new PMData(&quot;MSC&quot;));</span>
+<span class="nc" id="L49">	        data.add(new PMData(&quot;ERBS&quot;));</span>
+<span class="nc" id="L50">	        data.add(new PMData(&quot;RadioNode&quot;));</span>
+<span class="nc" id="L51">	        return data;</span>
+	    }
+	    @GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    @Path(&quot;/PMObjectTest2&quot;)
+	    public Response getPMMessage2() {
+<span class="nc" id="L57">	        List&lt;PMData&gt; data = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L58">	        data.add(new PMData(&quot;MSC&quot;));</span>
+<span class="nc" id="L59">	        data.add(new PMData(&quot;ERBS&quot;));</span>
+<span class="nc" id="L60">	        data.add(new PMData(&quot;RadioNode&quot;));</span>
+<span class="nc" id="L61">	        return Response.status(200).entity(data).build();	    </span>
+	        }
+	    
 		@POST	
 		@Consumes(MediaType.TEXT_PLAIN)
 		@Produces(MediaType.APPLICATION_JSON) //http return codes
@@ -55,36 +69,36 @@ import com.ait.callData.EventCause;
 			final InputStream inputStream;
 			
 			try {
-<span class="nc" id="L58">				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);</span>
+<span class="nc" id="L72">				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);</span>
 				//inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\TestDataSet.xls&quot;);
-<span class="nc" id="L60">			} catch (Exception e) {</span>
+<span class="nc" id="L74">			} catch (Exception e) {</span>
 	
 				/// Need to set to specific file not found exception1!!!!!!
-<span class="nc" id="L63">					return Response.status(406).entity(&quot;File Not Found : &quot; + fileName).build();</span>
+<span class="nc" id="L77">					return Response.status(406).entity(&quot;File Not Found : &quot; + fileName).build();</span>
 			}
 			
 			try {
-<span class="nc" id="L67">				fileData = new FileData(inputStream);</span>
-<span class="nc" id="L68">			} catch (Exception e) {</span>
-<span class="nc" id="L69">				return Response.status(407).entity(&quot;BUG &quot;).build();</span>
+<span class="nc" id="L81">				fileData = new FileData(inputStream);</span>
+<span class="nc" id="L82">			} catch (Exception e) {</span>
+<span class="nc" id="L83">				return Response.status(407).entity(&quot;BUG &quot;).build();</span>
 
 			}
 			
-<span class="nc" id="L73">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L74">			FileData.rowNumber = 1;</span>
+<span class="nc" id="L87">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L88">			FileData.rowNumber = 1;</span>
 		    try {
-<span class="nc" id="L76">				fileData.importWorkbook();</span>
+<span class="nc" id="L90">				fileData.importWorkbook();</span>
 				
-<span class="nc" id="L78">			} catch (IOException e) {</span>
-<span class="nc" id="L79">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
+<span class="nc" id="L92">			} catch (IOException e) {</span>
+<span class="nc" id="L93">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
 			}
-<span class="nc" id="L81">		    callDataDao.addBaseData(fileData.getBaseDataList());</span>
-<span class="nc" id="L82">			callDataDao.addEventCause(fileData.getEventCauseList());</span>
-<span class="nc" id="L83">			callDataDao.addFailureClass(fileData.getFailureClassList());</span>
-<span class="nc" id="L84">			callDataDao.addUE(fileData.getUeList());</span>
-<span class="nc" id="L85">			callDataDao.addMccMnc(fileData.getMcc_mncList());</span>
+<span class="nc" id="L95">		    callDataDao.addBaseData(fileData.getBaseDataList());</span>
+<span class="nc" id="L96">			callDataDao.addEventCause(fileData.getEventCauseList());</span>
+<span class="nc" id="L97">			callDataDao.addFailureClass(fileData.getFailureClassList());</span>
+<span class="nc" id="L98">			callDataDao.addUE(fileData.getUeList());</span>
+<span class="nc" id="L99">			callDataDao.addMccMnc(fileData.getMcc_mncList());</span>
 			
-<span class="nc" id="L87">		    return Response.status(200).entity(&quot;FileLoaded : &quot; + fileName).build();</span>
+<span class="nc" id="L101">		    return Response.status(200).entity(&quot;FileLoaded : &quot; + fileName).build();</span>
 
 		    
 			// inputStream.close();    --   need to handle this and its exception
@@ -96,17 +110,29 @@ import com.ait.callData.EventCause;
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Path(&quot;/{imsi}&quot;) // User Story #4
 		public Response getAllEventAndCauseCodeByImsi(@PathParam(&quot;imsi&quot;) final long imsi) {
-<span class="nc" id="L99">			final List&lt;EventCause&gt; imsiEventList = callDataDao.getEventAndCauseCodeByIMSI(imsi);</span>
-<span class="nc" id="L100">			return Response.status(200).entity(imsiEventList).build();</span>
+<span class="nc" id="L113">			final List&lt;EventCause&gt; imsiEventList = callDataDao.getEventAndCauseCodeByIMSI(imsi);</span>
+<span class="nc" id="L114">			return Response.status(200).entity(imsiEventList).build();</span>
 		}
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
-		@Path(&quot;/callFailureCount&quot;) // User Story #9
-		public Response countIMSICallFailuresAndDuration(@QueryParam(&quot;imsi&quot;) final Long imsi,
+		@Path(&quot;/getIMSIsWithinDates&quot;) // User Story #5
+		public Response getIMSIsWithinDates(@QueryParam(&quot;startDate&quot;) final String startDate,
+				@QueryParam(&quot;endDate&quot;) final String endDate) {
+<span class="nc" id="L122">			final long startTime = System.currentTimeMillis();</span>
+<span class="nc" id="L123">			final List baseTable = callDataDao.getImsisWithFailuresByDates(startDate, endDate);</span>
+<span class="nc" id="L124">			final long elapsedTime = System.currentTimeMillis() - startTime;</span>
+<span class="nc" id="L125">			System.out.println(&quot;\&quot;findAllIMSIsWithFailuresByTime\&quot; Elapsed Time: &quot; + elapsedTime / 1000.0 + &quot;sec&quot;);</span>
+<span class="nc" id="L126">			return Response.status(200).entity(baseTable).build();</span>
+		}
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path(&quot;/CallFailureCountByPhoneModel&quot;) // User Story #6
+		public Response CallFailureCountByPhoneModel(@QueryParam(&quot;ueType&quot;) final Integer ueType,
 				@QueryParam(&quot;startDate&quot;) final String startDate, @QueryParam(&quot;endDate&quot;) final String endDate) {
-<span class="nc" id="L108">			final List&lt;Object[]&gt; callFailuresCount = callDataDao.countImsiFailures(imsi, startDate, endDate);</span>
-<span class="nc" id="L109">			return Response.status(200).entity(callFailuresCount).build();</span>
+<span class="nc" id="L134">			final List&lt;String&gt; callFailuresCount = callDataDao.countImsiFailuresForUEType(ueType, startDate, endDate);</span>
+<span class="nc" id="L135">			return Response.status(200).entity(callFailuresCount).build();</span>
 		}
 		
 }
