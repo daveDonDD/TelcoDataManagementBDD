@@ -56,10 +56,10 @@ public class BaseData implements Serializable{
 <span class="fc" id="L56">	public BaseData() {</span>
 <span class="fc" id="L57">	}</span>
 
-<span class="fc" id="L59">	public BaseData(final LocalDateTime date_time, final int event_id, final int failure_class, final int ue_type,</span>
+	public BaseData(final LocalDateTime date_time, final int event_id, final int failure_class, final int ue_type,
 			final int market, final int operator, final int cell_id, final int duration, final int cause_code,
 			final String ne_version, final long imsi, final long hier3_id, final long hier32_id,
-			final long hier321_id) {
+<span class="fc" id="L62">			final long hier321_id) {</span>
 <span class="fc" id="L63">		this.date_time = date_time;</span>
 <span class="fc" id="L64">		this.event_id = event_id;</span>
 <span class="fc" id="L65">		this.failure_class = failure_class;</span>
@@ -276,7 +276,7 @@ public class BaseData implements Serializable{
 
 		public BaseData build() {
 <span class="fc" id="L278">			return new BaseData(date_time, event_id, failure_class, ue_type, market, operator, cell_id, duration,</span>
-<span class="fc" id="L279">					cause_code, ne_version, imsi, hier3_id, hier32_id, hier321_id);</span>
+					cause_code, ne_version, imsi, hier3_id, hier32_id, hier321_id);
 		}
 	}
 

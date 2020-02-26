@@ -15,12 +15,17 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.After;
+import org.junit.Ignore;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+//import org.junit.jupiter.api.Order;
+//import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
+import com.ait.TDMBDDService.EventCauseDTO;
 import com.ait.TDMBDDService.TDMBDDService;
 import com.ait.callData.BaseData;
 
@@ -43,7 +48,8 @@ public class RESTImportTest {
 				  .addPackages(true, "org.apache.poi")
 				  .addClasses(
 							 CallDataDAO.class,   
-							 TDMBDDService.class     
+							 TDMBDDService.class,
+							 EventCauseDTO.class
 							
 							 )
 			      .setWebXML("test_web.xml");   
@@ -62,16 +68,23 @@ public class RESTImportTest {
  
 	private FileData fileData;
 
-    @Test 
-    @RunAsClient
-	public void restAssuredHelloWorldTest() {
-
-        RestAssured.when().
-        		get(basePath + "rest/TelcoDataMgt/HelloWorldTest").
-               // http://localhost:8080/RestTest/rest/TelcoDataMgt/HelloWorldTest").
-        then().
-        		statusCode(200);
+	 @Test 
+	 @RunAsClient
+	 public void restAssuredImportTest() {
+    	
+    	RestAssured
+    	.given()
+    		.contentType(ContentType.TEXT).body(new String("QueryTestDataSet.xls"))
+        .when()
+        	.post(basePath +"rest/TelcoDataMgt")
+        .then()
+        	.statusCode(200);
+    			// need to beef assertion - or have lower level units protecting this
+    			// note num of errors returned needs to be added here too and woudl be a good assertion
     }
+	 
+	 
+   
   
         
         
@@ -89,25 +102,12 @@ public class RESTImportTest {
     	
     }        
     
-    @Test 
-    @RunAsClient
-	public void restAssuredImportTest() {
-    	
-    	RestAssured
-    	.given()
-    		.contentType(ContentType.TEXT).body(new String("QueryTestDataSet.xls"))
-        .when()
-        	.post(basePath +"rest/TelcoDataMgt")
-        .then()
-        	.statusCode(200);
-    	// need to beef up assertions here - 
-    }
+   
  
     // Using loaded file above for query tests
-    
     @Test
     @RunAsClient
-    public void Test_US4GetAllEventAndCauseCodeByImsiSuccess2IMSIs(){
+    public void Test_US4GetAllEventAndCauseCodeByImsiSuccess(){
     	RestAssured
     			.given()
     		
@@ -155,7 +155,7 @@ public class RESTImportTest {
 	   				.statusCode(200).body("$",Matchers.hasSize(2));       			   											
     }
     
-   
+        
     @Test
     @RunAsClient
     public void Test_US6CallFailureCountByPhoneModel(){
@@ -167,8 +167,33 @@ public class RESTImportTest {
     				//														                            ?startDate=2020/01/11T14:00:00&endDate=2020/01/11T17:19:00
 
     			.then()
-	   				.statusCode(200).body("$",Matchers.hasItem(3));    // TestDataSet.xls has 2 in this time window
+	   				.statusCode(200).body("$",Matchers.hasItem(3));    
     }
-    
-    
+   
+    @Test
+       @RunAsClient
+       public void Test_US7CountOfIMSIFailureAndDuration(){
+       	RestAssured
+       			.given()
+       		
+       			.when()
+       				.get(basePath +"rest/TelcoDataMgt" + "/CountOfIMSIFailureAndDuration?startDate=2020/01/23T14:00:00&endDate=2020/01/23T14:07:00")
+       			.then()
+	       			.statusCode(200).body("$",Matchers.hasSize(4));
+       	//		.statusCode(200).body("$",Matchers.hasItem("[777770000000011, 1, 1000]"));
+
+
+       	//		.statusCode(200).body("$",Matchers.hasItems("[[777770000000011, 1, 1000], [777770000000012, 2, 2000], [777770000000013, 3, 3000], [777770000000014, 1, 1000]]"));
+		//		.statusCode(200).body("$",Matchers.hasItem(Matchers.hasItem("777770000000011")));
+       	
+       	//		.statusCode(200).body("$",Matchers.containsInAnyOrder(new String[]{"[777770000000011, 1, 1000]","[777770000000012, 2, 2000]","[777770000000013, 3, 3000]", "[777770000000014, 1, 1000]"}));
+       				//  jsonArray??  --  https://stackoverflow.com/questions/39847564/check-output-of-jsonpath-with-hamcrest-matchers
+       	
+						//.sameJSONAs("[[777770000000011, 1, 1000], [777770000000012, 2, 2000], [777770000000013, 3, 3000], [777770000000014, 1, 1000]]"));
+
+       					// now need better matchers
+       					// json would be great here and karate
+       					// else look into matchers doing this on my lists
+       	
+       }
 }

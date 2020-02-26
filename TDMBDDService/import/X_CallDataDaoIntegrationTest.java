@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -17,13 +17,17 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.ait.DAO.CallDataDAO;
-import com.ait.callData.*;
+import com.ait.TDMBDDService.EventCauseDTO;
+import com.ait.callData.BaseData;
+import com.ait.callData.EventCause;
+import com.ait.callData.FailureClass;
+import com.ait.callData.MccMnc;
+import com.ait.callData.UE;
 
 
 
@@ -31,12 +35,12 @@ import com.ait.callData.*;
 
 
 @RunWith(Arquillian.class)
-public class CallDataDaoIntegrationTest {
+public class X_CallDataDaoIntegrationTest {
 	@Deployment
 	public static Archive<?> createTestArchive() {
 		return ShrinkWrap
 				.create(JavaArchive.class, "CallDataTest.jar")
-				.addClasses(CallDataDAO.class )
+				.addClasses(CallDataDAO.class,EventCauseDTO.class )
 				.addPackage(BaseData.class.getPackage())
 				.addAsManifestResource("META-INF/test_persistence.xml", "persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");

@@ -5,25 +5,25 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@XmlRootElement
+@XmlRootElement (name="eventCause")
 @IdClass(EventCause.class)
 public class EventCause implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@XmlElement(namespace = "causeCode")
+	@XmlTransient
 	private int cause_code;
 
 	@Id
-	@XmlElement(namespace = "eventId")
+	@XmlTransient
 	private int event_id;
 
-	@XmlElement(namespace = "Description")
+	@XmlTransient
 	private String description;
 
 	public EventCause() {

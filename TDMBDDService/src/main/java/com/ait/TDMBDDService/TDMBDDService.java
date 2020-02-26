@@ -17,10 +17,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.resteasy.annotations.providers.jaxb.Formatted;
+import org.modelmapper.ModelMapper;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
+import com.ait.callData.BaseData;
 import com.ait.callData.EventCause;
 import com.ait.callData.PMData;
 
@@ -31,36 +32,21 @@ public class TDMBDDService {
 		@EJB
 		private CallDataDAO callDataDao;
 
-
+		public TDMBDDService () {
+		}
+		
+		public TDMBDDService(final CallDataDAO callDataDao) {
+			this.callDataDao = callDataDao;
+		}
+		
 	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
+	    @Produces(MediaType.TEXT_PLAIN)
 	    @Path("/HelloWorldTest")
 	    public String getTDMHelloWorld() {
-	    	String hello = "Hello TDMBDD World DDOY + Queries 11";
+	    	String hello = "Hello TDMBDD World DDOY + Queries 20";
 	        return hello;
 	    }
 	  
-	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
-	    @Path("/PMObjectTest1")
-	    public List<PMData> getPMMessage1() {
-	        List<PMData> data = new ArrayList<>();
-	        data.add(new PMData("MSC"));
-	        data.add(new PMData("ERBS"));
-	        data.add(new PMData("RadioNode"));
-	        return data;
-	    }
-	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
-	    @Path("/PMObjectTest2")
-	    public Response getPMMessage2() {
-	        List<PMData> data = new ArrayList<>();
-	        data.add(new PMData("MSC"));
-	        data.add(new PMData("ERBS"));
-	        data.add(new PMData("RadioNode"));
-	        return Response.status(200).entity(data).build();	    
-	        }
-	    
 		@POST	
 		@Consumes(MediaType.TEXT_PLAIN)
 		@Produces(MediaType.APPLICATION_JSON) //http return codes
@@ -105,25 +91,68 @@ public class TDMBDDService {
 
 		}
 
+	    @GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    @Path("/PMObjectTest1")
+	    public List<PMData> getPMMessage1() {
+	        List<PMData> data = new ArrayList<>();
+	        data.add(new PMData("MSC"));
+	        data.add(new PMData("ERBS"));
+	        data.add(new PMData("RadioNode"));
+	        return data;
+	    }
+	 
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Path("/{imsi}") // User Story #4
-		public Response getAllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
-			final List<EventCause> imsiEventList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
-			return Response.status(200).entity(imsiEventList).build();
+		public List<EventCauseDTO>  getAllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
+
+			List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
+
+			 
+			List<EventCauseDTO> eventCauseDTOList = new ArrayList<>(eventCauseDBList.size());
+			for ( Object[] eventCauseDB : eventCauseDBList) {
+				eventCauseDTOList.add(new EventCauseDTO((int) eventCauseDB[0],
+			                                      (int) eventCauseDB[1],
+			                                      (String) eventCauseDB[2]));
+			}
+			return eventCauseDTOList;
+//			return Response.status(200).entity(eventCauseObjectList).build();
 		}
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
+		@Path("/2/{imsi}") // User Story #4
+		public List<EventCause> get_2_AllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
+
+			List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
+
+			 
+			List<EventCause> eventCauseList = new ArrayList<>(eventCauseDBList.size());
+			for ( Object[] eventCauseDB : eventCauseDBList) {
+				eventCauseList.add(new EventCause((int) eventCauseDB[0],
+			                                      (int) eventCauseDB[1],
+			                                      (String) eventCauseDB[2]));
+			}
+			return eventCauseList;
+//			return Response.status(200).entity(eventCauseObjectList).build();
+		}
+		
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
 		@Path("/getIMSIsWithinDates") // User Story #5
-		public Response getIMSIsWithinDates(@QueryParam("startDate") final String startDate,
+		public List <BaseData> getIMSIsWithinDates(@QueryParam("startDate") final String startDate,
 				@QueryParam("endDate") final String endDate) {
 			final long startTime = System.currentTimeMillis();
-			final List baseTable = callDataDao.getImsisWithFailuresByDates(startDate, endDate);
+			final List <BaseData> baseTable = callDataDao.getImsisWithFailuresByDates(startDate, endDate);
+			
+			
 			final long elapsedTime = System.currentTimeMillis() - startTime;
 			System.out.println("\"findAllIMSIsWithFailuresByTime\" Elapsed Time: " + elapsedTime / 1000.0 + "sec");
-			return Response.status(200).entity(baseTable).build();
+//			return Response.status(200).entity(baseTable).build();
+			return baseTable;
 		}
 		
 		@GET
@@ -134,5 +163,18 @@ public class TDMBDDService {
 			final List<String> callFailuresCount = callDataDao.countImsiFailuresForUEType(ueType, startDate, endDate);
 			return Response.status(200).entity(callFailuresCount).build();
 		}
-		
+
+		// US7
+		// comments on returned data
+		// This query was never mapped to an object so was always going to be a list......
+		// unless I created a new DTO and mapped the resulting query to that DTO
+		// worth doing to make Client side easier - else they just manage the list - which is reasonable
+		// depends what solution is agreed and documented in the API.
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path("/CountOfIMSIFailureAndDuration") // User Story #7
+		public Response CountOfIMSIFailureAndDuration(@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
+			final List<Object[]> callFailuresCountDBList = callDataDao.countImsiFailures(startDate, endDate);
+			return Response.status(200).entity(callFailuresCountDBList).build();
+		}
 }

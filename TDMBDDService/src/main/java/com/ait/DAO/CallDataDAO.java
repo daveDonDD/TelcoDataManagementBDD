@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.ait.TDMBDDService.EventCauseDTO;
 import com.ait.callData.*;
 
 
@@ -100,7 +101,7 @@ public class CallDataDAO {
 
 
 	// User Story #4
-	public List<EventCause> getEventAndCauseCodeByIMSI(final long imsi) {
+	public List getEventAndCauseCodeByIMSI(final long imsi) {
 		final String select = "select eventcause.cause_code,eventcause.event_id , eventcause.description from basedata\r\n"
 				+ "left join eventcause on eventcause.event_id=basedata.event_id and \r\n"
 				+ "eventcause.cause_code=basedata.cause_code where basedata.imsi=:imsi";
@@ -138,11 +139,13 @@ public class CallDataDAO {
 			return query.getResultList();
 		}
 
-	/******
-// User Story #9
-	public List<Object[]> countImsiFailures(final Long imsi, final String startDate, final String endDate) {
+	
+// User Story #7
+
+//	public List<Object[]> countImsiFailures(final String startDate, final String endDate) {
+		public List countImsiFailures(final String startDate, final String endDate) {
 		final Query query = entityManager.createQuery(
-				"SELECT imsi, COUNT(*), SUM(duration) from BaseData b WHERE date_time BETWEEN ?1 and ?2 AND imsi=?3 GROUP BY imsi");
+				"SELECT imsi, COUNT(*), SUM(duration) from BaseData b WHERE date_time BETWEEN ?1 and ?2 GROUP BY imsi");
 		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		final String startDateReplaceT = startDate.replace('T', ' ');
 		final String endDateReplaceT = endDate.replace('T', ' ');
@@ -150,11 +153,10 @@ public class CallDataDAO {
 		final LocalDateTime endDateTime = LocalDateTime.parse(endDateReplaceT, formatter);
 		query.setParameter(1, startDateTime);
 		query.setParameter(2, endDateTime);
-		query.setParameter(3, imsi);
 		return query.getResultList();
 	}
 	
-
+/*!!!!!!!!!!!!!!!!!!!!!!!!!1
 	public List<String> getModelNameForUEType(final Integer ueType) {
 		final Query query = entityManager
 				.createQuery("SELECT u.manufacturer, u.marketing_name FROM UE u WHERE u.tac = ?1");

@@ -17,50 +17,36 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.resteasy.annotations.providers.jaxb.Formatted;
+import org.modelmapper.ModelMapper;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
+import com.ait.callData.BaseData;
 import com.ait.callData.EventCause;
 import com.ait.callData.PMData;
 
 
 @Path(&quot;/TelcoDataMgt&quot;)
-<span class="nc" id="L29">public class TDMBDDService {</span>
+public class TDMBDDService {
 	
 		@EJB
 		private CallDataDAO callDataDao;
 
-
+<span class="nc" id="L35">		public TDMBDDService () {</span>
+<span class="nc" id="L36">		}</span>
+		
+<span class="nc" id="L38">		public TDMBDDService(final CallDataDAO callDataDao) {</span>
+<span class="nc" id="L39">			this.callDataDao = callDataDao;</span>
+<span class="nc" id="L40">		}</span>
+		
 	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
+	    @Produces(MediaType.TEXT_PLAIN)
 	    @Path(&quot;/HelloWorldTest&quot;)
 	    public String getTDMHelloWorld() {
-<span class="nc" id="L39">	    	String hello = &quot;Hello TDMBDD World DDOY + Queries 11&quot;;</span>
-<span class="nc" id="L40">	        return hello;</span>
+<span class="nc" id="L46">	    	String hello = &quot;Hello TDMBDD World DDOY + Queries 20&quot;;</span>
+<span class="nc" id="L47">	        return hello;</span>
 	    }
 	  
-	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
-	    @Path(&quot;/PMObjectTest1&quot;)
-	    public List&lt;PMData&gt; getPMMessage1() {
-<span class="nc" id="L47">	        List&lt;PMData&gt; data = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L48">	        data.add(new PMData(&quot;MSC&quot;));</span>
-<span class="nc" id="L49">	        data.add(new PMData(&quot;ERBS&quot;));</span>
-<span class="nc" id="L50">	        data.add(new PMData(&quot;RadioNode&quot;));</span>
-<span class="nc" id="L51">	        return data;</span>
-	    }
-	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
-	    @Path(&quot;/PMObjectTest2&quot;)
-	    public Response getPMMessage2() {
-<span class="nc" id="L57">	        List&lt;PMData&gt; data = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L58">	        data.add(new PMData(&quot;MSC&quot;));</span>
-<span class="nc" id="L59">	        data.add(new PMData(&quot;ERBS&quot;));</span>
-<span class="nc" id="L60">	        data.add(new PMData(&quot;RadioNode&quot;));</span>
-<span class="nc" id="L61">	        return Response.status(200).entity(data).build();	    </span>
-	        }
-	    
 		@POST	
 		@Consumes(MediaType.TEXT_PLAIN)
 		@Produces(MediaType.APPLICATION_JSON) //http return codes
@@ -69,61 +55,104 @@ import com.ait.callData.PMData;
 			final InputStream inputStream;
 			
 			try {
-<span class="nc" id="L72">				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);</span>
+<span class="nc" id="L58">				inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\&quot;+ fileName);</span>
 				//inputStream = new FileInputStream(&quot;C:\\DevTools\\TDMBDD_Datafiles\\TestDataSet.xls&quot;);
-<span class="nc" id="L74">			} catch (Exception e) {</span>
+<span class="nc" id="L60">			} catch (Exception e) {</span>
 	
 				/// Need to set to specific file not found exception1!!!!!!
-<span class="nc" id="L77">					return Response.status(406).entity(&quot;File Not Found : &quot; + fileName).build();</span>
-			}
+<span class="nc" id="L63">					return Response.status(406).entity(&quot;File Not Found : &quot; + fileName).build();</span>
+<span class="nc" id="L64">			}</span>
 			
 			try {
-<span class="nc" id="L81">				fileData = new FileData(inputStream);</span>
-<span class="nc" id="L82">			} catch (Exception e) {</span>
-<span class="nc" id="L83">				return Response.status(407).entity(&quot;BUG &quot;).build();</span>
+<span class="nc" id="L67">				fileData = new FileData(inputStream);</span>
+<span class="nc" id="L68">			} catch (Exception e) {</span>
+<span class="nc" id="L69">				return Response.status(407).entity(&quot;BUG &quot;).build();</span>
 
-			}
+<span class="nc" id="L71">			}</span>
 			
-<span class="nc" id="L87">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L88">			FileData.rowNumber = 1;</span>
+<span class="nc" id="L73">			FileData.excelDataList = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L74">			FileData.rowNumber = 1;</span>
 		    try {
-<span class="nc" id="L90">				fileData.importWorkbook();</span>
+<span class="nc" id="L76">				fileData.importWorkbook();</span>
 				
-<span class="nc" id="L92">			} catch (IOException e) {</span>
-<span class="nc" id="L93">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
-			}
-<span class="nc" id="L95">		    callDataDao.addBaseData(fileData.getBaseDataList());</span>
-<span class="nc" id="L96">			callDataDao.addEventCause(fileData.getEventCauseList());</span>
-<span class="nc" id="L97">			callDataDao.addFailureClass(fileData.getFailureClassList());</span>
-<span class="nc" id="L98">			callDataDao.addUE(fileData.getUeList());</span>
-<span class="nc" id="L99">			callDataDao.addMccMnc(fileData.getMcc_mncList());</span>
+<span class="nc" id="L78">			} catch (IOException e) {</span>
+<span class="nc" id="L79">				return Response.status(406).entity(&quot;Invalid File&quot;).build();</span>
+<span class="nc" id="L80">			}</span>
+<span class="nc" id="L81">		    callDataDao.addBaseData(fileData.getBaseDataList());</span>
+<span class="nc" id="L82">			callDataDao.addEventCause(fileData.getEventCauseList());</span>
+<span class="nc" id="L83">			callDataDao.addFailureClass(fileData.getFailureClassList());</span>
+<span class="nc" id="L84">			callDataDao.addUE(fileData.getUeList());</span>
+<span class="nc" id="L85">			callDataDao.addMccMnc(fileData.getMcc_mncList());</span>
 			
-<span class="nc" id="L101">		    return Response.status(200).entity(&quot;FileLoaded : &quot; + fileName).build();</span>
+<span class="nc" id="L87">		    return Response.status(200).entity(&quot;FileLoaded : &quot; + fileName).build();</span>
 
 		    
 			// inputStream.close();    --   need to handle this and its exception
 
 		}
 
+	    @GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    @Path(&quot;/PMObjectTest1&quot;)
+	    public List&lt;PMData&gt; getPMMessage1() {
+<span class="nc" id="L98">	        List&lt;PMData&gt; data = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L99">	        data.add(new PMData(&quot;MSC&quot;));</span>
+<span class="nc" id="L100">	        data.add(new PMData(&quot;ERBS&quot;));</span>
+<span class="nc" id="L101">	        data.add(new PMData(&quot;RadioNode&quot;));</span>
+<span class="nc" id="L102">	        return data;</span>
+	    }
+	 
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Path(&quot;/{imsi}&quot;) // User Story #4
-		public Response getAllEventAndCauseCodeByImsi(@PathParam(&quot;imsi&quot;) final long imsi) {
-<span class="nc" id="L113">			final List&lt;EventCause&gt; imsiEventList = callDataDao.getEventAndCauseCodeByIMSI(imsi);</span>
-<span class="nc" id="L114">			return Response.status(200).entity(imsiEventList).build();</span>
+		public List&lt;EventCauseDTO&gt;  getAllEventAndCauseCodeByImsi(@PathParam(&quot;imsi&quot;) final long imsi) {
+
+<span class="nc" id="L111">			List&lt;Object[]&gt; eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);</span>
+
+			 
+<span class="nc" id="L114">			List&lt;EventCauseDTO&gt; eventCauseDTOList = new ArrayList&lt;&gt;(eventCauseDBList.size());</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">			for ( Object[] eventCauseDB : eventCauseDBList) {</span>
+<span class="nc" id="L116">				eventCauseDTOList.add(new EventCauseDTO((int) eventCauseDB[0],</span>
+<span class="nc" id="L117">			                                      (int) eventCauseDB[1],</span>
+			                                      (String) eventCauseDB[2]));
+<span class="nc" id="L119">			}</span>
+<span class="nc" id="L120">			return eventCauseDTOList;</span>
+//			return Response.status(200).entity(eventCauseObjectList).build();
 		}
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
+		@Path(&quot;/2/{imsi}&quot;) // User Story #4
+		public List&lt;EventCause&gt; get_2_AllEventAndCauseCodeByImsi(@PathParam(&quot;imsi&quot;) final long imsi) {
+
+<span class="nc" id="L129">			List&lt;Object[]&gt; eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);</span>
+
+			 
+<span class="nc" id="L132">			List&lt;EventCause&gt; eventCauseList = new ArrayList&lt;&gt;(eventCauseDBList.size());</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">			for ( Object[] eventCauseDB : eventCauseDBList) {</span>
+<span class="nc" id="L134">				eventCauseList.add(new EventCause((int) eventCauseDB[0],</span>
+<span class="nc" id="L135">			                                      (int) eventCauseDB[1],</span>
+			                                      (String) eventCauseDB[2]));
+<span class="nc" id="L137">			}</span>
+<span class="nc" id="L138">			return eventCauseList;</span>
+//			return Response.status(200).entity(eventCauseObjectList).build();
+		}
+		
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
 		@Path(&quot;/getIMSIsWithinDates&quot;) // User Story #5
-		public Response getIMSIsWithinDates(@QueryParam(&quot;startDate&quot;) final String startDate,
+		public List &lt;BaseData&gt; getIMSIsWithinDates(@QueryParam(&quot;startDate&quot;) final String startDate,
 				@QueryParam(&quot;endDate&quot;) final String endDate) {
-<span class="nc" id="L122">			final long startTime = System.currentTimeMillis();</span>
-<span class="nc" id="L123">			final List baseTable = callDataDao.getImsisWithFailuresByDates(startDate, endDate);</span>
-<span class="nc" id="L124">			final long elapsedTime = System.currentTimeMillis() - startTime;</span>
-<span class="nc" id="L125">			System.out.println(&quot;\&quot;findAllIMSIsWithFailuresByTime\&quot; Elapsed Time: &quot; + elapsedTime / 1000.0 + &quot;sec&quot;);</span>
-<span class="nc" id="L126">			return Response.status(200).entity(baseTable).build();</span>
+<span class="nc" id="L148">			final long startTime = System.currentTimeMillis();</span>
+<span class="nc" id="L149">			final List &lt;BaseData&gt; baseTable = callDataDao.getImsisWithFailuresByDates(startDate, endDate);</span>
+			
+			
+<span class="nc" id="L152">			final long elapsedTime = System.currentTimeMillis() - startTime;</span>
+<span class="nc" id="L153">			System.out.println(&quot;\&quot;findAllIMSIsWithFailuresByTime\&quot; Elapsed Time: &quot; + elapsedTime / 1000.0 + &quot;sec&quot;);</span>
+//			return Response.status(200).entity(baseTable).build();
+<span class="nc" id="L155">			return baseTable;</span>
 		}
 		
 		@GET
@@ -131,9 +160,22 @@ import com.ait.callData.PMData;
 		@Path(&quot;/CallFailureCountByPhoneModel&quot;) // User Story #6
 		public Response CallFailureCountByPhoneModel(@QueryParam(&quot;ueType&quot;) final Integer ueType,
 				@QueryParam(&quot;startDate&quot;) final String startDate, @QueryParam(&quot;endDate&quot;) final String endDate) {
-<span class="nc" id="L134">			final List&lt;String&gt; callFailuresCount = callDataDao.countImsiFailuresForUEType(ueType, startDate, endDate);</span>
-<span class="nc" id="L135">			return Response.status(200).entity(callFailuresCount).build();</span>
+<span class="nc" id="L163">			final List&lt;String&gt; callFailuresCount = callDataDao.countImsiFailuresForUEType(ueType, startDate, endDate);</span>
+<span class="nc" id="L164">			return Response.status(200).entity(callFailuresCount).build();</span>
 		}
-		
+
+		// US7
+		// comments on returned data
+		// This query was never mapped to an object so was always going to be a list......
+		// unless I created a new DTO and mapped the resulting query to that DTO
+		// worth doing to make Client side easier - else they just manage the list - which is reasonable
+		// depends what solution is agreed and documented in the API.
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path(&quot;/CountOfIMSIFailureAndDuration&quot;) // User Story #7
+		public Response CountOfIMSIFailureAndDuration(@QueryParam(&quot;startDate&quot;) final String startDate, @QueryParam(&quot;endDate&quot;) final String endDate) {
+<span class="nc" id="L177">			final List&lt;Object[]&gt; callFailuresCountDBList = callDataDao.countImsiFailures(startDate, endDate);</span>
+<span class="nc" id="L178">			return Response.status(200).entity(callFailuresCountDBList).build();</span>
+		}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

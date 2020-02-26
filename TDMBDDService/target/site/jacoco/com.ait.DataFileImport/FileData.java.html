@@ -44,9 +44,9 @@ public class FileData {
 <span class="fc" id="L44">	public FileData(final InputStream fileInputStream) throws Exception{</span>
 		try {
 <span class="fc" id="L46">			workbook = WorkbookFactory.create(fileInputStream);</span>
-<span class="pc" id="L47">		} catch ( EncryptedDocumentException | InvalidFormatException |IOException e) {</span>
+<span class="nc" id="L47">		} catch ( EncryptedDocumentException | InvalidFormatException |IOException e) {</span>
 <span class="nc" id="L48">			throw new IllegalStateException(e);</span>
-		} 
+<span class="fc" id="L49">		} </span>
 <span class="fc" id="L50">		excelDataList = new ArrayList&lt;String&gt;();</span>
 <span class="fc" id="L51">		baseDataList = new ArrayList&lt;BaseData&gt;();</span>
 <span class="fc" id="L52">		eventCauseList = new ArrayList&lt;EventCause&gt;();</span>
@@ -93,11 +93,11 @@ public class FileData {
 <span class="pc bpc" id="L93" title="1 of 2 branches missed.">				} else if (cell.getCellTypeEnum() == CellType.STRING) {</span>
 <span class="fc bfc" id="L94" title="All 2 branches covered.">					if (cell.toString().equals(&quot;(null)&quot;)) {</span>
 <span class="fc" id="L95">						excelDataList.add(null);</span>
-<span class="fc" id="L96">					} else {</span>
+					} else {
 <span class="fc" id="L97">						excelDataList.add(cell.toString());</span>
 					}
 				}
-			}
+<span class="fc" id="L100">			}</span>
 <span class="fc" id="L101">			rowNumber = i;</span>
 <span class="fc" id="L102">			this.addObjectToList(sheetNumber);</span>
 		}

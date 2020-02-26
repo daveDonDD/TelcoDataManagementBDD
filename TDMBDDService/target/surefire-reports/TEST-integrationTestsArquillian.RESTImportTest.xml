@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="integrationTestsArquillian.RESTImportTest" time="3.301" tests="7" errors="0" skipped="3" failures="0">
+<testsuite name="integrationTestsArquillian.RESTImportTest" time="4.698" tests="7" errors="0" skipped="0" failures="4">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\bin"/>
@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\eeiddoy\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3562148127641189507.tmp"/>
+    <property name="classworlds.conf" value="C:\Users\eeiddoy\eclipse-workspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf9181180368392368780.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_241\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_241/bin/server;C:/Program Files/Java/jre1.8.0_241/bin;C:/Program Files/Java/jre1.8.0_241/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Adaptiva\AdaptivaClient\bin\x32;C:\Program Files (x86)\Adaptiva\AdaptivaClient\bin\x64;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\DevTools\apache-maven-3.6.3\bin;C:\Windows\System32;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\eeiddoy\AppData\Local\Microsoft\WindowsApps;;C:\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -60,17 +60,364 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="Test_US4GetAllEventAndCauseCodeByImsiSuccess2IMSIs" classname="integrationTestsArquillian.RESTImportTest" time="0">
-    <skipped/>
+  <testcase name="Test_US7CountOfIMSIFailureAndDuration" classname="integrationTestsArquillian.RESTImportTest" time="3.476">
+    <failure message="1 expectation failed.&#10;JSON path $ doesn&apos;t match.&#10;Expected: a collection with size &lt;4&gt;&#10;  Actual: []&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 1 expectation failed.
+JSON path $ doesn't match.
+Expected: a collection with size <4>
+  Actual: []
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:237)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:493)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:261)
+	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:156)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:192)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:108)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$body(ValidatableResponseImpl.groovy)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy:298)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy)
+	at integrationTestsArquillian.RESTImportTest.Test_US7CountOfIMSIFailureAndDuration(RESTImportTest.java:182)
+]]></failure>
+    <system-out><![CDATA[13:53:55.444 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+13:53:56.066 [main] INFO org.jboss.threads - JBoss Threads version 2.3.3.Final
+13:54:02.599 [main] INFO org.jboss.remoting - JBoss Remoting version 5.0.8.Final
+13:54:02.674 [main] INFO org.xnio - XNIO version 3.6.5.Final
+13:54:02.687 [main] INFO org.xnio.nio - XNIO NIO Implementation Version 3.6.5.Final
+13:54:02.751 [XNIO-1 Accept] DEBUG org.xnio.nio - Started channel thread 'XNIO-1 Accept', selector sun.nio.ch.WindowsSelectorImpl@224d1920
+13:54:02.751 [XNIO-1 I/O-1] DEBUG org.xnio.nio - Started channel thread 'XNIO-1 I/O-1', selector sun.nio.ch.WindowsSelectorImpl@672bb007
+13:54:02.888 [main] INFO org.wildfly.security - ELY00001: WildFly Elytron version 1.8.0.Final
+13:54:21.697 [XNIO-1 task-1] DEBUG org.jboss.remotingjmx.VersionedConectionFactory - Available version (Versions  0x00 0x01)
+13:54:21.697 [XNIO-1 task-1] DEBUG org.jboss.remotingjmx.VersionedConectionFactory - Calling a stable server
+13:54:21.697 [XNIO-1 task-1] DEBUG org.jboss.remotingjmx.VersionedConectionFactory - Selecting version 0x00 to receive full version list.
+13:54:21.701 [XNIO-1 task-1] DEBUG org.jboss.remotingjmx.VersionedConectionFactory - Available version (Versions  0x01 0x02)
+13:54:21.701 [XNIO-1 task-1] DEBUG org.jboss.remotingjmx.VersionedConectionFactory - Calling a stable server
+13:54:21.701 [XNIO-1 task-1] DEBUG org.jboss.remotingjmx.VersionedConectionFactory - Server version 3.0.3.Final
+13:54:24.001 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Get connection for route {}->http://127.0.0.1:8080
+13:54:24.041 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to 127.0.0.1:8080
+13:54:24.133 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: ignoreCookies
+13:54:24.138 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+13:54:24.139 [main] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication - Target auth state: UNCHALLENGED
+13:54:24.143 [main] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+13:54:24.145 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+13:54:24.146 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Sending request: GET /RestInteg/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020%2F01%2F23T14%3A00%3A00&endDate=2020%2F01%2F23T14%3A07%3A00 HTTP/1.1
+13:54:24.147 [main] DEBUG org.apache.http.wire -  >> "GET /RestInteg/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020%2F01%2F23T14%3A00%3A00&endDate=2020%2F01%2F23T14%3A07%3A00 HTTP/1.1[\r][\n]"
+13:54:24.151 [main] DEBUG org.apache.http.wire -  >> "Accept: */*[\r][\n]"
+13:54:24.152 [main] DEBUG org.apache.http.wire -  >> "Host: 127.0.0.1:8080[\r][\n]"
+13:54:24.152 [main] DEBUG org.apache.http.wire -  >> "Connection: Keep-Alive[\r][\n]"
+13:54:24.152 [main] DEBUG org.apache.http.wire -  >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)[\r][\n]"
+13:54:24.152 [main] DEBUG org.apache.http.wire -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+13:54:24.153 [main] DEBUG org.apache.http.wire -  >> "[\r][\n]"
+13:54:24.153 [main] DEBUG org.apache.http.headers - >> GET /RestInteg/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020%2F01%2F23T14%3A00%3A00&endDate=2020%2F01%2F23T14%3A07%3A00 HTTP/1.1
+13:54:24.153 [main] DEBUG org.apache.http.headers - >> Accept: */*
+13:54:24.153 [main] DEBUG org.apache.http.headers - >> Host: 127.0.0.1:8080
+13:54:24.153 [main] DEBUG org.apache.http.headers - >> Connection: Keep-Alive
+13:54:24.154 [main] DEBUG org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+13:54:24.154 [main] DEBUG org.apache.http.headers - >> Accept-Encoding: gzip,deflate
+13:54:24.333 [main] DEBUG org.apache.http.wire -  << "HTTP/1.1 200 OK[\r][\n]"
+13:54:24.337 [main] DEBUG org.apache.http.wire -  << "Connection: keep-alive[\r][\n]"
+13:54:24.338 [main] DEBUG org.apache.http.wire -  << "Content-Type: application/json[\r][\n]"
+13:54:24.338 [main] DEBUG org.apache.http.wire -  << "Content-Length: 2[\r][\n]"
+13:54:24.338 [main] DEBUG org.apache.http.wire -  << "Date: Wed, 26 Feb 2020 13:54:24 GMT[\r][\n]"
+13:54:24.338 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+13:54:24.340 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+13:54:24.341 [main] DEBUG org.apache.http.headers - << HTTP/1.1 200 OK
+13:54:24.341 [main] DEBUG org.apache.http.headers - << Connection: keep-alive
+13:54:24.341 [main] DEBUG org.apache.http.headers - << Content-Type: application/json
+13:54:24.341 [main] DEBUG org.apache.http.headers - << Content-Length: 2
+13:54:24.341 [main] DEBUG org.apache.http.headers - << Date: Wed, 26 Feb 2020 13:54:24 GMT
+13:54:24.353 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive indefinitely
+13:54:24.434 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsing response as: application/json
+13:54:24.435 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
+13:54:25.054 [main] DEBUG org.apache.http.wire -  << "[]"
+13:54:25.056 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Releasing connection org.apache.http.impl.conn.ManagedClientConnectionImpl@25184fb9
+13:54:25.057 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Connection can be kept alive indefinitely
+]]></system-out>
   </testcase>
-  <testcase name="Test_US6CallFailureCountByPhoneModel" classname="integrationTestsArquillian.RESTImportTest" time="0">
-    <skipped/>
+  <testcase name="Test_US6CallFailureCountByPhoneModel" classname="integrationTestsArquillian.RESTImportTest" time="0.1">
+    <failure message="1 expectation failed.&#10;JSON path $ doesn&apos;t match.&#10;Expected: a collection containing &lt;3&gt;&#10;  Actual: [0]&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 1 expectation failed.
+JSON path $ doesn't match.
+Expected: a collection containing <3>
+  Actual: [0]
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:493)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:261)
+	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:108)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$body(ValidatableResponseImpl.groovy)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy:298)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy)
+	at integrationTestsArquillian.RESTImportTest.Test_US6CallFailureCountByPhoneModel(RESTImportTest.java:170)
+]]></failure>
+    <system-out><![CDATA[13:54:25.283 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Get connection for route {}->http://127.0.0.1:8080
+13:54:25.283 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to 127.0.0.1:8080
+13:54:25.285 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: ignoreCookies
+13:54:25.285 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+13:54:25.285 [main] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication - Target auth state: UNCHALLENGED
+13:54:25.285 [main] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+13:54:25.285 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+13:54:25.286 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Sending request: GET /RestInteg/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020%2F01%2F11T17%3A14%3A00&endDate=2020%2F11%2F01T17%3A20%3A00 HTTP/1.1
+13:54:25.286 [main] DEBUG org.apache.http.wire -  >> "GET /RestInteg/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020%2F01%2F11T17%3A14%3A00&endDate=2020%2F11%2F01T17%3A20%3A00 HTTP/1.1[\r][\n]"
+13:54:25.287 [main] DEBUG org.apache.http.wire -  >> "Accept: */*[\r][\n]"
+13:54:25.287 [main] DEBUG org.apache.http.wire -  >> "Host: 127.0.0.1:8080[\r][\n]"
+13:54:25.287 [main] DEBUG org.apache.http.wire -  >> "Connection: Keep-Alive[\r][\n]"
+13:54:25.287 [main] DEBUG org.apache.http.wire -  >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)[\r][\n]"
+13:54:25.287 [main] DEBUG org.apache.http.wire -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+13:54:25.288 [main] DEBUG org.apache.http.wire -  >> "[\r][\n]"
+13:54:25.288 [main] DEBUG org.apache.http.headers - >> GET /RestInteg/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020%2F01%2F11T17%3A14%3A00&endDate=2020%2F11%2F01T17%3A20%3A00 HTTP/1.1
+13:54:25.288 [main] DEBUG org.apache.http.headers - >> Accept: */*
+13:54:25.288 [main] DEBUG org.apache.http.headers - >> Host: 127.0.0.1:8080
+13:54:25.288 [main] DEBUG org.apache.http.headers - >> Connection: Keep-Alive
+13:54:25.288 [main] DEBUG org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+13:54:25.288 [main] DEBUG org.apache.http.headers - >> Accept-Encoding: gzip,deflate
+13:54:25.300 [main] DEBUG org.apache.http.wire -  << "HTTP/1.1 200 OK[\r][\n]"
+13:54:25.301 [main] DEBUG org.apache.http.wire -  << "Connection: keep-alive[\r][\n]"
+13:54:25.301 [main] DEBUG org.apache.http.wire -  << "Content-Type: application/json[\r][\n]"
+13:54:25.301 [main] DEBUG org.apache.http.wire -  << "Content-Length: 3[\r][\n]"
+13:54:25.301 [main] DEBUG org.apache.http.wire -  << "Date: Wed, 26 Feb 2020 13:54:25 GMT[\r][\n]"
+13:54:25.301 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+13:54:25.301 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+13:54:25.301 [main] DEBUG org.apache.http.headers - << HTTP/1.1 200 OK
+13:54:25.302 [main] DEBUG org.apache.http.headers - << Connection: keep-alive
+13:54:25.302 [main] DEBUG org.apache.http.headers - << Content-Type: application/json
+13:54:25.302 [main] DEBUG org.apache.http.headers - << Content-Length: 3
+13:54:25.302 [main] DEBUG org.apache.http.headers - << Date: Wed, 26 Feb 2020 13:54:25 GMT
+13:54:25.302 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive indefinitely
+13:54:25.302 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsing response as: application/json
+13:54:25.303 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
+13:54:25.316 [main] DEBUG org.apache.http.wire -  << "[0]"
+13:54:25.317 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Releasing connection org.apache.http.impl.conn.ManagedClientConnectionImpl@79140a1e
+13:54:25.317 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Connection can be kept alive indefinitely
+]]></system-out>
   </testcase>
-  <testcase name="Test_US5_getIMSIsWithinDates" classname="integrationTestsArquillian.RESTImportTest" time="0">
-    <skipped/>
+  <testcase name="Test_US4GetAllEventAndCauseCodeByImsiSuccess" classname="integrationTestsArquillian.RESTImportTest" time="0.049">
+    <failure message="1 expectation failed.&#10;JSON path $ doesn&apos;t match.&#10;Expected: a collection with size &lt;2&gt;&#10;  Actual: []&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 1 expectation failed.
+JSON path $ doesn't match.
+Expected: a collection with size <2>
+  Actual: []
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:493)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:261)
+	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:51)
+	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:108)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$body(ValidatableResponseImpl.groovy)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy:298)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy)
+	at integrationTestsArquillian.RESTImportTest.Test_US4GetAllEventAndCauseCodeByImsiSuccess(RESTImportTest.java:117)
+]]></failure>
+    <system-out><![CDATA[13:54:25.380 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Get connection for route {}->http://127.0.0.1:8080
+13:54:25.380 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to 127.0.0.1:8080
+13:54:25.382 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: ignoreCookies
+13:54:25.382 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+13:54:25.382 [main] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication - Target auth state: UNCHALLENGED
+13:54:25.382 [main] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+13:54:25.382 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+13:54:25.383 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Sending request: GET /RestInteg/rest/TelcoDataMgt/344930000000012 HTTP/1.1
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "GET /RestInteg/rest/TelcoDataMgt/344930000000012 HTTP/1.1[\r][\n]"
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "Accept: */*[\r][\n]"
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "Host: 127.0.0.1:8080[\r][\n]"
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "Connection: Keep-Alive[\r][\n]"
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)[\r][\n]"
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+13:54:25.383 [main] DEBUG org.apache.http.wire -  >> "[\r][\n]"
+13:54:25.384 [main] DEBUG org.apache.http.headers - >> GET /RestInteg/rest/TelcoDataMgt/344930000000012 HTTP/1.1
+13:54:25.384 [main] DEBUG org.apache.http.headers - >> Accept: */*
+13:54:25.384 [main] DEBUG org.apache.http.headers - >> Host: 127.0.0.1:8080
+13:54:25.384 [main] DEBUG org.apache.http.headers - >> Connection: Keep-Alive
+13:54:25.384 [main] DEBUG org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+13:54:25.384 [main] DEBUG org.apache.http.headers - >> Accept-Encoding: gzip,deflate
+13:54:25.395 [main] DEBUG org.apache.http.wire -  << "HTTP/1.1 200 OK[\r][\n]"
+13:54:25.395 [main] DEBUG org.apache.http.wire -  << "Connection: keep-alive[\r][\n]"
+13:54:25.395 [main] DEBUG org.apache.http.wire -  << "Content-Type: application/json[\r][\n]"
+13:54:25.395 [main] DEBUG org.apache.http.wire -  << "Content-Length: 2[\r][\n]"
+13:54:25.395 [main] DEBUG org.apache.http.wire -  << "Date: Wed, 26 Feb 2020 13:54:25 GMT[\r][\n]"
+13:54:25.396 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+13:54:25.396 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+13:54:25.396 [main] DEBUG org.apache.http.headers - << HTTP/1.1 200 OK
+13:54:25.396 [main] DEBUG org.apache.http.headers - << Connection: keep-alive
+13:54:25.396 [main] DEBUG org.apache.http.headers - << Content-Type: application/json
+13:54:25.396 [main] DEBUG org.apache.http.headers - << Content-Length: 2
+13:54:25.396 [main] DEBUG org.apache.http.headers - << Date: Wed, 26 Feb 2020 13:54:25 GMT
+13:54:25.396 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive indefinitely
+13:54:25.397 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsing response as: application/json
+13:54:25.398 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
+13:54:25.402 [main] DEBUG org.apache.http.wire -  << "[]"
+13:54:25.403 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Releasing connection org.apache.http.impl.conn.ManagedClientConnectionImpl@6ee53411
+13:54:25.403 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Connection can be kept alive indefinitely
+]]></system-out>
   </testcase>
-  <testcase name="restAssuredImportTest" classname="integrationTestsArquillian.RESTImportTest" time="2.932"/>
-  <testcase name="Test_US4_getAllEventAndCauseCodeByIMSIEmptyResponse" classname="integrationTestsArquillian.RESTImportTest" time="0.293"/>
-  <testcase name="restAssuredHelloWorldTest" classname="integrationTestsArquillian.RESTImportTest" time="0.035"/>
-  <testcase name="restAssuredImportTestFilenotFound" classname="integrationTestsArquillian.RESTImportTest" time="0.041"/>
+  <testcase name="Test_US5_getIMSIsWithinDates" classname="integrationTestsArquillian.RESTImportTest" time="0.065">
+    <failure message="1 expectation failed.&#10;JSON path $ doesn&apos;t match.&#10;Expected: a collection with size &lt;2&gt;&#10;  Actual: []&#10;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: 1 expectation failed.
+JSON path $ doesn't match.
+Expected: a collection with size <2>
+  Actual: []
+
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:249)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:493)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:190)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:58)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:168)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:261)
+	at io.restassured.specification.ResponseSpecification$body$1.callCurrent(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.body(ResponseSpecificationImpl.groovy:108)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.body(ValidatableResponseOptionsImpl.java:244)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$body(ValidatableResponseImpl.groovy)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:101)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1217)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy:298)
+	at io.restassured.internal.ValidatableResponseImpl.body(ValidatableResponseImpl.groovy)
+	at integrationTestsArquillian.RESTImportTest.Test_US5_getIMSIsWithinDates(RESTImportTest.java:155)
+]]></failure>
+    <system-out><![CDATA[13:54:25.435 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Get connection for route {}->http://127.0.0.1:8080
+13:54:25.435 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to 127.0.0.1:8080
+13:54:25.438 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: ignoreCookies
+13:54:25.439 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+13:54:25.439 [main] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication - Target auth state: UNCHALLENGED
+13:54:25.439 [main] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+13:54:25.441 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+13:54:25.441 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Sending request: GET /RestInteg/rest/TelcoDataMgt/getIMSIsWithinDates?startDate=2020%2F01%2F11T17%3A00%3A00&endDate=2020%2F01%2F11T17%3A20%3A00 HTTP/1.1
+13:54:25.442 [main] DEBUG org.apache.http.wire -  >> "GET /RestInteg/rest/TelcoDataMgt/getIMSIsWithinDates?startDate=2020%2F01%2F11T17%3A00%3A00&endDate=2020%2F01%2F11T17%3A20%3A00 HTTP/1.1[\r][\n]"
+13:54:25.442 [main] DEBUG org.apache.http.wire -  >> "Accept: */*[\r][\n]"
+13:54:25.442 [main] DEBUG org.apache.http.wire -  >> "Host: 127.0.0.1:8080[\r][\n]"
+13:54:25.442 [main] DEBUG org.apache.http.wire -  >> "Connection: Keep-Alive[\r][\n]"
+13:54:25.442 [main] DEBUG org.apache.http.wire -  >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)[\r][\n]"
+13:54:25.442 [main] DEBUG org.apache.http.wire -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+13:54:25.443 [main] DEBUG org.apache.http.wire -  >> "[\r][\n]"
+13:54:25.445 [main] DEBUG org.apache.http.headers - >> GET /RestInteg/rest/TelcoDataMgt/getIMSIsWithinDates?startDate=2020%2F01%2F11T17%3A00%3A00&endDate=2020%2F01%2F11T17%3A20%3A00 HTTP/1.1
+13:54:25.445 [main] DEBUG org.apache.http.headers - >> Accept: */*
+13:54:25.445 [main] DEBUG org.apache.http.headers - >> Host: 127.0.0.1:8080
+13:54:25.445 [main] DEBUG org.apache.http.headers - >> Connection: Keep-Alive
+13:54:25.446 [main] DEBUG org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+13:54:25.446 [main] DEBUG org.apache.http.headers - >> Accept-Encoding: gzip,deflate
+13:54:25.460 [main] DEBUG org.apache.http.wire -  << "HTTP/1.1 200 OK[\r][\n]"
+13:54:25.460 [main] DEBUG org.apache.http.wire -  << "Connection: keep-alive[\r][\n]"
+13:54:25.460 [main] DEBUG org.apache.http.wire -  << "Content-Type: application/json[\r][\n]"
+13:54:25.461 [main] DEBUG org.apache.http.wire -  << "Content-Length: 2[\r][\n]"
+13:54:25.461 [main] DEBUG org.apache.http.wire -  << "Date: Wed, 26 Feb 2020 13:54:25 GMT[\r][\n]"
+13:54:25.461 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+13:54:25.461 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 OK
+13:54:25.461 [main] DEBUG org.apache.http.headers - << HTTP/1.1 200 OK
+13:54:25.461 [main] DEBUG org.apache.http.headers - << Connection: keep-alive
+13:54:25.461 [main] DEBUG org.apache.http.headers - << Content-Type: application/json
+13:54:25.461 [main] DEBUG org.apache.http.headers - << Content-Length: 2
+13:54:25.461 [main] DEBUG org.apache.http.headers - << Date: Wed, 26 Feb 2020 13:54:25 GMT
+13:54:25.462 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive indefinitely
+13:54:25.462 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsing response as: application/json
+13:54:25.462 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
+13:54:25.466 [main] DEBUG org.apache.http.wire -  << "[]"
+13:54:25.467 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Releasing connection org.apache.http.impl.conn.ManagedClientConnectionImpl@ae93fb7
+13:54:25.467 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Connection can be kept alive indefinitely
+]]></system-out>
+  </testcase>
+  <testcase name="restAssuredImportTest" classname="integrationTestsArquillian.RESTImportTest" time="0.946"/>
+  <testcase name="Test_US4_getAllEventAndCauseCodeByIMSIEmptyResponse" classname="integrationTestsArquillian.RESTImportTest" time="0.033"/>
+  <testcase name="restAssuredImportTestFilenotFound" classname="integrationTestsArquillian.RESTImportTest" time="0.029"/>
 </testsuite>
