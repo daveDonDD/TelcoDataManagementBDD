@@ -1,0 +1,18 @@
+00:39:01.791 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+00:39:01.794 request:
+1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020/01/23T14:00:00&endDate=2020/01/23T14:07:00
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+00:39:01.802 response time in milliseconds: 7.76
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 233
+1 < Content-Type: application/json
+1 < Date: Sat, 29 Feb 2020 00:39:01 GMT
+[{"imsi":777770000000011,"failureCount":1,"duration":1000},{"imsi":777770000000012,"failureCount":2,"duration":2000},{"imsi":777770000000013,"failureCount":3,"duration":3000},{"imsi":777770000000014,"failureCount":1,"duration":1000}]
+
+00:38:31.305 assertion failed: path: $[3], actual: {imsi=777770000000014, failureCount=1, duration=1000}, expected: {imsi=777770000000014, count=1, duration=1000}, reason: [path: $[3], actual: {imsi=777770000000014, failureCount=1, duration=1000}, expected: {imsi=777770000000014, count=1, duration=1000}, reason: all key-values did not match, expected has un-matched keys: [count]]
+

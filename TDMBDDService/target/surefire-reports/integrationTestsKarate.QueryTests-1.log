@@ -1,0 +1,16 @@
+00:39:00.694 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+00:39:01.653 request:
+1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/344930000000012
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+00:39:01.696 response time in milliseconds: 41.40
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 197
+1 < Content-Type: application/json
+1 < Date: Sat, 29 Feb 2020 00:39:01 GMT
+[{"cause_code":23,"event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":11,"event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
+

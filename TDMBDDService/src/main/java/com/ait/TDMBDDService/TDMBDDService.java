@@ -17,11 +17,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.modelmapper.ModelMapper;
-
 import com.ait.DAO.CallDataDAO;
-import com.ait.DataFileImport.FileData;
+
+import com.ait.callData.*;
+
 import com.ait.callData.BaseData;
+import com.ait.DataFileImport.FileData;
 import com.ait.callData.EventCause;
 import com.ait.callData.PMData;
 
@@ -108,7 +109,7 @@ public class TDMBDDService {
 		@Path("/{imsi}") // User Story #4
 		public List<EventCauseDTO>  getAllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
 
-			List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
+			final List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
 
 			 
 			List<EventCauseDTO> eventCauseDTOList = new ArrayList<>(eventCauseDBList.size());
@@ -118,27 +119,7 @@ public class TDMBDDService {
 			                                      (String) eventCauseDB[2]));
 			}
 			return eventCauseDTOList;
-//			return Response.status(200).entity(eventCauseObjectList).build();
 		}
-		
-		@GET
-		@Produces({ MediaType.APPLICATION_JSON })
-		@Path("/2/{imsi}") // User Story #4
-		public List<EventCause> get_2_AllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
-
-			List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
-
-			 
-			List<EventCause> eventCauseList = new ArrayList<>(eventCauseDBList.size());
-			for ( Object[] eventCauseDB : eventCauseDBList) {
-				eventCauseList.add(new EventCause((int) eventCauseDB[0],
-			                                      (int) eventCauseDB[1],
-			                                      (String) eventCauseDB[2]));
-			}
-			return eventCauseList;
-//			return Response.status(200).entity(eventCauseObjectList).build();
-		}
-		
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
@@ -151,7 +132,6 @@ public class TDMBDDService {
 			
 			final long elapsedTime = System.currentTimeMillis() - startTime;
 			System.out.println("\"findAllIMSIsWithFailuresByTime\" Elapsed Time: " + elapsedTime / 1000.0 + "sec");
-//			return Response.status(200).entity(baseTable).build();
 			return baseTable;
 		}
 		
@@ -164,17 +144,20 @@ public class TDMBDDService {
 			return Response.status(200).entity(callFailuresCount).build();
 		}
 
-		// US7
-		// comments on returned data
-		// This query was never mapped to an object so was always going to be a list......
-		// unless I created a new DTO and mapped the resulting query to that DTO
-		// worth doing to make Client side easier - else they just manage the list - which is reasonable
-		// depends what solution is agreed and documented in the API.
+	
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Path("/CountOfIMSIFailureAndDuration") // User Story #7
-		public Response CountOfIMSIFailureAndDuration(@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
-			final List<Object[]> callFailuresCountDBList = callDataDao.countImsiFailures(startDate, endDate);
-			return Response.status(200).entity(callFailuresCountDBList).build();
+		public List<CountImsiFailureDurationDTO> CountOfIMSIFailureAndDuration(@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
+
+			List<Object[]> callFailuresCountDBList = callDataDao.countImsiFailures(startDate,endDate);
+			
+			List<CountImsiFailureDurationDTO> countImsiFailureDurationDTOList = new ArrayList<>(callFailuresCountDBList.size());
+			for ( Object[] callFailuresCountDB : callFailuresCountDBList) {
+				countImsiFailureDurationDTOList.add(new CountImsiFailureDurationDTO((long) callFailuresCountDB[0],
+			                                      									(long) callFailuresCountDB[1],
+			                                      									(long) callFailuresCountDB[2]));
+				}
+				return countImsiFailureDurationDTOList;
 		}
 }

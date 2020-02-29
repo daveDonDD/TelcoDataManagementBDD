@@ -1,0 +1,17 @@
+00:39:01.764 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+00:39:01.771 request:
+1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:20:00
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+00:39:01.780 response time in milliseconds: 8.54
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 3
+1 < Content-Type: application/json
+1 < Date: Sat, 29 Feb 2020 00:39:01 GMT
+[3]
+
+
