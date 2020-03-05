@@ -16,8 +16,7 @@ public class CountImsiFailureDurationDTO {
 	public CountImsiFailureDurationDTO() {
 	}
 
-	public CountImsiFailureDurationDTO( final long imsi, final long failureCount, final long duration) {
-		
+	public CountImsiFailureDurationDTO( final long imsi, final long failureCount, final long duration){		
 		this.imsi = imsi;
 		this.duration = duration;
 		this.failureCount = failureCount;

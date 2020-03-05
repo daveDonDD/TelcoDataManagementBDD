@@ -1,16 +1,11 @@
 package com.ait.TDMBDDService;
 
-import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 
 @XmlRootElement
-public class EventCauseDTO implements Serializable {
+public class EventCauseDTO {
 
 
 	

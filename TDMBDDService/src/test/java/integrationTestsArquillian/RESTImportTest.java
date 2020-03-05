@@ -46,13 +46,9 @@ public class RESTImportTest {
 				  .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
 				  .addPackage(FileData.class.getPackage())
 				  .addPackage(BaseData.class.getPackage())
+				  .addPackage(TDMBDDService.class.getPackage())
 				  .addPackages(true, "org.apache.poi")
-				  .addClasses(
-							 CallDataDAO.class,   
-							 TDMBDDService.class,
-							 EventCauseDTO.class,
-							 CountImsiFailureDurationDTO.class				
-							 )
+				  .addClasses(CallDataDAO.class)
 			      .setWebXML("test_web.xml");   
 		}
 	 			
@@ -89,7 +85,7 @@ public class RESTImportTest {
   
         
         
-    @Test 
+   @Test 
     @RunAsClient
 	public void restAssuredImportTestFilenotFound() {
     	
@@ -99,16 +95,15 @@ public class RESTImportTest {
         .when()
         	.post(basePath +"rest/TelcoDataMgt")
         .then()
-        	.statusCode(406);
-    	
+        	.statusCode(406); 	
     }        
     
    
  
     // Using loaded file above for query tests
-    @Test
+   @Test
     @RunAsClient
-    public void Test_US4GetAllEventAndCauseCodeByImsiSuccess(){
+    public void Test_GetAllEventAndCauseCodeByImsiSuccess(){
     	RestAssured
     			.given()
     		
@@ -131,7 +126,7 @@ public class RESTImportTest {
     
     @Test
     @RunAsClient
-    public void Test_US4_getAllEventAndCauseCodeByIMSIEmptyResponse(){
+    public void Test_getAllEventAndCauseCodeByIMSIEmptyResponse(){
     	RestAssured
     			.given()
     		
@@ -145,21 +140,21 @@ public class RESTImportTest {
     
     @Test
     @RunAsClient
-    public void Test_US5_getIMSIsWithinDates(){
+    public void Test_getIMSIsWithinDates(){
     	RestAssured
     			.given()
     		
     			.when()
-    				.get(basePath +"rest/TelcoDataMgt" + "/getIMSIsWithinDates?startDate=2020/01/11T17:00:00&endDate=2020/01/11T17:20:00")
+    				.get(basePath +"rest/TelcoDataMgt" + "/IMSIsWithinDates?startDate=2020/01/11T14:00:00&endDate=2020/01/11T22:00:00")
     				//														  ?startDate=2020/01/11T14:00:00&endDate=2020/01/11T22:00:00
     			.then()
-	   				.statusCode(200).body("$",Matchers.hasSize(2));       			   											
+	   				.statusCode(200).body("$",Matchers.hasSize(5));       			   											
     }
     
         
     @Test
     @RunAsClient
-    public void Test_US6CallFailureCountByPhoneModel(){
+    public void Test_CallFailureCountByPhoneModel(){
     	RestAssured
     			.given()
     		
@@ -168,12 +163,12 @@ public class RESTImportTest {
     				//														                            ?startDate=2020/01/11T14:00:00&endDate=2020/01/11T17:19:00
 
     			.then()
-	   				.statusCode(200).body("$",Matchers.hasItem(3));    
+	   				.statusCode(200).body("$",Matchers.hasItem(7));    
     }
    
     @Test
        @RunAsClient
-       public void Test_US7CountOfIMSIFailureAndDuration(){
+       public void Test_CountOfIMSIFailureAndDuration(){
        	RestAssured
        			.given()
        		

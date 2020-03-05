@@ -91,22 +91,10 @@ public class TDMBDDService {
 			// inputStream.close();    --   need to handle this and its exception
 
 		}
-
-	    @GET
-	    @Produces(MediaType.APPLICATION_JSON)
-	    @Path("/PMObjectTest1")
-	    public List<PMData> getPMMessage1() {
-	        List<PMData> data = new ArrayList<>();
-	        data.add(new PMData("MSC"));
-	        data.add(new PMData("ERBS"));
-	        data.add(new PMData("RadioNode"));
-	        return data;
-	    }
-	 
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
-		@Path("/{imsi}") // User Story #4
+		@Path("/{imsi}") 
 		public List<EventCauseDTO>  getAllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
 
 			final List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
@@ -123,17 +111,21 @@ public class TDMBDDService {
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
-		@Path("/getIMSIsWithinDates") // User Story #5
-		public List <BaseData> getIMSIsWithinDates(@QueryParam("startDate") final String startDate,
+		@Path("/IMSIsWithinDates") 
+		public List <ImsiWithinDatesDTO> getIMSIsWithinDates(@QueryParam("startDate") final String startDate,
 				@QueryParam("endDate") final String endDate) {
-			final long startTime = System.currentTimeMillis();
-			final List <BaseData> baseTable = callDataDao.getImsisWithFailuresByDates(startDate, endDate);
 			
+			List imsiWithinDatesDBList = callDataDao.getImsisWithFailuresByDates(startDate,endDate);
 			
-			final long elapsedTime = System.currentTimeMillis() - startTime;
-			System.out.println("\"findAllIMSIsWithFailuresByTime\" Elapsed Time: " + elapsedTime / 1000.0 + "sec");
-			return baseTable;
-		}
+			List<ImsiWithinDatesDTO> imsiWithinDatesDTOList = new ArrayList<>(imsiWithinDatesDBList.size());
+//			for ( imsiWithinDatesDB : imsiWithinDatesDBList) {
+			for ( int i = 0 ; i < imsiWithinDatesDBList.size( ) ; i++) {	
+				imsiWithinDatesDTOList.add(new ImsiWithinDatesDTO((long)imsiWithinDatesDBList.get(i)));
+				}
+			return imsiWithinDatesDTOList;
+			}
+		
+		
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
@@ -147,10 +139,10 @@ public class TDMBDDService {
 	
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
-		@Path("/CountOfIMSIFailureAndDuration") // User Story #7
+		@Path("/CountOfIMSIFailureAndDuration") 
 		public List<CountImsiFailureDurationDTO> CountOfIMSIFailureAndDuration(@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
 
-			List<Object[]> callFailuresCountDBList = callDataDao.countImsiFailures(startDate,endDate);
+			List<Object[]> callFailuresCountDBList = callDataDao.countImsiFailuresDuration(startDate,endDate);
 			
 			List<CountImsiFailureDurationDTO> countImsiFailureDurationDTOList = new ArrayList<>(callFailuresCountDBList.size());
 			for ( Object[] callFailuresCountDB : callFailuresCountDBList) {
@@ -160,4 +152,25 @@ public class TDMBDDService {
 				}
 				return countImsiFailureDurationDTOList;
 		}
+		
+		
+
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path("/CountPhoneModelFailureDetails/{model}") 
+		public List<CountPhoneModelFailuresDTO> countPhoneModelFailureDetails(@PathParam("model") final Integer model) {
+//			final List<String> callFailuresCount = callDataDao.countPhoneModelFailures(ueType);
+
+			List<Object[]> countPhoneModelFailuresDBList = callDataDao.countPhoneModelFailures(model);
+			
+			List<CountPhoneModelFailuresDTO> countPhoneModelFailuresDTOList = new ArrayList<>(countPhoneModelFailuresDBList.size());
+			for ( Object[] countPhoneModelFailuresDB : countPhoneModelFailuresDBList) {
+				countPhoneModelFailuresDTOList.add(new CountPhoneModelFailuresDTO((int)countPhoneModelFailuresDB[0],
+			                                      									(int)countPhoneModelFailuresDB[1],
+			                                      									(int)countPhoneModelFailuresDB[2],
+			                                      									(long)countPhoneModelFailuresDB[3],
+			                                       									(String)countPhoneModelFailuresDB[4]));
+				}
+				return countPhoneModelFailuresDTOList;		
+			}
 }
