@@ -29,7 +29,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
         registry.defineDataTableType(new DataTableType(EventCause.class, new TableEntryTransformer<EventCause>() {
             @Override
             public EventCause transform(Map<String, String> entry) {
-                return new EventCause(Integer.parseInt(entry.get("cause_code")), Integer.parseInt(entry.get("event_id")), entry.get("description"));
+                return new EventCause(entry.get("cause_code"), Integer.parseInt(entry.get("event_id")), entry.get("description"));
             }
         }));
     
@@ -37,7 +37,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
         registry.defineDataTableType(new DataTableType(FailureClass.class, new TableEntryTransformer<FailureClass>() {
         	@Override
         	public FailureClass transform(Map<String, String> entry) {
-        		return new FailureClass(Integer.parseInt(entry.get("failure_class")), entry.get("description"));
+        		return new FailureClass(entry.get("failure_class"), entry.get("description"));
         	}
         }));
     

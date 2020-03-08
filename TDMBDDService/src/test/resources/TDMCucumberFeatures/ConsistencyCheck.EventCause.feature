@@ -14,11 +14,14 @@ Scenario Outline: Event and Cause Code consistency check
 	When check incoming event with <event_id> <cause_code>
 	Then result should be <result>
 	Examples:
-		| event_id | cause_code | result |
-		|     4097 |          0 |   true |
-		|     4099 |          0 |  false |
-		|     4098 |         99 |  false |
-		|     4098 |          0 |   true |
+		| event_id | cause_code  | result |
+		|     4097 |          0  |   true |
+		|     4099 |          0  |  false |
+		|     4098 |         99  |  false |
+		|     4098 |          0  |   true |
+		|     4098 |        null |   true |
+		|     4099 |        null |  false |
+		|     4098 |        text |  false |
    
 #Scenario: Event Validation Event-Cause data is consistent
 #	When the Event ID and cause code are present in the EventCause table

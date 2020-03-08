@@ -65,6 +65,7 @@ public class RESTImportTest {
  
 	private FileData fileData;
 
+    @Ignore // replaced with Karate API tests running on server
 	 @Test 
 	 @RunAsClient
 	 public void restAssuredImportTest() {
@@ -85,6 +86,7 @@ public class RESTImportTest {
   
         
         
+    @Ignore // replaced with Karate API tests running on server
    @Test 
     @RunAsClient
 	public void restAssuredImportTestFilenotFound() {
@@ -101,6 +103,7 @@ public class RESTImportTest {
    
  
     // Using loaded file above for query tests
+    @Ignore // replaced with Karate API tests running on server
    @Test
     @RunAsClient
     public void Test_GetAllEventAndCauseCodeByImsiSuccess(){
@@ -124,6 +127,7 @@ public class RESTImportTest {
 }
     
     
+    @Ignore // replaced with Karate API tests running on server
     @Test
     @RunAsClient
     public void Test_getAllEventAndCauseCodeByIMSIEmptyResponse(){
@@ -137,7 +141,7 @@ public class RESTImportTest {
     				
     }
     
-    
+    @Ignore // replaced with Karate API tests running on server
     @Test
     @RunAsClient
     public void Test_getIMSIsWithinDates(){
@@ -152,6 +156,7 @@ public class RESTImportTest {
     }
     
         
+    @Ignore // replaced with Karate API tests running on server
     @Test
     @RunAsClient
     public void Test_CallFailureCountByPhoneModel(){
@@ -166,6 +171,7 @@ public class RESTImportTest {
 	   				.statusCode(200).body("$",Matchers.hasItem(7));    
     }
    
+    @Ignore // replaced with Karate API tests running on server
     @Test
        @RunAsClient
        public void Test_CountOfIMSIFailureAndDuration(){

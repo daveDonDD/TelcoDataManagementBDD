@@ -35,7 +35,7 @@ public void the_following_MccMnc_data(DataTable dataTable) throws Throwable{
 
 @When("MCC- MNC check incoming event with {int} {int}")
 public void with(Integer int1, Integer int2) {
-    baseData = new BaseData(LocalDateTime.now(), 4098,	1, 21060800, int1, int2, 4, 1000, 0, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
+    baseData = new BaseData(LocalDateTime.now(), 4098,	"1", 21060800, int1, int2, 4, 1000, "0", "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
 }
 
 

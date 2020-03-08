@@ -13,9 +13,11 @@ Scenario Outline: Failure Class consistency check
 	When check incoming event with failure Class set to <failure_class> 
 	Then FC consistency check result should be <fc_result>
 	Examples:
-  |  failure_class | fc_result   |
-  |              0 | true       |
-  |              1 | true       |
-  |              2 | false      |
-  |             99 | false      |
+  |  failure_class  | fc_result   |
+  |              0  | true        |
+  |              1  | true        |
+  |              2  | false       |
+  |             99  | false       |
+  |           null  | true        |
+  |            text | false       |
  

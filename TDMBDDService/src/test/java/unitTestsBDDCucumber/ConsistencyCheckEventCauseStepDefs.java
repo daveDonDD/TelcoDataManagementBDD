@@ -33,9 +33,10 @@ public void the_following_eventCause_data(DataTable dataTable) throws Throwable{
 }
 
 
-@When("check incoming event with {int} {int}")
-public void with(Integer int1, Integer int2) {
-    baseData = new BaseData(LocalDateTime.now(), int1,	1, 21060800, 344, 930, 4, 1000, int2, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
+
+@When("check incoming event with {int} {word}")
+public void with(Integer eventId, String causeCode) {
+    baseData = new BaseData(LocalDateTime.now(), eventId,	"1", 21060800, 344, 930, 4, 1000, causeCode, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
 }
 
 

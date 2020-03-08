@@ -1,17 +1,17 @@
-22:23:03.115 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-22:23:05.417 request:
+21:22:14.234 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:22:15.225 request:
 1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/344930000000012
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-22:23:05.511 response time in milliseconds: 91.89
+21:22:15.328 response time in milliseconds: 101.01
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 197
 1 < Content-Type: application/json
-1 < Date: Thu, 05 Mar 2020 22:23:05 GMT
+1 < Date: Sat, 07 Mar 2020 21:22:15 GMT
 [{"cause_code":23,"event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":11,"event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
 
-
+id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}], reason: actual and expected arrays are not the same size - 0:2

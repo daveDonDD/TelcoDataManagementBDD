@@ -63,7 +63,7 @@ public void the_following_UEType_in_ReferenceTable_data(io.cucumber.datatable.Da
 
 @When("check incoming event with Ue Type set to {int}")
 public void check_incoming_event_with_Ue_Type_set_to(Integer int1) {
-    baseData = new BaseData(LocalDateTime.now(), 4097,	1, int1, 344, 930, 4, 1000, 0, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
+    baseData = new BaseData(LocalDateTime.now(), 4097,	"1", int1, 344, 930, 4, 1000, "0", "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
 ;
 }
 

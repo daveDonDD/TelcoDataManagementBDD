@@ -129,7 +129,7 @@ public class TDMBDDService {
 		
 		@GET
 		@Produces({ MediaType.APPLICATION_JSON })
-		@Path("/CallFailureCountByPhoneModel") // User Story #6
+		@Path("/CallFailureCountByPhoneModel")
 		public Response CallFailureCountByPhoneModel(@QueryParam("ueType") final Integer ueType,
 				@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
 			final List<String> callFailuresCount = callDataDao.countImsiFailuresForUEType(ueType, startDate, endDate);
@@ -173,4 +173,22 @@ public class TDMBDDService {
 				}
 				return countPhoneModelFailuresDTOList;		
 			}
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path("/countImsiFailuresForDuration") 
+		public Response countIMSICallFailures(@QueryParam("imsi") final Long imsi,
+				@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
+			final List<String> callFailuresCountCustomer = callDataDao.countImsiFailuresForDuration(imsi, startDate,
+					endDate);
+			return Response.status(200).entity(callFailuresCountCustomer).build();
+		}
+		
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON })
+		@Path("/Top10MarketOpCellCombo") 
+		public Response Top10MarketOpCellCombo(@QueryParam("startDate") final String startDate, @QueryParam("endDate") final String endDate) {
+			final List<Object[]> top10MarketOpCellComboList = callDataDao.Top10MarketOpCellCombo(startDate,endDate);
+			return Response.status(200).entity(top10MarketOpCellComboList).build();
+		}
 }

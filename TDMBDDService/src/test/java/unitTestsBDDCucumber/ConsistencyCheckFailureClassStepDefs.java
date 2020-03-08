@@ -33,10 +33,9 @@ public void the_following_FailureClassReferenceTable_data(DataTable dataTable) {
 	failureClassList = dataTable.asList(FailureClass.class);
 }
 
-@When("check incoming event with failure Class set to {int}")
-public void check_incoming_event_with_failure_Class_set_to(Integer int1) {
-    baseData = new BaseData(LocalDateTime.now(), 4097,	int1, 21060800, 344, 930, 4, 1000, 0, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
-
+@When("check incoming event with failure Class set to {word}")
+public void check_incoming_event_with_failure_Class_set_to(String failureClass) {	
+    baseData = new BaseData(LocalDateTime.now(), 4097,	failureClass, 21060800, 344, 930, 4, 1000, "0", "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
 }
 
 

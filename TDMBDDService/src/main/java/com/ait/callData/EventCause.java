@@ -17,7 +17,7 @@ public class EventCause implements Serializable {
 
 	@Id
 	@XmlTransient
-	private int cause_code;
+	private String cause_code;
 
 	@Id
 	@XmlTransient
@@ -30,7 +30,7 @@ public class EventCause implements Serializable {
 
 	}
 
-	public EventCause(final int cause_code, final int event_id, final String description) {
+	public EventCause(final String cause_code, final int event_id, final String description) {
 		this.cause_code = cause_code;
 		this.event_id = event_id;
 		this.description = description;
@@ -38,11 +38,11 @@ public class EventCause implements Serializable {
 	
 	
 
-	public int getCause_code() {
+	public String getCause_code() {
 		return cause_code;
 	}
 
-	public void setCause_code(final int cause_code) {
+	public void setCause_code(final String cause_code) {
 		this.cause_code = cause_code;
 	}
 
@@ -66,7 +66,7 @@ public class EventCause implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cause_code;
+		result = prime * result + ((cause_code == null) ? 0 : cause_code.hashCode());
 		result = prime * result + event_id;
 		return result;
 	}

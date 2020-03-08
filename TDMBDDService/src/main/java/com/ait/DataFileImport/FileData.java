@@ -71,6 +71,7 @@ public class FileData {
 			importSheets(i);
 		}
 		importSheets(0);// base data
+		System.out.println("import error size = " + errorLogList.size());
 		return true;
 	}
 
@@ -92,7 +93,7 @@ public class FileData {
 					excelDataList.add(Double.toString(cell.getNumericCellValue()));
 				} else if (cell.getCellTypeEnum() == CellType.STRING) {
 					if (cell.toString().equals("(null)")) {
-						excelDataList.add(null);
+						excelDataList.add("null");
 					} else {
 						excelDataList.add(cell.toString());
 					}
@@ -118,13 +119,14 @@ public class FileData {
 
 			final BaseData baseData = new BaseData.Builder().date_time(dateTime)
 					.event_id((int) Double.parseDouble(excelDataList.get(1)))
-					.failure_class((int) Double.parseDouble(excelDataList.get(2)))
+					.failure_class(excelDataList.get(2))
 					.ue_type((int) Double.parseDouble(excelDataList.get(3)))
 					.market((int) Double.parseDouble(excelDataList.get(4)))
 					.operator((int) Double.parseDouble(excelDataList.get(5)))
 					.cell_id((int) Double.parseDouble(excelDataList.get(6)))
 					.duration((int) Double.parseDouble(excelDataList.get(7)))
-					.cause_code((int) Double.parseDouble(excelDataList.get(8))).ne_version(excelDataList.get(9))
+					.cause_code(excelDataList.get(8))
+					.ne_version(excelDataList.get(9))
 					.imsi((long) Double.parseDouble(excelDataList.get(10)))
 					.hier3_id((long) Double.parseDouble(excelDataList.get(11)))
 					.hier32_id((long) Double.parseDouble(excelDataList.get(12)))
@@ -141,34 +143,26 @@ public class FileData {
 	
 	 	case 1:
 	 
-	//		if (!tableFilter.isEventCauseValid(excelDataList)) {
-	//			break;
-	//		}
-			final EventCause eventCause = new EventCause((int) Double.parseDouble(excelDataList.get(0)),
+	
+			final EventCause eventCause = new EventCause(excelDataList.get(0),
 	  						(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2));
 			eventCauseList.add(eventCause);
 			break;
 		case 2:
-	//		if (!tableFilter.isFailureClassValid(excelDataList)) {
-	//			break;
-	//		}
-			final FailureClass failureClass = new FailureClass((int) Double.parseDouble(excelDataList.get(0)),
+	
+			final FailureClass failureClass = new FailureClass(excelDataList.get(0),
 					excelDataList.get(1));
 			failureClassList.add(failureClass);
 			break;
 		case 3:
-	//		if (!tableFilter.isUEValid(excelDataList)) {
-	//			break;
-	//		}
+	
 			final UE ue = new UE((int) Double.parseDouble(excelDataList.get(0)), excelDataList.get(1),
 					excelDataList.get(2), excelDataList.get(3), excelDataList.get(4), excelDataList.get(5),
 					excelDataList.get(6), excelDataList.get(7), excelDataList.get(8));
 			ueList.add(ue);
 			break;
 		case 4:
-	//		if (!tableFilter.isMCC_MNCValid(excelDataList)) {
-	//			break;
-	//		}
+	
 
 			final MccMnc mcc_mnc = new MccMnc((int) Double.parseDouble(excelDataList.get(0)),
 					(int) Double.parseDouble(excelDataList.get(1)), excelDataList.get(2), excelDataList.get(3));
@@ -206,10 +200,5 @@ public class FileData {
 		return errorLogList;
 	}
 	
-	
-/*
-	public TableFilter getTableFilter() {
-		return tableFilter;
-	}
-*/
+
 }

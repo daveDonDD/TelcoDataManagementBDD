@@ -8,22 +8,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class FailureClass {
 	@Id
-	private int failure_class;
+	private String failure_class;
 	private String description;
 
 	public FailureClass() {
 	}
 
-	public FailureClass(final int failure_class, final String description) {
+	public FailureClass(final String failure_class, final String description) {
 		this.failure_class = failure_class;
 		this.description = description;
 	}
 
-	public int getFailure_class() {
+	public String getFailure_class() {
 		return failure_class;
 	}
 
-	public void setFailure_class(final int failure_class) {
+	public void setFailure_class(final String failure_class) {
 		this.failure_class = failure_class;
 	}
 

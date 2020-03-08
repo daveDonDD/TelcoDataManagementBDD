@@ -29,7 +29,7 @@ public class BaseData implements Serializable{
 	@Id
 	private LocalDateTime date_time;
 	@Id
-	private int failure_class;
+	private String failure_class;
 	@Id
 	private int ue_type;
 	@Id
@@ -41,7 +41,7 @@ public class BaseData implements Serializable{
 	@Id
 	private int duration;
 	@Id
-	private int cause_code;
+	private String cause_code;
 	@Id
 	private String ne_version;
 	@Id
@@ -56,8 +56,8 @@ public class BaseData implements Serializable{
 	public BaseData() {
 	}
 
-	public BaseData(final LocalDateTime date_time, final int event_id, final int failure_class, final int ue_type,
-			final int market, final int operator, final int cell_id, final int duration, final int cause_code,
+	public BaseData(final LocalDateTime date_time, final int event_id, final String failure_class, final int ue_type,
+			final int market, final int operator, final int cell_id, final int duration, final String cause_code,
 			final String ne_version, final long imsi, final long hier3_id, final long hier32_id,
 			final long hier321_id) {
 		this.date_time = date_time;
@@ -92,11 +92,11 @@ public class BaseData implements Serializable{
 		this.event_id = event_id;
 	}
 
-	public int getFailure_class() {
+	public String getFailure_class() {
 		return failure_class;
 	}
 
-	public void setFailure_class(final int failure_class) {
+	public void setFailure_class(final String failure_class) {
 		this.failure_class = failure_class;
 	}
 
@@ -140,11 +140,11 @@ public class BaseData implements Serializable{
 		this.duration = duration;
 	}
 
-	public int getCause_code() {
+	public String getCause_code() {
 		return cause_code;
 	}
 
-	public void setCause_code(final int cause_code) {
+	public void setCause_code(final String cause_code) {
 		this.cause_code = cause_code;
 	}
 
@@ -191,13 +191,13 @@ public class BaseData implements Serializable{
 	public static class Builder {
 		private int event_id;
 		private LocalDateTime date_time;
-		private int failure_class;
+		private String failure_class;
 		private int ue_type;
 		private int market;
 		private int operator;
 		private int cell_id;
 		private int duration;
-		private int cause_code;
+		private String cause_code;
 		private String ne_version;
 		private long imsi;
 		private long hier3_id;
@@ -214,7 +214,7 @@ public class BaseData implements Serializable{
 			return this;
 		}
 
-		public Builder failure_class(final int failure_class) {
+		public Builder failure_class(final String failure_class) {
 			this.failure_class = failure_class;
 			return this;
 		}
@@ -244,7 +244,7 @@ public class BaseData implements Serializable{
 			return this;
 		}
 
-		public Builder cause_code(final int cause_code) {
+		public Builder cause_code(final String cause_code) {
 			this.cause_code = cause_code;
 			return this;
 		}
@@ -284,12 +284,12 @@ public class BaseData implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cause_code;
+		result = prime * result + ((cause_code == null) ? 0 : cause_code.hashCode());
 		result = prime * result + cell_id;
 		result = prime * result + ((date_time == null) ? 0 : date_time.hashCode());
 		result = prime * result + duration;
 		result = prime * result + event_id;
-		result = prime * result + failure_class;
+		result = prime * result + ((failure_class == null) ? 0 : failure_class.hashCode());
 		result = prime * result + (int) (hier321_id ^ (hier321_id >>> 32));
 		result = prime * result + (int) (hier32_id ^ (hier32_id >>> 32));
 		result = prime * result + (int) (hier3_id ^ (hier3_id >>> 32));
