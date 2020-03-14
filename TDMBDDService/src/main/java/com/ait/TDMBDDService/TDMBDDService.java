@@ -102,7 +102,7 @@ public class TDMBDDService {
 			 
 			List<EventCauseDTO> eventCauseDTOList = new ArrayList<>(eventCauseDBList.size());
 			for ( Object[] eventCauseDB : eventCauseDBList) {
-				eventCauseDTOList.add(new EventCauseDTO((int) eventCauseDB[0],
+				eventCauseDTOList.add(new EventCauseDTO(Integer.toString((int)eventCauseDB[0]),
 			                                      (int) eventCauseDB[1],
 			                                      (String) eventCauseDB[2]));
 			}
@@ -167,7 +167,7 @@ public class TDMBDDService {
 			for ( Object[] countPhoneModelFailuresDB : countPhoneModelFailuresDBList) {
 				countPhoneModelFailuresDTOList.add(new CountPhoneModelFailuresDTO((int)countPhoneModelFailuresDB[0],
 			                                      									(int)countPhoneModelFailuresDB[1],
-			                                      									(int)countPhoneModelFailuresDB[2],
+			                                      									(String)countPhoneModelFailuresDB[2],
 			                                      									(long)countPhoneModelFailuresDB[3],
 			                                       									(String)countPhoneModelFailuresDB[4]));
 				}

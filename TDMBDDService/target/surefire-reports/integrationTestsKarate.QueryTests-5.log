@@ -1,70 +1,23 @@
-21:22:15.496 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-21:22:15.500 request:
+12:44:00.410 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+12:44:00.416 request:
 1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountPhoneModelFailureDetails/33002635
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-21:22:15.517 response time in milliseconds: 16.00
+12:44:00.450 response time in milliseconds: 33.76
 1 < 200
 1 < Connection: keep-alive
-1 < Content-Length: 385
+1 < Content-Length: 391
 1 < Content-Type: application/json
-1 < Date: Sat, 07 Mar 2020 21:22:15 GMT
-[{"phoneModel":33002635,"eventId":4125,"causeCode":23,"count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":9,"count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":5,"count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}]
+1 < Date: Sat, 14 Mar 2020 12:44:00 GMT
+[{"phoneModel":33002635,"eventId":4125,"causeCode":"23","count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":"9","count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"5","count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}]
 
-1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}], reason: actual and expected arrays are not the same size - 0:3
-radient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
-    background-image: -ms-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
-    
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.08, rgb(153,151,153)),
-        color-stop(0.54, rgb(199,199,199))
-    );
-    color: black;
-    padding: 2px;
-    font-weight: normal;
-    border: solid 1px;
-    font-size: 170%;
-    text-align: left;
-    vertical-align: middle; 
-    height: 32px; 
-    margin-bottom: 10px;
-}
-.error-div {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAgAAAAIACH+pydAAAGGElEQVRYw8WXW2wcVxnHf+fM7NXrdXbdtZ3ipGqCEzvQKmlFoUggwkvvGBoaqVVV5Y0nkCoQPPCAhMQbQlzUh/IWHoh6QUVKZVLxUCGogKZRW9uJkyg0iVzZ2dhre9c7u7M7c87hYWc2M7t2bBASI306O/85+v7/7zLn24H/8yV2u/EcFNvwVNK2X0DKw1qpYaX1gCWlY0m5arRe8JQ6I2DmaVj/nwk4CxO2Zf1aw9dKo6N67+eOZHN7x0gViiSHBmlXa7hrazjLt1i+eKmxUi5bwpg/e8a8PA3X/msBr0MyJ+WvgFOffehY8v7HH5OW78HqGjgOtNrge2AnIJWAgQEYLqBsm3/NvKM/mZ1rYczpRa2/9x3w/iMBM1BCiHfuGRmZevClF9NJ5cP1m9B0+/aa3t/ZDNw3TtuSfPy737trK6sXtTGPPwOruxLwNhSEEHMHpqZGDz93wubKFdio3ZXUGNOHs2cIDh/g6pt/9G8uXLnlGPP5k1Dt5bN60m6lhXj34OTkxKET37SZm4d6oz/KgFRH7yOrBozbwlTWGf7ql6RZrWTcytrxaTj9Ro9OGb3JS/mz0nDxgYnnvmWbuUsdJ6FTY2JmImShqZA83N90UbOXOXDiG4nCcPFoTsqfbluCP8DenJQLx1/+7pBcXILaZl9qo2svFmalb48xkM9hxkf5+29+u9HSenIayn0ZyEr5i0NHpnKy7aGrtW6UehsLozRBRlRQEh3BwzLpWh3h++yfPJRLSvnzvhK8DkPamOl7n3nCUjcXtyXuK0X0WViaAFc9QtSNJe594uu2MubZGcjHBGTgqeFiQQml0K12nDgSpd4iyi4uRMci6Q8xJSWq7SGEZCg/qD14LCYgIcTzoxMHc6qygYk40aETKTFSdh2aANOWhbEsjJSYCK6C/V0LcH+9xvCB/TlbiBdCAXbQMJPZ/fvQjUbXEULAa6/1deyuh0dwNU+e7DSzEOhmi8xn9iI+ujgVE6ChlBwpYcqVjuIgA3IXBMYYtNbd30IIpJQI0ZEa+gPQnk9ieA8GSrESaGNyiWIBrVQntUHqdrq01iiluo0WilBK4fs+WutOr4S9YAyJoRzamMGYAClEve046ETyTr13EKCU6kZ+N4GNCxfwKpVOryQSuOUVhBCbsRIIuN1cWRkaSCfRrdaOTncijgltNPDn5xHZLIn7x3GNh4CVmADgcv3a9YmBY0cxm06nAQH31KlOao3BL5fxbtzAOE73hAt7JXb6RU7PGO44WK5Do1ZHw6WYAN+YM+X5S8dLXziWizVNvY5aWcFfWuq8Idsctb1Yr8DwmRwrUr1yfVMbcyYmwIWZ2mbdai9+gvfBAsaAbrUwrrtllLuJPibIGGQ2hUlIHLdlA+diTXgSqkKIt5b/OevL+8bwqlWU63anW3jyhaa4c9T2Hs0hrsL5EOCJQ/sov7/gS8Mb07AZEwDgav2D5aVy3eSziEL+Dllk0PSRcmcMqx6BUeGykINsksrttboPP4w2aVfACVhGiFevvft+I/XwJCad3DF6tc2MiD4zmRSZhyZY/OusI4V4JTqKYwIA6lr/2Gm6s5/+7UMv/egDmEyqL7VbRR/LViR6sikGvniYpffm2m6r/VFd65/0vqZ9R/tbsMeG+WKpMDL+lWMJ58Jl/NVqvOG26PAoDmCXhhg4epDl9+a9zUp1uQkPbvWfcMvZchbuEXAuk0kf2X/84YxpuDQv3kA5zW1fw9CswSyZyXFEJsmnf/m46bntuTY8+SxUtuLadri9CokxeEUK8WJhtJgaeeSIxG3RurWGv+Gg3RbaU5CwkOkU1lCWxFgBmbS4ff6qX7297rXh9Gn4/llobMcjtsFywACQ+zZMTsOP8vBIOpNS+bFiJj2cxx7MYg+k8ZwmrWqD9lqNjVvrTc9tWRtw/k345dtwFagDTmTdUUA2EDAYXffB2JPw6FH4ch7GUpCzIemD50J9A1Y+hH/8Cc4vdTq9Tud9D9dNOt+MajclyNL53xZmIhusmcBSQJLOd4UJnHqACzTppDy0kHizl/yuPRB5nggIM0A6IE4GuA34EQFtoBUQuwGm7kbwb+eaEEXmuV5dAAAAJXRFWHRjcmVhdGUtZGF0ZQAyMDA5LTExLTEwVDE5OjM4OjI0LTA3OjAwdDKp4gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMC0wMi0yMFQyMzoyNjoyNC0wNzowMC7DUNYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTAtMDEtMTFUMDg6NTc6MzUtMDc6MDCruapPAAAAMnRFWHRMaWNlbnNlAGh0dHA6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHVibGljX2RvbWFpbj/96s8AAAAldEVYdG1vZGlmeS1kYXRlADIwMDktMTEtMTBUMTk6Mzg6MjQtMDc6MDArg9/WAAAAGXRFWHRTb3VyY2UAVGFuZ28gSWNvbiBMaWJyYXJ5VM/tggAAADp0RVh0U291cmNlX1VSTABodHRwOi8vdGFuZ28uZnJlZWRlc2t0b3Aub3JnL1RhbmdvX0ljb25fTGlicmFyebzIrdYAAAAASUVORK5CYII=') left center no-repeat;
-}
-.error-text-div {
-    display: inline-block;
-    vertical-align: top;
-    height: 32px;
-}
-.label {
-    font-weight:bold;
-    display: inline-block;
-}
-.value {
-    display: inline-block;
-    margin-left: 5px;
-}
-pre {
-    font-size: 110%;
-    margin-left: 1.5em;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
-}
-</style></head><body><div class="header"><div class="error-div"></div><div class="error-text-div">Error processing request</div></div><div class="label">Context Path:</div><div class="value">/DDOY-build</div><br/><div class="label">Servlet Path:</div><div class="value">/rest</div><br/><div class="label">Path Info:</div><div class="value">/TelcoDataMgt/CountPhoneModelFailureDetails/33002635</div><br/><div class="label">Query String:</div><div class="value">null</div><br/><div class="label">Stack Trace:</div><div class="value"></div><br/><pre>org.jboss.resteasy.spi.UnhandledException: java.lang.ClassCastException: java.lang.Long cannot be cast to java.lang.Integer
-	at org.jboss.resteasy.core.ExceptionHandler.handleApplicationException(ExceptionHandler.java:82)
+635,"eventId":4106,"causeCode":"16","count":8,"eventDescription":"INITIAL CTXT SETUP-FAILED SECURITY SETUP"},{"phoneModel":33002635,"eventId":4106,"causeCode":"1","count":12,"eventDescription":"INITIAL CTXT SETUP-UNSPECIFIED"},{"phoneModel":33002635,"eventId":4106,"causeCode":"22","count":28,"eventDescription":"INITIAL CTXT SETUP-CSFB LICENSE MISSING"},{"phoneModel":33002635,"eventId":4106,"causeCode":"9","count":4,"eventDescription":"INITIAL CTXT SETUP-MULTIPLE ERAB LICENSE EXCEEDED"},{"phoneModel":33002635,"eventId":4106,"causeCode":"8","count":4,"eventDescription":"INITIAL CTXT SETUP-UE CAPABILITY ENQUIRY TIMEOUT"},{"phoneModel":33002635,"eventId":4106,"causeCode":"5","count":12,"eventDescription":"INITIAL CTXT SETUP-LACK OF RESOURCES"},{"phoneModel":33002635,"eventId":4106,"causeCode":"17","count":4,"eventDescription":"INITIAL CTXT SETUP-SRB2 SETUP FAILURE"},{"phoneModel":33002635,"eventId":4106,"causeCode":"11","count":12,"eventDescription":"INITIAL CTXT SETUP-TRANSPORT REJECT"},{"phoneModel":33002635,"eventId":4106,"causeCode":"12","count":4,"eventDescription":"INITIAL CTXT SETUP-DRB SETUP REJECT"},{"phoneModel":33002635,"eventId":4106,"causeCode":"13","count":8,"eventDescription":"INITIAL CTXT SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4106,"causeCode":"15","count":4,"eventDescription":"INITIAL CTXT SETUP-TO SECURITY SETUP"},{"phoneModel":33002635,"eventId":4106,"causeCode":"2","count":4,"eventDescription":"INITIAL CTXT SETUP-FAILURE IN RADIO PROCEDURE"},{"phoneModel":33002635,"eventId":4125,"causeCode":"23","count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":"9","count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"5","count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}]
+
+12:00:03.298 assertion failed: path: $, actual: [{"phoneModel":33002635,"eventId":4098,"causeCode":"1","count":116,"eventDescription":"S1 SIG CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"2","count":15,"eventDescription":"UE CTXT RELEASE-AUTHENTICATION FAILURE"},{"phoneModel":33002635,"eventId":4106,"causeCode":"4","count":8,"eventDescription":"INITIAL CTXT SETUP-CELL UNAVAILABLE"},{"phoneModel":33002635,"eventId":4106,"causeCode":"16","count":8,"eventDescription":"INITIAL CTXT SETUP-FAILED SECURITY SETUP"},{"phoneModel":33002635,"eventId":4106,"causeCode":"1","count":12,"eventDescription":"INITIAL CTXT SETUP-UNSPECIFIED"},{"phoneModel":33002635,"eventId":4106,"causeCode":"22","count":28,"eventDescription":"INITIAL CTXT SETUP-CSFB LICENSE MISSING"},{"phoneModel":33002635,"eventId":4106,"causeCode":"9","count":4,"eventDescription":"INITIAL CTXT SETUP-MULTIPLE ERAB LICENSE EXCEEDED"},{"phoneModel":33002635,"eventId":4106,"causeCode":"8","count":4,"eventDescription":"INITIAL CTXT SETUP-UE CAPABILITY ENQUIRY TIMEOUT"},{"phoneModel":33002635,"eventId":4106,"causeCode":"5","count":12,"eventDescription":"INITIAL CTXT SETUP-LACK OF RESOURCES"},{"phoneModel":33002635,"eventId":4106,"causeCode":"17","count":4,"eventDescription":"INITIAL CTXT SETUP-SRB2 SETUP FAILURE"},{"phoneModel":33002635,"eventId":4106,"causeCode":"11","count":12,"eventDescription":"INITIAL CTXT SETUP-TRANSPORT REJECT"},{"phoneModel":33002635,"eventId":4106,"causeCode":"12","count":4,"eventDescription":"INITIAL CTXT SETUP-DRB SETUP REJECT"},{"phoneModel":33002635,"eventId":4106,"causeCode":"13","count":8,"eventDescription":"INITIAL CTXT SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4106,"causeCode":"15","count":4,"eventDescription":"INITIAL CTXT SETUP-TO SECURITY SETUP"},{"phoneModel":33002635,"eventId":4106,"causeCode":"2","count":4,"eventDescription":"INITIAL CTXT SETUP-FAILURE IN RADIO PROCEDURE"},{"phoneModel":33002635,"eventId":4125,"causeCode":"23","count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":"9","count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"5","count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}], expected: [{"phoneModel":33002635,"eventId":4125,"causeCode":"23","count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":"9","count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"5","count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}], reason: actual and expected arrays are not the same size - 18:3
+xceptionHandler.java:82)
 	at org.jboss.resteasy.core.ExceptionHandler.handleException(ExceptionHandler.java:346)
 	at org.jboss.resteasy.core.SynchronousDispatcher.writeException(SynchronousDispatcher.java:193)
 	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:456)
@@ -125,8 +78,8 @@ pre {
 	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
 	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
 	at java.lang.Thread.run(Thread.java:748)
-Caused by: java.lang.ClassCastException: java.lang.Long cannot be cast to java.lang.Integer
-	at com.ait.TDMBDDService.TDMBDDService.countPhoneModelFailureDetails(TDMBDDService.java:173)
+Caused by: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
+	at com.ait.TDMBDDService.TDMBDDService.countPhoneModelFailureDetails(TDMBDDService.java:170)
 	at com.ait.TDMBDDService.TDMBDDService$Proxy$_$$_WeldClientProxy.countPhoneModelFailureDetails(Unknown Source)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -144,7 +97,7 @@ Caused by: java.lang.ClassCastException: java.lang.Long cannot be cast to java.l
 	... 57 more
 </pre></body></html>
 
-22:15:59.779 status code was: 500, expected: 200, response time: 51, url: http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountPhoneModelFailureDetails/33002635, response: <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>ERROR</title><style>
+19:24:27.045 status code was: 500, expected: 200, response time: 46, url: http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountPhoneModelFailureDetails/33002635, response: <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>ERROR</title><style>
 body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;
     margin: 5px;
@@ -202,7 +155,7 @@ pre {
     white-space: -o-pre-wrap;
     word-wrap: break-word;
 }
-</style></head><body><div class="header"><div class="error-div"></div><div class="error-text-div">Error processing request</div></div><div class="label">Context Path:</div><div class="value">/DDOY-build</div><br><div class="label">Servlet Path:</div><div class="value">/rest</div><br><div class="label">Path Info:</div><div class="value">/TelcoDataMgt/CountPhoneModelFailureDetails/33002635</div><br><div class="label">Query String:</div><div class="value">null</div><br><div class="label">Stack Trace:</div><div class="value"></div><br><pre>org.jboss.resteasy.spi.UnhandledException: java.lang.ClassCastException: java.lang.Long cannot be cast to java.lang.Integer
+</style></head><body><div class="header"><div class="error-div"></div><div class="error-text-div">Error processing request</div></div><div class="label">Context Path:</div><div class="value">/DDOY-build</div><br><div class="label">Servlet Path:</div><div class="value">/rest</div><br><div class="label">Path Info:</div><div class="value">/TelcoDataMgt/CountPhoneModelFailureDetails/33002635</div><br><div class="label">Query String:</div><div class="value">null</div><br><div class="label">Stack Trace:</div><div class="value"></div><br><pre>org.jboss.resteasy.spi.UnhandledException: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
 	at org.jboss.resteasy.core.ExceptionHandler.handleApplicationException(ExceptionHandler.java:82)
 	at org.jboss.resteasy.core.ExceptionHandler.handleException(ExceptionHandler.java:346)
 	at org.jboss.resteasy.core.SynchronousDispatcher.writeException(SynchronousDispatcher.java:193)
@@ -264,8 +217,8 @@ pre {
 	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
 	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
 	at java.lang.Thread.run(Thread.java:748)
-Caused by: java.lang.ClassCastException: java.lang.Long cannot be cast to java.lang.Integer
-	at com.ait.TDMBDDService.TDMBDDService.countPhoneModelFailureDetails(TDMBDDService.java:173)
+Caused by: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
+	at com.ait.TDMBDDService.TDMBDDService.countPhoneModelFailureDetails(TDMBDDService.java:170)
 	at com.ait.TDMBDDService.TDMBDDService$Proxy$_$$_WeldClientProxy.countPhoneModelFailureDetails(Unknown Source)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -282,7 +235,6 @@ Caused by: java.lang.ClassCastException: java.lang.Long cannot be cast to java.l
 	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:440)
 	... 57 more
 </pre></body></html>
-</html>
 ml>
 -block;
 }

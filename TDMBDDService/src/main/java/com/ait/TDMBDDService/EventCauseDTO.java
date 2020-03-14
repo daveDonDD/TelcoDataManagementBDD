@@ -9,7 +9,7 @@ public class EventCauseDTO {
 
 
 	
-	private int cause_code;
+	private String cause_code;
 
 	
 	private int event_id;
@@ -21,7 +21,7 @@ public class EventCauseDTO {
 
 	}
 
-	public EventCauseDTO(final int cause_code, final int event_id, final String description) {
+	public EventCauseDTO(final String cause_code, final int event_id, final String description) {
 		this.cause_code = cause_code;
 		this.event_id = event_id;
 		this.description = description;
@@ -29,11 +29,11 @@ public class EventCauseDTO {
 	
 	
 
-	public int getCause_code() {
+	public String getCause_code() {
 		return cause_code;
 	}
 
-	public void setCause_code(final int cause_code) {
+	public void setCause_code(final String cause_code) {
 		this.cause_code = cause_code;
 	}
 

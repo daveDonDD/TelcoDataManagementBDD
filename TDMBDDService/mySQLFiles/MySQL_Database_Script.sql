@@ -75,7 +75,7 @@ CREATE TABLE `UE` (
   `vendor_name` varchar(100) DEFAULT NULL,
   `ue_type` varchar(45) DEFAULT NULL,
   `os` varchar(45) DEFAULT NULL,
-  `input_mode` varchar(45) DEFAULT NULL,
+  `input_mode` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`tac`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -12,7 +12,7 @@ public class CountPhoneModelFailuresDTO  {
 	
 	private int eventId;
 	
-	private int causeCode;
+	private String causeCode;
 	
 	private long count;
 	
@@ -21,7 +21,7 @@ public class CountPhoneModelFailuresDTO  {
 	public CountPhoneModelFailuresDTO() {	
 	}
 	
-	public CountPhoneModelFailuresDTO(int phoneModel, int eventId, int causeCode, long count,String eventDescription) {
+	public CountPhoneModelFailuresDTO(int phoneModel, int eventId, String causeCode, long count,String eventDescription) {
 		this.phoneModel = phoneModel;
 		this.eventId = eventId;
 		this.causeCode = causeCode;
@@ -45,11 +45,11 @@ public class CountPhoneModelFailuresDTO  {
 		this.eventId = eventId;
 	}
 
-	public int getCauseCode() {
+	public String getCauseCode() {
 		return causeCode;
 	}
 
-	public void setCauseCode(int causeCode) {
+	public void setCauseCode(String causeCode) {
 		this.causeCode = causeCode;
 	}
 

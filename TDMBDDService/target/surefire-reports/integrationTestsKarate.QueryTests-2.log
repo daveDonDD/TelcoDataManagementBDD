@@ -1,17 +1,18 @@
-21:22:15.400 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-21:22:15.408 request:
+12:44:00.172 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+12:44:00.181 request:
 1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-21:22:15.422 response time in milliseconds: 13.47
+12:44:00.308 response time in milliseconds: 127.99
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 101
 1 < Content-Type: application/json
-1 < Date: Sat, 07 Mar 2020 21:22:15 GMT
+1 < Date: Sat, 14 Mar 2020 12:44:00 GMT
 [{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000013},{"imsi":344930000000014}]
 
-20:58:58.032 assertion failed: path: $, actual: [{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000013},{"imsi":344930000000014}], expected: [{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000012},{"imsi":310560000000013},{"imsi":344930000000014}], reason: actual and expected arrays are not the same size - 4:5
+000000012},{"imsi":310560000000013},{"imsi":344930000000014}], reason: actual and expected arrays are not the same size - 0:4
+msi":344930000000014}], expected: [{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000012},{"imsi":310560000000013},{"imsi":344930000000014}], reason: actual and expected arrays are not the same size - 4:5

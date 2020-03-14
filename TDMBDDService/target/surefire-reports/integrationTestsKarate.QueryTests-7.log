@@ -1,17 +1,17 @@
-21:22:15.558 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-21:22:15.562 request:
+12:44:00.509 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+12:44:00.514 request:
 1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/Top10MarketOpCellCombo?startDate=2020/01/01T19:16:00&endDate=2020/04/04T19:20:00
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-21:22:15.573 response time in milliseconds: 11.38
+12:44:00.539 response time in milliseconds: 23.78
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 107
 1 < Content-Type: application/json
-1 < Date: Sat, 07 Mar 2020 21:22:15 GMT
+1 < Date: Sat, 14 Mar 2020 12:44:00 GMT
 [["Antigua and Barbuda","AT&T Wireless-Antigua AG ",4,14],["United States of America","AT&T Mobility",4,2]]
 
 nicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;

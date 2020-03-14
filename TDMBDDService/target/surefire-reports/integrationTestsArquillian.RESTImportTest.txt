@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: integrationTestsArquillian.RESTImportTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 7, Time elapsed: 0.773 sec - in integrationTestsArquillian.RESTImportTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 7, Time elapsed: 0.9 sec - in integrationTestsArquillian.RESTImportTest

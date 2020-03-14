@@ -1,10 +1,11 @@
 Feature: Test TDMBDD queries
 
+
 Scenario: Get all Event And CauseCode data By IMSI
 Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt/344930000000012'
 When method GET
 Then status 200
-And match response == [{"cause_code":23,"event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":11,"event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
+And match response == [{"cause_code":"23","event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":"11","event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
 
 
 Scenario: Get all IMSIs with failures during a time period
@@ -30,7 +31,7 @@ Scenario: Get all the unique failure Event Id and Cause Code combinations for a 
 Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountPhoneModelFailureDetails/33002635'
 When method GET
 Then status 200
-And match response == [{"phoneModel":33002635,"eventId":4125,"causeCode":23,"count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":9,"count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":5,"count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}]
+And match response == [{"phoneModel":33002635,"eventId":4125,"causeCode":"23","count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":"9","count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"5","count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}]
 
 Scenario: Get call failure count by IMSI
 Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt/countImsiFailuresForDuration?imsi=777770000000014&startDate=2020/01/11T19:16:00&endDate=2020/03/04T19:20:00'

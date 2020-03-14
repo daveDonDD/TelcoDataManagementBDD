@@ -1,20 +1,20 @@
-21:22:15.434 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-21:22:15.440 request:
+12:44:00.325 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+12:44:00.330 request:
 1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:20:00
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-21:22:15.453 response time in milliseconds: 12.69
+12:44:00.350 response time in milliseconds: 19.75
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 3
 1 < Content-Type: application/json
-1 < Date: Sat, 07 Mar 2020 21:22:15 GMT
+1 < Date: Sat, 14 Mar 2020 12:44:00 GMT
 [3]
 
-20:58:58.094 assertion failed: path: $[0], actual: 3, expected: 7, reason: [path: $[0], actual: 3, expected: 7, reason: not equal (Integer)]
+19:20:03.007 assertion failed: path: $[0], actual: 0, expected: 3, reason: [path: $[0], actual: 0, expected: 3, reason: not equal (Integer)]
 2020/01/11T17:14:00&endDate=2020/11/01T17:20:00
 08:11:10.788 http request failed: 
 org.apache.http.conn.HttpHostConnectException: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
