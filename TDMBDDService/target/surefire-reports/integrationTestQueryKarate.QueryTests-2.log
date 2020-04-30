@@ -1,0 +1,45 @@
+00:31:53.348 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+00:31:53.353 request:
+1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 61
+1 > Content-Type: text/plain; charset=UTF-8
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+Scenario Get all IMSIs with failures during a time period.xls
+
+00:31:53.832 response time in milliseconds: 478.58
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 39
+1 < Content-Type: application/json
+1 < Date: Thu, 30 Apr 2020 23:31:53 GMT
+{"ErroneousEvents":0,"EventsLoaded":16}
+
+00:31:53.838 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Host: localhost:8080
+2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+00:31:53.848 response time in milliseconds: 9.32
+2 < 200
+2 < Connection: keep-alive
+2 < Content-Length: 101
+2 < Content-Type: application/json
+2 < Date: Thu, 30 Apr 2020 23:31:53 GMT
+[{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000013},{"imsi":344930000000014}]
+
+00:31:53.863 after Scenario: Get all IMSIs with failures during a time period 
+
+va.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+00:01:13.981 failed function body: function(){
+  var info = karate.info; 
+  karate.log('after', info.scenarioType + ':', info.scenarioName);
+  karate.call('after-scenario.feature', { caller: info.featureFileName });
+}
+00:01:13.981 afterScenario hook failed: javascript function call failed: 
+after-scenario.feature:15 - javascript evaluation failed: db.readRows('SELECT * FROM vehicles'), StatementCallback; bad SQL grammar [SELECT * FROM vehicles]; nested exception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+sted exception is com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Client does not support authentication protocol requested by server; consider upgrading MySQL client

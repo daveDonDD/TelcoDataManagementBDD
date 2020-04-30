@@ -1,0 +1,49 @@
+00:31:52.060 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+00:31:52.517 request:
+1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 53
+1 > Content-Type: text/plain; charset=UTF-8
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+Scenario Get all Event And CauseCode data By IMSI.xls
+
+00:31:53.109 response time in milliseconds: 590.91
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 39
+1 < Content-Type: application/json
+1 < Date: Thu, 30 Apr 2020 23:31:53 GMT
+{"ErroneousEvents":0,"EventsLoaded":16}
+
+00:31:53.118 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/344930000000012
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Host: localhost:8080
+2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+00:31:53.126 response time in milliseconds: 8.24
+2 < 200
+2 < Connection: keep-alive
+2 < Content-Length: 201
+2 < Content-Type: application/json
+2 < Date: Thu, 30 Apr 2020 23:31:53 GMT
+[{"cause_code":"23","event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":"11","event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
+
+00:31:53.200 after Scenario: Get all Event And CauseCode data By IMSI 
+: after-scenario.feature
+arg: {"caller":"QueryTests.feature"}
+after-scenario.feature:15 - javascript evaluation failed: db.readRows('SELECT * FROM vehicles'), StatementCallback; bad SQL grammar [SELECT * FROM vehicles]; nested exception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+00:01:13.854 javascript function call failed: 
+after-scenario.feature:15 - javascript evaluation failed: db.readRows('SELECT * FROM vehicles'), StatementCallback; bad SQL grammar [SELECT * FROM vehicles]; nested exception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+00:01:13.854 failed function body: function(){
+  var info = karate.info; 
+  karate.log('after', info.scenarioType + ':', info.scenarioName);
+  karate.call('after-scenario.feature', { caller: info.featureFileName });
+}
+00:01:13.855 afterScenario hook failed: javascript function call failed: 
+after-scenario.feature:15 - javascript evaluation failed: db.readRows('SELECT * FROM vehicles'), StatementCallback; bad SQL grammar [SELECT * FROM vehicles]; nested exception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+ted exception is com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+

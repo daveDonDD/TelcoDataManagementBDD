@@ -1,18 +1,20 @@
-12:44:00.172 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-12:44:00.181 request:
-1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00
+19:02:56.589 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+19:02:56.593 request:
+1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/344930000000012
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-12:44:00.308 response time in milliseconds: 127.99
+19:02:56.601 response time in milliseconds: 7.19
 1 < 200
 1 < Connection: keep-alive
-1 < Content-Length: 101
+1 < Content-Length: 201
 1 < Content-Type: application/json
-1 < Date: Sat, 14 Mar 2020 12:44:00 GMT
-[{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000013},{"imsi":344930000000014}]
+1 < Date: Sun, 26 Apr 2020 18:02:56 GMT
+[{"cause_code":"23","event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":"11","event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
 
-000000012},{"imsi":310560000000013},{"imsi":344930000000014}], reason: actual and expected arrays are not the same size - 0:4
-msi":344930000000014}], expected: [{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000012},{"imsi":310560000000013},{"imsi":344930000000014}], reason: actual and expected arrays are not the same size - 4:5
+
+
+id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}], reason: actual and expected arrays are not the same size - 0:2
+:344930000000011},{"imsi":344930000000012},{"imsi":310560000000012},{"imsi":310560000000013},{"imsi":344930000000014}], reason: actual and expected arrays are not the same size - 4:5

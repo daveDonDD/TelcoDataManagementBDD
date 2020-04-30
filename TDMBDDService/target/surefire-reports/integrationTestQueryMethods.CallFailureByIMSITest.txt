@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: integrationTestQueryMethods.CallFailureByIMSITest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 4.876 sec <<< FAILURE! - in integrationTestQueryMethods.CallFailureByIMSITest
+testFindAllByImsi(integrationTestQueryMethods.CallFailureByIMSITest)  Time elapsed: 0.172 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at com.ait.TDMBDDService.TDMBDDService.getAllEventAndCauseCodeByImsi(TDMBDDService.java:118)
+	at integrationTestQueryMethods.CallFailureByIMSITest.testFindAllByImsi(CallFailureByIMSITest.java:116)
+

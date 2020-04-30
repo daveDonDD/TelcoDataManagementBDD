@@ -2,7 +2,7 @@
 http://localhost:8080/DDOY-build/rest/TelcoDataMgt
 
 Verb |	Path			|	Parameters					| action			|	Response							
-POST |  (root)			|   filename					| import that file	|   tbchecked
+POST |  (root)			|   filename					| import that file	|   # (number of rows added)
 GET	 |	(root)			|	?imsi Long (310560000000012)| getAllEventAndCauseByIMSI				|	list of EventCause Objects -json...[[12,4097,"RRC CONN SETUP-REJECT DUE TO OVERLOAD"],[0,4098,"S1 SIG CONN SETUP-SUCCESS"]]
 GET	 | /callFailureCount| 	imsi,startdata,enddate		| all failures for imsi in a time window|   returns List [{imsi, count, sum(duration ms}] NOTE : Need not ba a list  if only 1 imsi every coming back
 

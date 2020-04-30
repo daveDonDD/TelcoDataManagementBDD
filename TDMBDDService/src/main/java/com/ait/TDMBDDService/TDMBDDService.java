@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -44,16 +46,18 @@ public class TDMBDDService {
 	    @Produces(MediaType.TEXT_PLAIN)
 	    @Path("/HelloWorldTest")
 	    public String getTDMHelloWorld() {
-	    	String hello = "Hello TDMBDD World DDOY + Queries 20";
+	    	String hello = "Hello TDMBDD World DDOY + Queries 21";
 	        return hello;
 	    }
 	  
 		@POST	
 		@Consumes(MediaType.TEXT_PLAIN)
-		@Produces(MediaType.APPLICATION_JSON) //http return codes
+		@Produces(MediaType.APPLICATION_JSON) 
 		public Response importFile(String fileName) throws Exception{		
 			final FileData fileData;
 			final InputStream inputStream;
+			int errorCount = 0;
+			int importedEventsCount = 0;
 			
 			try {
 				inputStream = new FileInputStream("C:\\DevTools\\TDMBDD_Datafiles\\"+ fileName);
@@ -85,7 +89,14 @@ public class TDMBDDService {
 			callDataDao.addUE(fileData.getUeList());
 			callDataDao.addMccMnc(fileData.getMcc_mncList());
 			
-		    return Response.status(200).entity("FileLoaded : " + fileName).build();
+			errorCount = fileData.getErrorLogList().size();
+			importedEventsCount = fileData.getBaseDataList().size();
+			
+			final Map<String, Integer> jsonData = new HashMap<String, Integer>();
+			jsonData.put("EventsLoaded", importedEventsCount);
+			jsonData.put("ErroneousEvents", errorCount);
+			
+		    return Response.status(200).entity(jsonData).build();
 
 		    
 			// inputStream.close();    --   need to handle this and its exception
@@ -102,6 +113,8 @@ public class TDMBDDService {
 			 
 			List<EventCauseDTO> eventCauseDTOList = new ArrayList<>(eventCauseDBList.size());
 			for ( Object[] eventCauseDB : eventCauseDBList) {
+
+				
 				eventCauseDTOList.add(new EventCauseDTO(Integer.toString((int)eventCauseDB[0]),
 			                                      (int) eventCauseDB[1],
 			                                      (String) eventCauseDB[2]));

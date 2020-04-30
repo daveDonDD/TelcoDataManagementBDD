@@ -1,0 +1,24 @@
+22:10:33.948 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+22:10:33.952 request:
+1 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/Top10MarketOpCellCombo?startDate=2020/01/01T19:16:00&endDate=2020/04/04T19:20:00
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+22:10:33.961 response time in milliseconds: 8.19
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 107
+1 < Content-Type: application/json
+1 < Date: Thu, 30 Apr 2020 21:10:33 GMT
+[["Antigua and Barbuda","AT&T Wireless-Antigua AG ",4,14],["United States of America","AT&T Mobility",4,2]]
+
+22:10:33.962 after Scenario: Get Top 10 Market/Operator/Cell ID combinations for a duration 
+22:08:58.672 javascript function call failed: java.io.FileNotFoundException: C:\Users\eeiddoy\git\TelcoDataManagementBDD\TDMBDDService\target\test-classes\integrationTestQueryKarate\after-scenario.feature (The system cannot find the file specified)
+22:08:58.672 failed function body: function(){
+  var info = karate.info; 
+  karate.log('after', info.scenarioType + ':', info.scenarioName);
+  karate.call('after-scenario.feature', { caller: info.featureFileName });
+}
+22:08:58.672 afterScenario hook failed: javascript function call failed: java.io.FileNotFoundException: C:\Users\eeiddoy\git\TelcoDataManagementBDD\TDMBDDService\target\test-classes\integrationTestQueryKarate\after-scenario.feature (The system cannot find the file specified)

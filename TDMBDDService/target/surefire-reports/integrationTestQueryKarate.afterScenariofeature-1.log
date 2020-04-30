@@ -1,0 +1,2 @@
+22:08:56.501 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+22:08:56.524 [print] in "after-scenario.feature", caller:
