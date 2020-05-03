@@ -1,2 +1,2 @@
-00:31:49.559 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-00:31:49.592 [print] in "DB_Cleaning after-scenario.feature", caller:
+10:52:38.611 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+10:52:38.645 [print] in "DB_Cleaning after-scenario.feature", caller:

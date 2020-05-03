@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -30,11 +32,13 @@ import com.ait.callData.PMData;
 
 
 @Path("/TelcoDataMgt")
+@Stateless
+@LocalBean
 public class TDMBDDService {
 	
 		@EJB
 		private CallDataDAO callDataDao;
-
+		
 		public TDMBDDService () {
 		}
 		
@@ -112,12 +116,14 @@ public class TDMBDDService {
 
 			 
 			List<EventCauseDTO> eventCauseDTOList = new ArrayList<>(eventCauseDBList.size());
+			System.out.println("DDOY : " + eventCauseDTOList);	
 			for ( Object[] eventCauseDB : eventCauseDBList) {
-
+				System.out.println("DDOY : " + eventCauseDB);	
 				
-				eventCauseDTOList.add(new EventCauseDTO(Integer.toString((int)eventCauseDB[0]),
-			                                      (int) eventCauseDB[1],
-			                                      (String) eventCauseDB[2]));
+				
+				eventCauseDTOList.add(new EventCauseDTO(Integer.toString((int)eventCauseDB[0]),			                                   
+						(int) eventCauseDB[1],
+						(String) eventCauseDB[2]));
 			}
 			return eventCauseDTOList;
 		}

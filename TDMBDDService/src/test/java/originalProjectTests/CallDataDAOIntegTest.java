@@ -1,4 +1,4 @@
-package integrationTestDAO;
+package originalProjectTests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,7 +31,7 @@ import com.ait.callData.*;
 
 
 @RunWith(Arquillian.class)
-public class CallDataDaoIntegrationTest {
+public class CallDataDAOIntegTest {
 	@Deployment
 	public static Archive<?> createTestArchive() {
 		return ShrinkWrap

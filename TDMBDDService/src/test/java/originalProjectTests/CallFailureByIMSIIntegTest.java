@@ -1,4 +1,4 @@
-package integrationTestQueryMethods;
+package originalProjectTests;
 
 import static org.junit.Assert.assertEquals;
 import java.time.LocalDateTime;
@@ -27,35 +27,33 @@ import com.ait.callData.UE;
 import com.ait.DataFileImport.ErrorLog;
 import com.ait.DataFileImport.FileData;
 import com.ait.DAO.CallDataDAO;
+import com.ait.TDMBDDService.CountImsiFailureDurationDTO;
+import com.ait.TDMBDDService.CountPhoneModelFailuresDTO;
+import com.ait.TDMBDDService.EventCauseDTO;
+import com.ait.TDMBDDService.ImsiWithinDatesDTO;
 import com.ait.TDMBDDService.TDMBDDService;
 
 @RunWith(Arquillian.class)
-public class CallFailureByIMSITest {
+public class CallFailureByIMSIIntegTest {
 	
 	@Deployment
 	public static Archive<?> createTestArchive() {
 		return ShrinkWrap.create(JavaArchive.class, "CallDataTest.jar")
 				.addClasses(CallDataDAO.class, BaseData.class, EventCause.class, FailureClass.class, MccMnc.class,
 						UE.class, FileData.class, ErrorLog.class)
-				.addPackage(TDMBDDService.class.getPackage())
+				.addClasses(EventCauseDTO.class)
+				.addClasses(CountPhoneModelFailuresDTO.class)
+				.addClasses(CountImsiFailureDurationDTO.class)
+				.addClasses(ImsiWithinDatesDTO.class)
+				.addClasses(TDMBDDService.class)				
 				.addAsManifestResource("META-INF/test_persistence.xml", "persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-		
-//		 return ShrinkWrap.create(WebArchive.class,"RestMethodInteg.war")
-//				  .addAsResource("META-INF/test_persistence.xml","META-INF/persistence.xml")
-//				  .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-//				  .addPackage(FileData.class.getPackage())
-//				  .addPackage(BaseData.class.getPackage())
-//				  .addPackage(TDMBDDService.class.getPackage())
-//				  .addPackages(true, "org.apache.poi")
-//				  .addClasses(CallDataDAO.class)
-//			      .setWebXML("test_web.xml");   
 	}
 
 	@EJB
 	private CallDataDAO callDataDAO;
 
-//	@EJB
+	@EJB
 	private TDMBDDService callDataWS;
 
 	@PersistenceContext
@@ -77,30 +75,31 @@ public class CallFailureByIMSITest {
 		callDataDAO.dropTables();
 		
 		baseDataList = new ArrayList<BaseData>();
-		baseData = new BaseData(LocalDateTime.now(), 4098, "1", 21060800, 344, 930, 4, 1000, "0", "11B", 344930000000011L,
+		baseData = new BaseData(LocalDateTime.now(), 4098, "1", 100900, 344, 930, 4, 1000, "13", "11B", 344930000000011L,
 				4809532081614990000L, 8226896360947470000L, 1150444940909480000L);		
 		baseDataList.add(baseData);
-		callDataDAO.addBaseData(baseDataList);
-
 		
 		eventCauseList = new ArrayList<EventCause>();
-		eventCause = new EventCause("1",4098,"des");
+		eventCause = new EventCause("13",4098,"desc");
 		eventCauseList.add(eventCause);
+		
+		callDataDAO.addBaseData(baseDataList);
 		callDataDAO.addEventCause(eventCauseList);
-	 
+
+ 
 		imsi = baseData.getImsi();
 		startDate = "2013-02-19";
 		endDate = "2020-02-20";
 		
-		callDataWS = new TDMBDDService(callDataDAO);
+//		callDataWS = new TDMBDDService(callDataDAO);
 
 	}
 
 	
 	@Test
 	public void testFindEventCauseForImsi() {
-		List<EventCause> eventCause = callDataDAO.getEventAndCauseCodeByIMSI(imsi);
-		assertEquals(eventCause.size(), 1);
+		List<EventCause> eventCauseList = callDataDAO.getEventAndCauseCodeByIMSI(imsi);
+		assertEquals(1,eventCauseList.size());
 	}
 	
 	@Test
@@ -108,19 +107,19 @@ public class CallFailureByIMSITest {
 		String startDate2 = "2019/03/13T13:00:00";
 		String endDate2 = "2022/03/13T13:50:00";
 		List<BaseData> imsiBaseDataList = callDataDAO.getImsisWithFailuresByDates(startDate2, endDate2);
-		assertEquals(imsiBaseDataList.size(), 1);
+		assertEquals(1, imsiBaseDataList.size());
 	}
 	
 	@Test
 	public void testFindAllByImsi() {
-		List list = callDataWS.getAllEventAndCauseCodeByImsi(imsi);
-		assertEquals(list.size(), 1);
+		List<EventCauseDTO> eventCauseDTOList = callDataWS.getAllEventAndCauseCodeByImsi(imsi);
+		assertEquals(1,eventCauseDTOList.size());
 	}
 	
 	@Test
 	public void testFindAllIMSIsWithFailuresByTime() {
 		List list = callDataWS.getIMSIsWithinDates("2019/03/13T13:00:00","2022/03/13T13:50:00");
-		assertEquals(list.size(), 1);
+		assertEquals( 1,list.size());
 	}
 	
 //	@Test
