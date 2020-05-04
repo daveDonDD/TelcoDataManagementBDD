@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: unitTestsBDDCucumber.RunCucumberTest
 -------------------------------------------------------------------------------
-Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.404 sec - in unitTestsBDDCucumber.RunCucumberTest
+Tests run: 26, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.525 sec - in unitTestsBDDCucumber.RunCucumberTest

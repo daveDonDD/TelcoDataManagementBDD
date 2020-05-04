@@ -1,15 +1,10 @@
 package com.ait.Service;
 
-
 public class CountImsiFailureDurationDTO {
 	
-	
 	private long imsi;
-
 	private long failureCount;
-	
 	private long duration;
-	
 	
 	public CountImsiFailureDurationDTO() {
 	}
@@ -20,5 +15,27 @@ public class CountImsiFailureDurationDTO {
 		this.failureCount = failureCount;
 	}
 
-	
+	public long getImsi() {
+		return imsi;
+	}
+
+	public void setImsi(final long imsi) {
+		this.imsi = imsi;
+	}
+
+	public long getFailureCount() {
+		return failureCount;
+	}
+
+	public void setFailureCount(final long failureCount) {
+		this.failureCount = failureCount;
+	}
+
+	public long getDuration() {
+		return duration;
+	}
+
+	public void setDuration(final long duration) {
+		this.duration = duration;
+	}
 }	

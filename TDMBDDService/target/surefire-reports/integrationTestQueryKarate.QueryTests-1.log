@@ -1,5 +1,5 @@
-21:51:19.064 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-21:51:19.237 request:
+10:40:19.467 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+10:40:19.612 request:
 1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
@@ -9,34 +9,34 @@
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 Scenario Get all Event And CauseCode data By IMSI.xls
 
-21:51:29.648 response time in milliseconds: 10410.65
+10:40:20.118 response time in milliseconds: 504.98
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 39
 1 < Content-Type: application/json
-1 < Date: Sun, 03 May 2020 20:51:29 GMT
+1 < Date: Mon, 04 May 2020 09:40:20 GMT
 {"ErroneousEvents":0,"EventsLoaded":16}
 
-21:51:29.653 request:
+10:40:20.125 request:
 2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/344930000000012
 2 > Accept-Encoding: gzip,deflate
 2 > Connection: Keep-Alive
 2 > Host: localhost:8080
 2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-21:51:29.734 response time in milliseconds: 80.39
+10:40:20.134 response time in milliseconds: 8.96
 2 < 200
 2 < Connection: keep-alive
 2 < Content-Length: 201
 2 < Content-Type: application/json
-2 < Date: Sun, 03 May 2020 20:51:29 GMT
+2 < Date: Mon, 04 May 2020 09:40:20 GMT
 [{"cause_code":"23","event_id":4125,"description":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"cause_code":"11","event_id":4106,"description":"INITIAL CTXT SETUP-TRANSPORT REJECT"}]
 
-21:51:29.783 after Scenario: Get all Event And CauseCode data By IMSI 
-E-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID}, reason: all key-values did not match, expected has un-matched keys: [cause_code, event_id, description]]
-20:57:46.141 after Scenario: Get all Event And CauseCode data By IMSI 
+10:40:20.181 after Scenario: Get all Event And CauseCode data By IMSI 
 
-xception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+ected: {cause_code=23, event_id=4125, description=UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID}, reason: all key-values did not match, expected has un-matched keys: [event_id, description]]
+10:30:20.681 after Scenario: Get all Event And CauseCode data By IMSI 
+le 'global_database.vehicles' doesn't exist
 00:01:13.854 javascript function call failed: 
 after-scenario.feature:15 - javascript evaluation failed: db.readRows('SELECT * FROM vehicles'), StatementCallback; bad SQL grammar [SELECT * FROM vehicles]; nested exception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
 00:01:13.854 failed function body: function(){

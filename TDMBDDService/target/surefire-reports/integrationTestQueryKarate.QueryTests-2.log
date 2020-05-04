@@ -1,5 +1,5 @@
-21:51:29.919 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-21:51:29.924 request:
+10:40:20.306 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+10:40:20.310 request:
 1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
@@ -9,31 +9,31 @@
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 Scenario Get all IMSIs with failures during a time period.xls
 
-21:51:37.501 response time in milliseconds: 7576.47
+10:40:20.586 response time in milliseconds: 275.27
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 39
 1 < Content-Type: application/json
-1 < Date: Sun, 03 May 2020 20:51:37 GMT
+1 < Date: Mon, 04 May 2020 09:40:20 GMT
 {"ErroneousEvents":0,"EventsLoaded":16}
 
-21:51:37.507 request:
+10:40:20.601 request:
 2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00
 2 > Accept-Encoding: gzip,deflate
 2 > Connection: Keep-Alive
 2 > Host: localhost:8080
 2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-21:51:37.695 response time in milliseconds: 177.68
-2 < 500
+10:40:20.612 response time in milliseconds: 9.97
+2 < 200
 2 < Connection: keep-alive
-2 < Content-Length: 14758
-2 < Content-Type: text/html;charset=UTF-8
-2 < Date: Sun, 03 May 2020 20:51:37 GMT
-<html><head><title>ERROR</title><style>
-body {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;
-    margin: 5px;
+2 < Content-Length: 101
+2 < Content-Type: application/json
+2 < Date: Mon, 04 May 2020 09:40:20 GMT
+[{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000013},{"imsi":344930000000014}]
+
+10:40:20.614 after Scenario: Get all IMSIs with failures during a time period 
+px;
 }
 
 .header {
@@ -178,7 +178,7 @@ Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No ser
 	... 58 more
 </pre></body></html>
 
-21:51:37.709 status code was: 500, expected: 200, response time: 178, url: http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00, response: <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>ERROR</title><style>
+10:30:21.216 status code was: 500, expected: 200, response time: 19, url: http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00, response: <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>ERROR</title><style>
 body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;
     margin: 5px;
@@ -325,4 +325,5 @@ Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No ser
 	at org.jboss.resteasy.core.SynchronousDispatcher.writeResponse(SynchronousDispatcher.java:529)
 	... 58 more
 </pre></body></html>
-21:51:37.714 after Scenario: Get all IMSIs with failures during a time period 
+10:30:21.220 after Scenario: Get all IMSIs with failures during a time period 
+d 
