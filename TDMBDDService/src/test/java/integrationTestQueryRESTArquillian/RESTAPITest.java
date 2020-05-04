@@ -27,9 +27,9 @@ import org.junit.runner.RunWith;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
-import com.ait.TDMBDDService.CountImsiFailureDurationDTO;
-import com.ait.TDMBDDService.EventCauseDTO;
-import com.ait.TDMBDDService.TDMBDDService;
+import com.ait.Service.CountImsiFailureDurationDTO;
+import com.ait.Service.EventCauseDTO;
+import com.ait.Service.TDMBDDService;
 import com.ait.callData.BaseData;
 
 

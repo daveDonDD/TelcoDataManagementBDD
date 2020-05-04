@@ -12,8 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.ait.TDMBDDService.EventCauseDTO;
-import com.ait.TDMBDDService.ImsiWithinDatesDTO;
+import com.ait.Service.EventCauseDTO;
+import com.ait.Service.ImsiWithinDatesDTO;
 import com.ait.callData.*;
 
 

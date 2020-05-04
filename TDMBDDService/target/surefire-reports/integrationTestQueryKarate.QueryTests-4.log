@@ -1,41 +1,39 @@
-10:52:43.113 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-10:52:43.118 request:
+21:51:43.182 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:51:43.187 request:
 1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
-1 > Content-Length: 53
+1 > Content-Length: 63
 1 > Content-Type: text/plain; charset=UTF-8
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
-Scenario Get a count of IMSI Failure And Duration.xls
+Scenario Get all the unique failure Event Id and Cause Code.xls
 
-10:52:43.509 response time in milliseconds: 390.39
+21:51:45.181 response time in milliseconds: 1993.34
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 39
 1 < Content-Type: application/json
-1 < Date: Sun, 03 May 2020 09:52:43 GMT
+1 < Date: Sun, 03 May 2020 20:51:45 GMT
 {"ErroneousEvents":0,"EventsLoaded":16}
 
-10:52:43.513 request:
-2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020/01/23T14:00:00&endDate=2020/01/23T14:07:00
+21:51:45.185 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountPhoneModelFailureDetails/33002635
 2 > Accept-Encoding: gzip,deflate
 2 > Connection: Keep-Alive
 2 > Host: localhost:8080
 2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-10:52:43.520 response time in milliseconds: 7.06
+21:51:45.214 response time in milliseconds: 28.30
 2 < 200
 2 < Connection: keep-alive
-2 < Content-Length: 233
+2 < Content-Length: 391
 2 < Content-Type: application/json
-2 < Date: Sun, 03 May 2020 09:52:43 GMT
-[{"imsi":777770000000011,"failureCount":1,"duration":1000},{"imsi":777770000000012,"failureCount":2,"duration":2000},{"imsi":777770000000013,"failureCount":3,"duration":3000},{"imsi":777770000000014,"failureCount":1,"duration":1000}]
+2 < Date: Sun, 03 May 2020 20:51:45 GMT
+[{"phoneModel":33002635,"eventId":4125,"causeCode":"23","count":7,"eventDescription":"UE CTXT RELEASE-UNKNOWN OR ALREADY ALLOCATED MME UE S1AP ID"},{"phoneModel":33002635,"eventId":4097,"causeCode":"9","count":1,"eventDescription":"RRC CONN SETUP-S1 INTERFACE DOWN"},{"phoneModel":33002635,"eventId":4125,"causeCode":"5","count":1,"eventDescription":"UE CTXT RELEASE-CS FALLBACK TRIGGERED"}]
 
-10:52:43.522 after Scenario: Get a count of IMSI Failure And Duration of those failures for all IMSIs during a time period 
-
-on is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
-00:01:14.274 failed function body: function(){
+21:51:45.219 after Scenario: Get all the unique failure Event Id and Cause Code combinations for a given model of phone 
+ody: function(){
   var info = karate.info; 
   karate.log('after', info.scenarioType + ':', info.scenarioName);
   karate.call('after-scenario.feature', { caller: info.featureFileName });

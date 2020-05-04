@@ -1,44 +1,328 @@
-10:52:44.554 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-10:52:44.560 request:
+21:51:48.951 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:51:48.956 request:
 1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
-1 > Content-Length: 73
+1 > Content-Length: 67
 1 > Content-Type: text/plain; charset=UTF-8
 1 > Host: localhost:8080
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
-Scenario Get Top 10 MarketOperatorCell ID combinations for a duration.xls
+Scenario Get call failure count and duration for a given period.xls
 
-10:52:44.851 response time in milliseconds: 290.75
+21:51:50.344 response time in milliseconds: 1387.78
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 39
 1 < Content-Type: application/json
-1 < Date: Sun, 03 May 2020 09:52:44 GMT
-{"ErroneousEvents":0,"EventsLoaded":16}
+1 < Date: Sun, 03 May 2020 20:51:50 GMT
+{"ErroneousEvents":0,"EventsLoaded":11}
 
-10:52:44.861 request:
-2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/Top10MarketOpCellCombo?startDate=2020/01/01T19:16:00&endDate=2020/04/04T19:20:00
+21:51:50.351 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020/01/11T15:14:30&endDate=2020/01/11T19:16:00
 2 > Accept-Encoding: gzip,deflate
 2 > Connection: Keep-Alive
 2 > Host: localhost:8080
 2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-10:52:44.875 response time in milliseconds: 12.58
-2 < 200
+21:51:50.394 response time in milliseconds: 37.20
+2 < 500
 2 < Connection: keep-alive
-2 < Content-Length: 107
-2 < Content-Type: application/json
-2 < Date: Sun, 03 May 2020 09:52:44 GMT
-[["Antigua and Barbuda","AT&T Wireless-Antigua AG ",4,14],["United States of America","AT&T Mobility",4,2]]
-
-10:52:44.876 after Scenario: Get Top 10 Market/Operator/Cell ID combinations for a duration 
-ntaxErrorException: Table 'global_database.vehicles' doesn't exist
-00:01:14.671 failed function body: function(){
-  var info = karate.info; 
-  karate.log('after', info.scenarioType + ':', info.scenarioName);
-  karate.call('after-scenario.feature', { caller: info.featureFileName });
+2 < Content-Length: 14789
+2 < Content-Type: text/html;charset=UTF-8
+2 < Date: Sun, 03 May 2020 20:51:50 GMT
+<html><head><title>ERROR</title><style>
+body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;
+    margin: 5px;
 }
-00:01:14.671 afterScenario hook failed: javascript function call failed: 
-after-scenario.feature:15 - javascript evaluation failed: db.readRows('SELECT * FROM vehicles'), StatementCallback; bad SQL grammar [SELECT * FROM vehicles]; nested exception is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
-sted exception is com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+
+.header {
+    background-image: linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -o-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -moz-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -webkit-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -ms-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.08, rgb(153,151,153)),
+        color-stop(0.54, rgb(199,199,199))
+    );
+    color: black;
+    padding: 2px;
+    font-weight: normal;
+    border: solid 1px;
+    font-size: 170%;
+    text-align: left;
+    vertical-align: middle; 
+    height: 32px; 
+    margin-bottom: 10px;
+}
+.error-div {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAgAAAAIACH+pydAAAGGElEQVRYw8WXW2wcVxnHf+fM7NXrdXbdtZ3ipGqCEzvQKmlFoUggwkvvGBoaqVVV5Y0nkCoQPPCAhMQbQlzUh/IWHoh6QUVKZVLxUCGogKZRW9uJkyg0iVzZ2dhre9c7u7M7c87hYWc2M7t2bBASI306O/85+v7/7zLn24H/8yV2u/EcFNvwVNK2X0DKw1qpYaX1gCWlY0m5arRe8JQ6I2DmaVj/nwk4CxO2Zf1aw9dKo6N67+eOZHN7x0gViiSHBmlXa7hrazjLt1i+eKmxUi5bwpg/e8a8PA3X/msBr0MyJ+WvgFOffehY8v7HH5OW78HqGjgOtNrge2AnIJWAgQEYLqBsm3/NvKM/mZ1rYczpRa2/9x3w/iMBM1BCiHfuGRmZevClF9NJ5cP1m9B0+/aa3t/ZDNw3TtuSfPy737trK6sXtTGPPwOruxLwNhSEEHMHpqZGDz93wubKFdio3ZXUGNOHs2cIDh/g6pt/9G8uXLnlGPP5k1Dt5bN60m6lhXj34OTkxKET37SZm4d6oz/KgFRH7yOrBozbwlTWGf7ql6RZrWTcytrxaTj9Ro9OGb3JS/mz0nDxgYnnvmWbuUsdJ6FTY2JmImShqZA83N90UbOXOXDiG4nCcPFoTsqfbluCP8DenJQLx1/+7pBcXILaZl9qo2svFmalb48xkM9hxkf5+29+u9HSenIayn0ZyEr5i0NHpnKy7aGrtW6UehsLozRBRlRQEh3BwzLpWh3h++yfPJRLSvnzvhK8DkPamOl7n3nCUjcXtyXuK0X0WViaAFc9QtSNJe594uu2MubZGcjHBGTgqeFiQQml0K12nDgSpd4iyi4uRMci6Q8xJSWq7SGEZCg/qD14LCYgIcTzoxMHc6qygYk40aETKTFSdh2aANOWhbEsjJSYCK6C/V0LcH+9xvCB/TlbiBdCAXbQMJPZ/fvQjUbXEULAa6/1deyuh0dwNU+e7DSzEOhmi8xn9iI+ujgVE6ChlBwpYcqVjuIgA3IXBMYYtNbd30IIpJQI0ZEa+gPQnk9ieA8GSrESaGNyiWIBrVQntUHqdrq01iiluo0WilBK4fs+WutOr4S9YAyJoRzamMGYAClEve046ETyTr13EKCU6kZ+N4GNCxfwKpVOryQSuOUVhBCbsRIIuN1cWRkaSCfRrdaOTncijgltNPDn5xHZLIn7x3GNh4CVmADgcv3a9YmBY0cxm06nAQH31KlOao3BL5fxbtzAOE73hAt7JXb6RU7PGO44WK5Do1ZHw6WYAN+YM+X5S8dLXziWizVNvY5aWcFfWuq8Idsctb1Yr8DwmRwrUr1yfVMbcyYmwIWZ2mbdai9+gvfBAsaAbrUwrrtllLuJPibIGGQ2hUlIHLdlA+diTXgSqkKIt5b/OevL+8bwqlWU63anW3jyhaa4c9T2Hs0hrsL5EOCJQ/sov7/gS8Mb07AZEwDgav2D5aVy3eSziEL+Dllk0PSRcmcMqx6BUeGykINsksrttboPP4w2aVfACVhGiFevvft+I/XwJCad3DF6tc2MiD4zmRSZhyZY/OusI4V4JTqKYwIA6lr/2Gm6s5/+7UMv/egDmEyqL7VbRR/LViR6sikGvniYpffm2m6r/VFd65/0vqZ9R/tbsMeG+WKpMDL+lWMJ58Jl/NVqvOG26PAoDmCXhhg4epDl9+a9zUp1uQkPbvWfcMvZchbuEXAuk0kf2X/84YxpuDQv3kA5zW1fw9CswSyZyXFEJsmnf/m46bntuTY8+SxUtuLadri9CokxeEUK8WJhtJgaeeSIxG3RurWGv+Gg3RbaU5CwkOkU1lCWxFgBmbS4ff6qX7297rXh9Gn4/llobMcjtsFywACQ+zZMTsOP8vBIOpNS+bFiJj2cxx7MYg+k8ZwmrWqD9lqNjVvrTc9tWRtw/k345dtwFagDTmTdUUA2EDAYXffB2JPw6FH4ch7GUpCzIemD50J9A1Y+hH/8Cc4vdTq9Tud9D9dNOt+MajclyNL53xZmIhusmcBSQJLOd4UJnHqACzTppDy0kHizl/yuPRB5nggIM0A6IE4GuA34EQFtoBUQuwGm7kbwb+eaEEXmuV5dAAAAJXRFWHRjcmVhdGUtZGF0ZQAyMDA5LTExLTEwVDE5OjM4OjI0LTA3OjAwdDKp4gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMC0wMi0yMFQyMzoyNjoyNC0wNzowMC7DUNYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTAtMDEtMTFUMDg6NTc6MzUtMDc6MDCruapPAAAAMnRFWHRMaWNlbnNlAGh0dHA6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHVibGljX2RvbWFpbj/96s8AAAAldEVYdG1vZGlmeS1kYXRlADIwMDktMTEtMTBUMTk6Mzg6MjQtMDc6MDArg9/WAAAAGXRFWHRTb3VyY2UAVGFuZ28gSWNvbiBMaWJyYXJ5VM/tggAAADp0RVh0U291cmNlX1VSTABodHRwOi8vdGFuZ28uZnJlZWRlc2t0b3Aub3JnL1RhbmdvX0ljb25fTGlicmFyebzIrdYAAAAASUVORK5CYII=') left center no-repeat;
+}
+.error-text-div {
+    display: inline-block;
+    vertical-align: top;
+    height: 32px;
+}
+.label {
+    font-weight:bold;
+    display: inline-block;
+}
+.value {
+    display: inline-block;
+    margin-left: 5px;
+}
+pre {
+    font-size: 110%;
+    margin-left: 1.5em;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+</style></head><body><div class="header"><div class="error-div"></div><div class="error-text-div">Error processing request</div></div><div class="label">Context Path:</div><div class="value">/DDOY-build</div><br/><div class="label">Servlet Path:</div><div class="value">/rest</div><br/><div class="label">Path Info:</div><div class="value">/TelcoDataMgt/CountOfIMSIFailureAndDuration</div><br/><div class="label">Query String:</div><div class="value">startDate=2020/01/11T15:14:30&amp;endDate=2020/01/11T19:16:00</div><br/><div class="label">Stack Trace:</div><div class="value"></div><br/><pre>org.jboss.resteasy.spi.UnhandledException: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class com.ait.Service.CountImsiFailureDurationDTO and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: java.util.ArrayList[0])
+	at org.jboss.resteasy.core.ExceptionHandler.handleException(ExceptionHandler.java:356)
+	at org.jboss.resteasy.core.SynchronousDispatcher.writeException(SynchronousDispatcher.java:193)
+	at org.jboss.resteasy.core.SynchronousDispatcher.writeResponse(SynchronousDispatcher.java:538)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:460)
+	at org.jboss.resteasy.core.SynchronousDispatcher.lambda$invoke$4(SynchronousDispatcher.java:229)
+	at org.jboss.resteasy.core.SynchronousDispatcher.lambda$preprocess$0(SynchronousDispatcher.java:135)
+	at org.jboss.resteasy.core.interception.PreMatchContainerRequestContext.filter(PreMatchContainerRequestContext.java:356)
+	at org.jboss.resteasy.core.SynchronousDispatcher.preprocess(SynchronousDispatcher.java:138)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:215)
+	at org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher.service(ServletContainerDispatcher.java:227)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:56)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:51)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:74)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)
+	at io.opentracing.contrib.jaxrs2.server.SpanFinishingFilter.doFilter(SpanFinishingFilter.java:52)
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62)
+	at io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:68)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.RedirectDirHandler.handleRequest(RedirectDirHandler.java:68)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:132)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)
+	at io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at org.wildfly.extension.undertow.deployment.GlobalRequestControllerHandler.handleRequest(GlobalRequestControllerHandler.java:68)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:269)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:78)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:133)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:130)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at org.wildfly.extension.undertow.security.SecurityContextThreadSetupAction.lambda$create$0(SecurityContextThreadSetupAction.java:105)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:249)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:78)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:99)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:376)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:830)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1982)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class com.ait.Service.CountImsiFailureDurationDTO and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: java.util.ArrayList[0])
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77)
+	at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1191)
+	at com.fasterxml.jackson.databind.DatabindContext.reportBadDefinition(DatabindContext.java:313)
+	at com.fasterxml.jackson.databind.ser.impl.UnknownSerializer.failForEmpty(UnknownSerializer.java:71)
+	at com.fasterxml.jackson.databind.ser.impl.UnknownSerializer.serialize(UnknownSerializer.java:33)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serializeContents(CollectionSerializer.java:145)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serialize(CollectionSerializer.java:107)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serialize(CollectionSerializer.java:25)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:480)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:400)
+	at com.fasterxml.jackson.databind.ObjectWriter$Prefetch.serialize(ObjectWriter.java:1392)
+	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:913)
+	at org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider.writeTo(ResteasyJackson2Provider.java:308)
+	at org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext.writeTo(AbstractWriterInterceptorContext.java:137)
+	at org.jboss.resteasy.core.interception.ServerWriterInterceptorContext.writeTo(ServerWriterInterceptorContext.java:61)
+	at org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext.proceed(AbstractWriterInterceptorContext.java:124)
+	at org.jboss.resteasy.security.doseta.DigitalSigningInterceptor.aroundWriteTo(DigitalSigningInterceptor.java:147)
+	at org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext.proceed(AbstractWriterInterceptorContext.java:129)
+	at org.jboss.resteasy.core.ServerResponseWriter.lambda$writeNomapResponse$2(ServerResponseWriter.java:151)
+	at org.jboss.resteasy.core.interception.ContainerResponseContextImpl.filter(ContainerResponseContextImpl.java:398)
+	at org.jboss.resteasy.core.ServerResponseWriter.executeFilters(ServerResponseWriter.java:219)
+	at org.jboss.resteasy.core.ServerResponseWriter.writeNomapResponse(ServerResponseWriter.java:95)
+	at org.jboss.resteasy.core.ServerResponseWriter.writeNomapResponse(ServerResponseWriter.java:69)
+	at org.jboss.resteasy.core.SynchronousDispatcher.writeResponse(SynchronousDispatcher.java:529)
+	... 58 more
+</pre></body></html>
+
+21:51:50.403 status code was: 500, expected: 200, response time: 37, url: http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020/01/11T15:14:30&endDate=2020/01/11T19:16:00, response: <html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>ERROR</title><style>
+body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;
+    margin: 5px;
+}
+
+.header {
+    background-image: linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -o-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -moz-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -webkit-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    background-image: -ms-linear-gradient(bottom, rgb(153,151,153) 8%, rgb(199,199,199) 54%);
+    
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.08, rgb(153,151,153)),
+        color-stop(0.54, rgb(199,199,199))
+    );
+    color: black;
+    padding: 2px;
+    font-weight: normal;
+    border: solid 1px;
+    font-size: 170%;
+    text-align: left;
+    vertical-align: middle; 
+    height: 32px; 
+    margin-bottom: 10px;
+}
+.error-div {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAAgAAAAIACH+pydAAAGGElEQVRYw8WXW2wcVxnHf+fM7NXrdXbdtZ3ipGqCEzvQKmlFoUggwkvvGBoaqVVV5Y0nkCoQPPCAhMQbQlzUh/IWHoh6QUVKZVLxUCGogKZRW9uJkyg0iVzZ2dhre9c7u7M7c87hYWc2M7t2bBASI306O/85+v7/7zLn24H/8yV2u/EcFNvwVNK2X0DKw1qpYaX1gCWlY0m5arRe8JQ6I2DmaVj/nwk4CxO2Zf1aw9dKo6N67+eOZHN7x0gViiSHBmlXa7hrazjLt1i+eKmxUi5bwpg/e8a8PA3X/msBr0MyJ+WvgFOffehY8v7HH5OW78HqGjgOtNrge2AnIJWAgQEYLqBsm3/NvKM/mZ1rYczpRa2/9x3w/iMBM1BCiHfuGRmZevClF9NJ5cP1m9B0+/aa3t/ZDNw3TtuSfPy737trK6sXtTGPPwOruxLwNhSEEHMHpqZGDz93wubKFdio3ZXUGNOHs2cIDh/g6pt/9G8uXLnlGPP5k1Dt5bN60m6lhXj34OTkxKET37SZm4d6oz/KgFRH7yOrBozbwlTWGf7ql6RZrWTcytrxaTj9Ro9OGb3JS/mz0nDxgYnnvmWbuUsdJ6FTY2JmImShqZA83N90UbOXOXDiG4nCcPFoTsqfbluCP8DenJQLx1/+7pBcXILaZl9qo2svFmalb48xkM9hxkf5+29+u9HSenIayn0ZyEr5i0NHpnKy7aGrtW6UehsLozRBRlRQEh3BwzLpWh3h++yfPJRLSvnzvhK8DkPamOl7n3nCUjcXtyXuK0X0WViaAFc9QtSNJe594uu2MubZGcjHBGTgqeFiQQml0K12nDgSpd4iyi4uRMci6Q8xJSWq7SGEZCg/qD14LCYgIcTzoxMHc6qygYk40aETKTFSdh2aANOWhbEsjJSYCK6C/V0LcH+9xvCB/TlbiBdCAXbQMJPZ/fvQjUbXEULAa6/1deyuh0dwNU+e7DSzEOhmi8xn9iI+ujgVE6ChlBwpYcqVjuIgA3IXBMYYtNbd30IIpJQI0ZEa+gPQnk9ieA8GSrESaGNyiWIBrVQntUHqdrq01iiluo0WilBK4fs+WutOr4S9YAyJoRzamMGYAClEve046ETyTr13EKCU6kZ+N4GNCxfwKpVOryQSuOUVhBCbsRIIuN1cWRkaSCfRrdaOTncijgltNPDn5xHZLIn7x3GNh4CVmADgcv3a9YmBY0cxm06nAQH31KlOao3BL5fxbtzAOE73hAt7JXb6RU7PGO44WK5Do1ZHw6WYAN+YM+X5S8dLXziWizVNvY5aWcFfWuq8Idsctb1Yr8DwmRwrUr1yfVMbcyYmwIWZ2mbdai9+gvfBAsaAbrUwrrtllLuJPibIGGQ2hUlIHLdlA+diTXgSqkKIt5b/OevL+8bwqlWU63anW3jyhaa4c9T2Hs0hrsL5EOCJQ/sov7/gS8Mb07AZEwDgav2D5aVy3eSziEL+Dllk0PSRcmcMqx6BUeGykINsksrttboPP4w2aVfACVhGiFevvft+I/XwJCad3DF6tc2MiD4zmRSZhyZY/OusI4V4JTqKYwIA6lr/2Gm6s5/+7UMv/egDmEyqL7VbRR/LViR6sikGvniYpffm2m6r/VFd65/0vqZ9R/tbsMeG+WKpMDL+lWMJ58Jl/NVqvOG26PAoDmCXhhg4epDl9+a9zUp1uQkPbvWfcMvZchbuEXAuk0kf2X/84YxpuDQv3kA5zW1fw9CswSyZyXFEJsmnf/m46bntuTY8+SxUtuLadri9CokxeEUK8WJhtJgaeeSIxG3RurWGv+Gg3RbaU5CwkOkU1lCWxFgBmbS4ff6qX7297rXh9Gn4/llobMcjtsFywACQ+zZMTsOP8vBIOpNS+bFiJj2cxx7MYg+k8ZwmrWqD9lqNjVvrTc9tWRtw/k345dtwFagDTmTdUUA2EDAYXffB2JPw6FH4ch7GUpCzIemD50J9A1Y+hH/8Cc4vdTq9Tud9D9dNOt+MajclyNL53xZmIhusmcBSQJLOd4UJnHqACzTppDy0kHizl/yuPRB5nggIM0A6IE4GuA34EQFtoBUQuwGm7kbwb+eaEEXmuV5dAAAAJXRFWHRjcmVhdGUtZGF0ZQAyMDA5LTExLTEwVDE5OjM4OjI0LTA3OjAwdDKp4gAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMC0wMi0yMFQyMzoyNjoyNC0wNzowMC7DUNYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTAtMDEtMTFUMDg6NTc6MzUtMDc6MDCruapPAAAAMnRFWHRMaWNlbnNlAGh0dHA6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvUHVibGljX2RvbWFpbj/96s8AAAAldEVYdG1vZGlmeS1kYXRlADIwMDktMTEtMTBUMTk6Mzg6MjQtMDc6MDArg9/WAAAAGXRFWHRTb3VyY2UAVGFuZ28gSWNvbiBMaWJyYXJ5VM/tggAAADp0RVh0U291cmNlX1VSTABodHRwOi8vdGFuZ28uZnJlZWRlc2t0b3Aub3JnL1RhbmdvX0ljb25fTGlicmFyebzIrdYAAAAASUVORK5CYII=') left center no-repeat;
+}
+.error-text-div {
+    display: inline-block;
+    vertical-align: top;
+    height: 32px;
+}
+.label {
+    font-weight:bold;
+    display: inline-block;
+}
+.value {
+    display: inline-block;
+    margin-left: 5px;
+}
+pre {
+    font-size: 110%;
+    margin-left: 1.5em;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+</style></head><body><div class="header"><div class="error-div"></div><div class="error-text-div">Error processing request</div></div><div class="label">Context Path:</div><div class="value">/DDOY-build</div><br><div class="label">Servlet Path:</div><div class="value">/rest</div><br><div class="label">Path Info:</div><div class="value">/TelcoDataMgt/CountOfIMSIFailureAndDuration</div><br><div class="label">Query String:</div><div class="value">startDate=2020/01/11T15:14:30&amp;endDate=2020/01/11T19:16:00</div><br><div class="label">Stack Trace:</div><div class="value"></div><br><pre>org.jboss.resteasy.spi.UnhandledException: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class com.ait.Service.CountImsiFailureDurationDTO and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: java.util.ArrayList[0])
+	at org.jboss.resteasy.core.ExceptionHandler.handleException(ExceptionHandler.java:356)
+	at org.jboss.resteasy.core.SynchronousDispatcher.writeException(SynchronousDispatcher.java:193)
+	at org.jboss.resteasy.core.SynchronousDispatcher.writeResponse(SynchronousDispatcher.java:538)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:460)
+	at org.jboss.resteasy.core.SynchronousDispatcher.lambda$invoke$4(SynchronousDispatcher.java:229)
+	at org.jboss.resteasy.core.SynchronousDispatcher.lambda$preprocess$0(SynchronousDispatcher.java:135)
+	at org.jboss.resteasy.core.interception.PreMatchContainerRequestContext.filter(PreMatchContainerRequestContext.java:356)
+	at org.jboss.resteasy.core.SynchronousDispatcher.preprocess(SynchronousDispatcher.java:138)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:215)
+	at org.jboss.resteasy.plugins.server.servlet.ServletContainerDispatcher.service(ServletContainerDispatcher.java:227)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:56)
+	at org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher.service(HttpServletDispatcher.java:51)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:74)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)
+	at io.opentracing.contrib.jaxrs2.server.SpanFinishingFilter.doFilter(SpanFinishingFilter.java:52)
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:62)
+	at io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:68)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at org.wildfly.extension.undertow.security.SecurityContextAssociationHandler.handleRequest(SecurityContextAssociationHandler.java:78)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.RedirectDirHandler.handleRequest(RedirectDirHandler.java:68)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:132)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:64)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)
+	at io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at org.wildfly.extension.undertow.security.jacc.JACCContextIdHandler.handleRequest(JACCContextIdHandler.java:61)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at org.wildfly.extension.undertow.deployment.GlobalRequestControllerHandler.handleRequest(GlobalRequestControllerHandler.java:68)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:269)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:78)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:133)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:130)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at org.wildfly.extension.undertow.security.SecurityContextThreadSetupAction.lambda$create$0(SecurityContextThreadSetupAction.java:105)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at org.wildfly.extension.undertow.deployment.UndertowDeploymentInfoService$UndertowThreadSetupAction.lambda$create$0(UndertowDeploymentInfoService.java:1504)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:249)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$000(ServletInitialHandler.java:78)
+	at io.undertow.servlet.handlers.ServletInitialHandler$1.handleRequest(ServletInitialHandler.java:99)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:376)
+	at io.undertow.server.HttpServerExchange$1.run(HttpServerExchange.java:830)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:1982)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1486)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1377)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class com.ait.Service.CountImsiFailureDurationDTO and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: java.util.ArrayList[0])
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77)
+	at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1191)
+	at com.fasterxml.jackson.databind.DatabindContext.reportBadDefinition(DatabindContext.java:313)
+	at com.fasterxml.jackson.databind.ser.impl.UnknownSerializer.failForEmpty(UnknownSerializer.java:71)
+	at com.fasterxml.jackson.databind.ser.impl.UnknownSerializer.serialize(UnknownSerializer.java:33)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serializeContents(CollectionSerializer.java:145)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serialize(CollectionSerializer.java:107)
+	at com.fasterxml.jackson.databind.ser.std.CollectionSerializer.serialize(CollectionSerializer.java:25)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:480)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:400)
+	at com.fasterxml.jackson.databind.ObjectWriter$Prefetch.serialize(ObjectWriter.java:1392)
+	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:913)
+	at org.jboss.resteasy.plugins.providers.jackson.ResteasyJackson2Provider.writeTo(ResteasyJackson2Provider.java:308)
+	at org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext.writeTo(AbstractWriterInterceptorContext.java:137)
+	at org.jboss.resteasy.core.interception.ServerWriterInterceptorContext.writeTo(ServerWriterInterceptorContext.java:61)
+	at org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext.proceed(AbstractWriterInterceptorContext.java:124)
+	at org.jboss.resteasy.security.doseta.DigitalSigningInterceptor.aroundWriteTo(DigitalSigningInterceptor.java:147)
+	at org.jboss.resteasy.core.interception.AbstractWriterInterceptorContext.proceed(AbstractWriterInterceptorContext.java:129)
+	at org.jboss.resteasy.core.ServerResponseWriter.lambda$writeNomapResponse$2(ServerResponseWriter.java:151)
+	at org.jboss.resteasy.core.interception.ContainerResponseContextImpl.filter(ContainerResponseContextImpl.java:398)
+	at org.jboss.resteasy.core.ServerResponseWriter.executeFilters(ServerResponseWriter.java:219)
+	at org.jboss.resteasy.core.ServerResponseWriter.writeNomapResponse(ServerResponseWriter.java:95)
+	at org.jboss.resteasy.core.ServerResponseWriter.writeNomapResponse(ServerResponseWriter.java:69)
+	at org.jboss.resteasy.core.SynchronousDispatcher.writeResponse(SynchronousDispatcher.java:529)
+	... 58 more
+</pre></body></html>
+21:51:50.408 after Scenario: Get call failure count and duration for a given period 

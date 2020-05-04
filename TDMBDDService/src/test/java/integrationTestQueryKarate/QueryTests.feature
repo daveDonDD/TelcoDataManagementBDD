@@ -62,21 +62,6 @@ When method GET
 Then status 200
 And match response == [3]
 
-###################################################################################
-Scenario: Get a count of IMSI Failure And Duration of those failures for all IMSIs during a time period
-
-# Load data for test
-Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt'
-And request 'Scenario Get a count of IMSI Failure And Duration.xls'
-When method POST
-Then status 200
-And match response == {"EventsLoaded": 16,"ErroneousEvents": 0}
-
-# Then execute query - after-scenario.feature will clear DB
-Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020/01/23T14:00:00&endDate=2020/01/23T14:07:00'
-When method GET
-Then status 200
-And match response == [{"imsi":777770000000011,"failureCount":1,"duration":1000},{"imsi":777770000000012,"failureCount":2,"duration":2000},{"imsi":777770000000013,"failureCount":3,"duration":3000},{"imsi":777770000000014,"failureCount":1,"duration":1000}]
 
 ###################################################################################
 Scenario: Get all the unique failure Event Id and Cause Code combinations for a given model of phone
@@ -127,3 +112,19 @@ Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt/Top10MarketOpCellC
 When method GET
 Then status 200
 
+###################################################################################
+
+Scenario: Get call failure count and duration for a given period
+
+# Load data for test
+Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt'
+And request 'Scenario Get call failure count and duration for a given period.xls'
+When method POST
+Then status 200
+And match response == {"EventsLoaded": 11,"ErroneousEvents": 0}
+
+# Then execute query - after-scenario.feature will clear DB
+Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CountOfIMSIFailureAndDuration?startDate=2020/01/11T15:14:30&endDate=2020/01/11T19:16:00'
+When method GET
+Then status 200
+And match response == [{"imsi":344930000000011,"failureCount": 2,"duration":3000},{"imsi":344930000000012,"failureCount":3,"duration":5000},{"imsi":310560000000013,"failureCount":2,"duration":5000}]

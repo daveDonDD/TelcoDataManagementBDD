@@ -1,5 +1,5 @@
-10:52:42.630 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
-10:52:42.637 request:
+21:51:37.846 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:51:37.850 request:
 1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
 1 > Accept-Encoding: gzip,deflate
 1 > Connection: Keep-Alive
@@ -9,32 +9,31 @@
 1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 Scenario Get call failure count by phone model.xls
 
-10:52:42.968 response time in milliseconds: 330.20
+21:51:42.997 response time in milliseconds: 5147.21
 1 < 200
 1 < Connection: keep-alive
 1 < Content-Length: 39
 1 < Content-Type: application/json
-1 < Date: Sun, 03 May 2020 09:52:42 GMT
+1 < Date: Sun, 03 May 2020 20:51:42 GMT
 {"ErroneousEvents":0,"EventsLoaded":16}
 
-10:52:42.973 request:
+21:51:43.001 request:
 2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:20:00
 2 > Accept-Encoding: gzip,deflate
 2 > Connection: Keep-Alive
 2 > Host: localhost:8080
 2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
 
-10:52:42.982 response time in milliseconds: 8.80
+21:51:43.023 response time in milliseconds: 21.02
 2 < 200
 2 < Connection: keep-alive
 2 < Content-Length: 3
 2 < Content-Type: application/json
-2 < Date: Sun, 03 May 2020 09:52:42 GMT
+2 < Date: Sun, 03 May 2020 20:51:43 GMT
 [3]
 
-10:52:42.984 after Scenario: Get call failure count by phone model 
-
-ption is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
+21:51:43.026 after Scenario: Get call failure count by phone model 
+tion is java.sql.SQLSyntaxErrorException: Table 'global_database.vehicles' doesn't exist
 00:01:14.123 failed function body: function(){
   var info = karate.info; 
   karate.log('after', info.scenarioType + ':', info.scenarioName);

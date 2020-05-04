@@ -31,8 +31,8 @@ import com.ait.callData.MccMnc;
 import com.ait.callData.UE;
 import com.ait.DataFileImport.ErrorLog;
 import com.ait.DataFileImport.FileData;
+import com.ait.Service.TDMBDDService;
 import com.ait.DAO.CallDataDAO;
-import com.ait.TDMBDDService.TDMBDDService;
 
 @RunWith(Arquillian.class)
 public class CallFailureUniqueCodePairsIngetTest {
