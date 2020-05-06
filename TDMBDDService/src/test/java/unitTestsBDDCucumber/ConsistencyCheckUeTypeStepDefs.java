@@ -27,33 +27,7 @@ private BaseData baseData;
 private List<UE> UeClassList;
 private ConsistencyCheck consistencyCheck;
 
-/*
-@Given("the following FailureClassReferenceTable data")
-public void the_following_FailureClassReferenceTable_data(DataTable dataTable) {
-	failureClassList = dataTable.asList(FailureClass.class);
-}
 
-@When("check incoming event with failure Class set to {int}")
-public void check_incoming_event_with_failure_Class_set_to(Integer int1) {
-    baseData = new BaseData(LocalDateTime.now(), 4097,	int1, 21060800, 344, 930, 4, 1000, 0, "11B", 344930000000011L, 4809532081614990000L, 8226896360947470000L,	1150444940909480000L);
-
-}
-
-
-@Then("FC consistency check result should be true")
-public void fc_consistency_check_result_should_be_true() {
-	consistencyCheck = new ConsistencyCheck();
-    assertTrue(consistencyCheck.failureClassConsistencyCheck(failureClassList, baseData));
-}
-
-@Then("FC consistency check result should be false")
-public void fc_consistency_check_result_should_be_false() {
-	consistencyCheck = new ConsistencyCheck();
-    assertFalse(consistencyCheck.failureClassConsistencyCheck(failureClassList, baseData));
-}
-
-
-*/
 @Given("the following UEType_in_ReferenceTable data")
 public void the_following_UEType_in_ReferenceTable_data(io.cucumber.datatable.DataTable dataTable) {
 	UeClassList = dataTable.asList(UE.class);
