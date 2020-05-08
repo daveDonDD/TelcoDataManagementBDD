@@ -43,14 +43,7 @@ public class TDMBDDService {
 			this.callDataDao = callDataDao;
 		}
 		
-	    @GET
-	    @Produces(MediaType.TEXT_PLAIN)
-	    @Path("/HelloWorldTest")
-	    public String getTDMHelloWorld() {
-	    	String hello = "Hello TDMBDD World DDOY + Queries 22";
-	        return hello;
-	    }
-	  
+
 		@POST	
 		@Consumes(MediaType.TEXT_PLAIN)
 		@Produces(MediaType.APPLICATION_JSON) 
@@ -59,28 +52,29 @@ public class TDMBDDService {
 			final InputStream inputStream;
 			int errorCount = 0;
 			int importedEventsCount = 0;
+			boolean validFile = false;
 			
 			try {
 				inputStream = new FileInputStream("C:\\DevTools\\TDMBDD_Datafiles\\"+ fileName);
 			} catch (Exception e) {
-					return Response.status(406).entity("File Not Found : " + fileName).build();
+					return Response.status(406).entity("Import failed : File Not Found").build();
 			}
 			
 			try {
 				fileData = new FileData(inputStream);
 			} catch (Exception e) {
-				return Response.status(407).entity("BUG ").build();
+				return Response.status(407).entity("Import Failed : File open error").build();
 
 			}
 			
 			FileData.excelDataList = new ArrayList<String>();
 			FileData.rowNumber = 1;
-		    try {
-				fileData.importWorkbook();
+//		    try {
+			if (fileData.importWorkbook()) {
 				
-			} catch (IOException e) {
-				return Response.status(406).entity("Invalid File").build();
-			}
+//			} catch (IOException e) {
+	//			return Response.status(406).entity("Import failed : Error Processing input file").build();
+		//	}
 		    callDataDao.addBaseData(fileData.getBaseDataList());
 			callDataDao.addEventCause(fileData.getEventCauseList());
 			callDataDao.addFailureClass(fileData.getFailureClassList());
@@ -95,10 +89,9 @@ public class TDMBDDService {
 			jsonData.put("ErroneousEvents", errorCount);
 			
 		    return Response.status(200).entity(jsonData).build();
-
-		    
-			// inputStream.close();    --   need to handle this and its exception
-
+			}
+			else
+				return Response.status(406).entity("Import failed : Invalid File Format").build();
 		}
 		
 		@GET
@@ -107,8 +100,7 @@ public class TDMBDDService {
 		public List<EventCauseDTO>  getAllEventAndCauseCodeByImsi(@PathParam("imsi") final long imsi) {
 
 			final List<Object[]> eventCauseDBList = callDataDao.getEventAndCauseCodeByIMSI(imsi);
-
-			 
+	 
 			List<EventCauseDTO> eventCauseDTOList = new ArrayList<>(eventCauseDBList.size());
 			System.out.println("DDOY : " + eventCauseDTOList);	
 			for ( Object[] eventCauseDB : eventCauseDBList) {
@@ -131,7 +123,6 @@ public class TDMBDDService {
 			List imsiWithinDatesDBList = callDataDao.getImsisWithFailuresByDates(startDate,endDate);
 			
 			List<ImsiWithinDatesDTO> imsiWithinDatesDTOList = new ArrayList<>(imsiWithinDatesDBList.size());
-//			for ( imsiWithinDatesDB : imsiWithinDatesDBList) {
 			for ( int i = 0 ; i < imsiWithinDatesDBList.size( ) ; i++) {	
 				imsiWithinDatesDTOList.add(new ImsiWithinDatesDTO((long)imsiWithinDatesDBList.get(i)));
 				}
@@ -172,7 +163,6 @@ public class TDMBDDService {
 		@Produces({ MediaType.APPLICATION_JSON })
 		@Path("/CountPhoneModelFailureDetails/{model}") 
 		public List<CountPhoneModelFailuresDTO> countPhoneModelFailureDetails(@PathParam("model") final Integer model) {
-//			final List<String> callFailuresCount = callDataDao.countPhoneModelFailures(ueType);
 
 			List<Object[]> countPhoneModelFailuresDBList = callDataDao.countPhoneModelFailures(model);
 			
