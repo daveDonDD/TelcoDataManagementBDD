@@ -63,34 +63,4 @@ public class MccMnc implements Serializable{
 	public void setOperator(final String operator) {
 		this.operator = operator;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + mcc;
-		result = prime * result + mnc;
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final MccMnc other = (MccMnc) obj;
-		if (mcc != other.mcc) {
-			return false;
-		}
-		if (mnc != other.mnc) {
-			return false;
-		}
-		return true;
-	}
 }

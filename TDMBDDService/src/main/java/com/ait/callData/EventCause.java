@@ -61,35 +61,4 @@ public class EventCause implements Serializable {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cause_code == null) ? 0 : cause_code.hashCode());
-		result = prime * result + event_id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final EventCause other = (EventCause) obj;
-		if (cause_code != other.cause_code) {
-			return false;
-		}
-		if (event_id != other.event_id) {
-			return false;
-		}
-		return true;
-	}
-
 }

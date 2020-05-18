@@ -25,7 +25,6 @@ import com.ait.DAO.CallDataDAO;
 
 import com.ait.DataFileImport.FileData;
 import com.ait.callData.EventCause;
-import com.ait.callData.PMData;
 
 
 @Path("/TelcoDataMgt")

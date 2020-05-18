@@ -21,5 +21,5 @@ Scenario: Import invalid file type
 Given url 'http://localhost:8080/DDOY-build/rest/TelcoDataMgt'
 And request 'QueryTestDataSet_invalidFileFormat.xls'
 When method POST
-Then status 407
+Then status 406
 And match response == 'Import failed : Invalid File Format'

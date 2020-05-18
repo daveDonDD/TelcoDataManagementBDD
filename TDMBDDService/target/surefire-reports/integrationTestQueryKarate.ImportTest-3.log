@@ -1,0 +1,22 @@
+21:19:49.819 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:19:49.825 request:
+1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 38
+1 > Content-Type: text/plain; charset=UTF-8
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+QueryTestDataSet_invalidFileFormat.xls
+
+21:19:49.837 response time in milliseconds: 11.54
+1 < 406
+1 < Connection: keep-alive
+1 < Content-Length: 35
+1 < Content-Type: application/json
+1 < Date: Sun, 17 May 2020 20:19:49 GMT
+Import failed : Invalid File Format
+
+: http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+21:13:40.453 http request failed: 
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:8080 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect

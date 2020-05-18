@@ -1,0 +1,36 @@
+21:19:55.769 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:19:55.776 request:
+1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 73
+1 > Content-Type: text/plain; charset=UTF-8
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+Scenario Get Top 10 MarketOperatorCell ID combinations for a duration.xls
+
+21:19:56.589 response time in milliseconds: 812.20
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 39
+1 < Content-Type: application/json
+1 < Date: Sun, 17 May 2020 20:19:56 GMT
+{"ErroneousEvents":0,"EventsLoaded":16}
+
+21:19:56.594 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/Top10MarketOpCellCombo?startDate=2020/01/01T19:16:00&endDate=2020/04/04T19:20:00
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Host: localhost:8080
+2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+21:19:56.609 response time in milliseconds: 14.54
+2 < 200
+2 < Connection: keep-alive
+2 < Content-Length: 107
+2 < Content-Type: application/json
+2 < Date: Sun, 17 May 2020 20:19:56 GMT
+[["Antigua and Barbuda","AT&T Wireless-Antigua AG ",4,14],["United States of America","AT&T Mobility",4,2]]
+
+21:19:56.611 after Scenario: Get Top 10 Market/Operator/Cell ID combinations for a duration 
+

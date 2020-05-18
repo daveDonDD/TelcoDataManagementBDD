@@ -1,0 +1,35 @@
+21:19:52.412 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:19:52.417 request:
+1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 50
+1 > Content-Type: text/plain; charset=UTF-8
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+Scenario Get call failure count by phone model.xls
+
+21:19:53.657 response time in milliseconds: 1239.82
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 39
+1 < Content-Type: application/json
+1 < Date: Sun, 17 May 2020 20:19:53 GMT
+{"ErroneousEvents":0,"EventsLoaded":16}
+
+21:19:53.672 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/CallFailureCountByPhoneModel?ueType=21060800&startDate=2020/01/11T17:14:00&endDate=2020/11/01T17:20:00
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Host: localhost:8080
+2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+21:19:53.700 response time in milliseconds: 27.09
+2 < 200
+2 < Connection: keep-alive
+2 < Content-Length: 3
+2 < Content-Type: application/json
+2 < Date: Sun, 17 May 2020 20:19:53 GMT
+[3]
+
+21:19:53.703 after Scenario: Get call failure count by phone model 

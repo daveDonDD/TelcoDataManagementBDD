@@ -1,7 +1,6 @@
 package integrationTestQueryRESTArquillian;
 
 import java.net.URL;
-import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
@@ -16,28 +15,20 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
-import org.junit.Ignore;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-//import org.junit.jupiter.api.Order;
-//import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.ait.DAO.CallDataDAO;
 import com.ait.DataFileImport.FileData;
-import com.ait.Service.CountImsiFailureDurationDTO;
-import com.ait.Service.EventCauseDTO;
 import com.ait.Service.TDMBDDService;
 import com.ait.callData.BaseData;
 
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.matcher.RestAssuredMatchers;
 import org.hamcrest.Matchers;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.contains;
 
 
 @RunWith(Arquillian.class)
@@ -69,8 +60,6 @@ public class RESTAPITest {
     URL basePath;
  
 	private FileData fileData;
-
-	
 	
 	 @Test 
 	 @RunAsClient
@@ -86,13 +75,7 @@ public class RESTAPITest {
         	.assertThat().body("EventsLoaded", equalTo(16))
         	.assertThat().body("ErroneousEvents", equalTo(0));
             }
-	 
-	 
-   
-  
         
-        
-//    @Ignore // replaced with Karate API tests running on server
    @Test 
     @RunAsClient
 	public void restAssuredImportTestFilenotFound() {
@@ -106,10 +89,7 @@ public class RESTAPITest {
         	.statusCode(406); 	
     }        
     
-   
- 
-    // Using loaded file above for query tests
- //   @Ignore // replaced with Karate API tests running on server
+
    @Test
     @RunAsClient
     public void Test_GetAllEventAndCauseCodeByImsiSuccess(){
@@ -119,21 +99,13 @@ public class RESTAPITest {
     			.when()
     				.get(basePath +"rest/TelcoDataMgt" + "/344930000000012")
     			.then()
-    				.statusCode(200).body("$", Matchers.hasSize(2));
-			
-//    	check correct user story!!!!!!
-//expected '[[344930000000011, 1, 1000]]'
-//Actual: [[344930000000011, 1, 1000]]   need to check this
-// format returned is List of query (SELECT imsi, COUNT(*), SUM(duration)) e.g. [[310560000000012,2,2000]]
-// so assertion is second element equals 2 
-// or just hardcoded
-// else use object serilaisation to convert back to pojo adn use from there
-// but into other problem domain - if we had  json here this would be a no brainer.
-//Karate simpler to manage flat json (or returned data in what ever format) and assert against that
-}
+    				.statusCode(200)
+    				.assertThat().body("$", Matchers.hasSize(2))
+			       	.assertThat().body("event_id", contains(4125,4106))
+		        	.assertThat().body("cause_code",contains("23","11"));    				
+   }
     
     
-//    @Ignore // replaced with Karate API tests running on server
     @Test
     @RunAsClient
     public void Test_getAllEventAndCauseCodeByIMSIEmptyResponse(){
@@ -147,7 +119,6 @@ public class RESTAPITest {
     				
     }
     
-//    @Ignore // replaced with Karate API tests running on server
     @Test
     @RunAsClient
     public void Test_getIMSIsWithinDates(){
@@ -162,7 +133,6 @@ public class RESTAPITest {
     }
     
         
-//    @Ignore // replaced with Karate API tests running on server
     @Test
     @RunAsClient
     public void Test_CallFailureCountByPhoneModel(){
@@ -177,7 +147,6 @@ public class RESTAPITest {
 	   				.statusCode(200).body("$",Matchers.hasItem(3));    
     }
    
-//    @Ignore // replaced with Karate API tests running on server
     @Test
        @RunAsClient
        public void Test_CountOfIMSIFailureAndDuration(){

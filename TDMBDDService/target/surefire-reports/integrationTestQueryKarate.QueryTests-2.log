@@ -1,0 +1,36 @@
+21:19:51.050 skipping bootstrap configuration: could not find or read file: classpath:karate-config.js
+21:19:51.058 request:
+1 > POST http://localhost:8080/DDOY-build/rest/TelcoDataMgt
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Content-Length: 61
+1 > Content-Type: text/plain; charset=UTF-8
+1 > Host: localhost:8080
+1 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+Scenario Get all IMSIs with failures during a time period.xls
+
+21:19:52.266 response time in milliseconds: 1206.80
+1 < 200
+1 < Connection: keep-alive
+1 < Content-Length: 39
+1 < Content-Type: application/json
+1 < Date: Sun, 17 May 2020 20:19:52 GMT
+{"ErroneousEvents":0,"EventsLoaded":16}
+
+21:19:52.273 request:
+2 > GET http://localhost:8080/DDOY-build/rest/TelcoDataMgt/IMSIsWithinDates?startDate=2020/01/11T15:00:00&endDate=2020/01/11T21:20:00
+2 > Accept-Encoding: gzip,deflate
+2 > Connection: Keep-Alive
+2 > Host: localhost:8080
+2 > User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_241)
+
+21:19:52.287 response time in milliseconds: 14.19
+2 < 200
+2 < Connection: keep-alive
+2 < Content-Length: 101
+2 < Content-Type: application/json
+2 < Date: Sun, 17 May 2020 20:19:52 GMT
+[{"imsi":344930000000011},{"imsi":344930000000012},{"imsi":310560000000013},{"imsi":344930000000014}]
+
+21:19:52.290 after Scenario: Get all IMSIs with failures during a time period 
+
